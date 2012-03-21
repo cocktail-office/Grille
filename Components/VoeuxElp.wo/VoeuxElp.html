@@ -1,0 +1,147 @@
+<webobject name = "Wrapper">
+  <webobject name = "AucEc">
+    <div class = "block" style = "width:90%;margin:10px auto;">
+      <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+        <span style = "margin-left:20px">Voeux sur &eacute;l&eacute;ment constitutif (E.C.)</span>
+      </div>
+      <div class = "subBox corpsBlock">
+        <div style = "max-width:700px;padding:5px 0; ">
+          <webobject name = "EC" />
+          <webobject name = "IsEcSelected">
+            <div style = "margin:0 auto;">
+              <div class = "block" style = "width:185px;margin:10px auto;float:left;">
+                <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+                  <span style = "margin-left:20px">Heures &eacute;tudiants</span>
+                </div>
+                <div class = "subBox corpsBlock" style = "padding:5px 0;">
+                  <table style = "width:95%;" cellspacing = "0">
+                    <tr>
+                      <th />
+                      <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Heures</th>
+                      <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Groupes</th>
+                      <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Total</th>
+                    </tr>
+                    <webobject name = "LstAps">
+                      <tr>
+                        <td style = "width:30px;"><webobject name = "TypeAp" /></td>
+                        <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "nbHrAp" /></td>
+                        <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "GrpsAp" /></td>
+                        <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "Cout" /></td>
+                      </tr>
+                    </webobject>
+                  </table>
+                </div>
+              </div>
+              <div class = "block" style = "width:185px;margin:10px auto 10px 10px;float:left;">
+                <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+                  <span style = "margin-left:20px">Voeux sur l'&eacute;lement</span>
+                </div>
+                <div class = "subBox corpsBlock" style = "padding:5px 0;">
+                  <webobject name = "AucTotauxVoeux">
+                    <table style = "width:95%;" cellspacing = "0">
+                      <tr>
+                        <th rowspan = "2" />
+                        <th colspan = "2" style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Voeux</th>
+                        <th colspan = "2" style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Réalisé</th>
+                        </tr>
+                        <tr>
+                        <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Total</th>
+                        <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Bilan</th>
+                        <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Total</th>
+                        <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Bilan</th>
+                      </tr>
+                      <webobject name = "LstTotalVoeux">
+                        <tr>
+                          <td style = "width:30px;"><webobject name = "TypeTtVoeux" /></td>
+                          <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "TtVoeux" /></td>
+                          <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "BilanVoeux" /></td>
+                          <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "TtFait" /></td>
+                          <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "BilanFait" /></td>
+                        </tr>
+                      </webobject>
+                    </table>
+                  </webobject>
+                </div>
+              </div>
+              <div class = "block" style = "width:200px;margin:10px auto 10px 10px;float:left;">
+                <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+                  <span style = "margin-left:20px">Voeux sur activit&eacute;(s)</span>
+                </div>
+                <div class = "subBox corpsBlock" style = "padding:5px 0;">
+                  <webobject name = "AucBilanVoeuxActiv">
+                    <table style = "width:95%;" cellspacing = "0">
+                      <tr>
+                        <th rowspan = "2" style = "text-align:center;border-bottom:1px solid #B3B3B3;">Nb heures</th>
+                        <th colspan = "2" style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Voeux</th>
+                        <th colspan = "2" style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Réalisé</th>
+                        </tr>
+                        <tr>
+                        <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Total</th>
+                        <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Bilan</th>
+                        <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Total</th>
+                        <th style = "text-align:center;border-left:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;">Bilan</th>
+                      </tr>
+                      <tr>
+                        <td style = "text-align:right;padding-right:3px;"><webobject name = "HeuresActivite" /></td>
+                        <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "TotalHeuresVoeux" /></td>
+                        <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "BalanceActiv" /></td>
+                      <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "TotalHeures" /></td>
+                        <td style = "text-align:right;padding-right:3px;border-left:1px solid #B3B3B3;"><webobject name = "BalanceActivFait" /></td>
+                      
+                      </tr>
+                    </table>
+                  </webobject>
+                </div>
+              </div>
+            </div>
+          </webobject>
+        </div>
+        <webobject name = "IsEcSelected">
+          <webobject name = "AucZoneVoeux">
+            <fieldset style = "margin-top:20px;padding:0 0 5px 0;clear:both;-moz-border-radius:10px;">
+              <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Voeux sur actions p&eacute;dagogiques</legend>
+              <webobject name = "AucVoeux">
+                <webobject name = "VoeuxTBV" />
+                <div style = "text-align:right;">
+                  <webobject name = "CanAddVoeux"> <webobject name = "AbAddVoeux" />&nbsp;&nbsp;&nbsp;&nbsp; </webobject>
+                  <webobject name = "CanAddRealise"> <webobject name = "AbAddRealise" />&nbsp;&nbsp;&nbsp;&nbsp; </webobject>
+                </div>
+                <div style = "display:none;">
+                  <webobject name = "AucEditVoeux">
+                    <webobject name = "CawEditVoeux">
+                      <webobject name = "IsVoeuxEdited"> <webobject name = "EditVoeux" /> </webobject>
+                    </webobject>
+                  </webobject>
+                </div>
+              </webobject>
+            </fieldset>
+            <webobject name = "AulRefreshVoeuxLink" />
+            <fieldset style = "margin-top:20px;margin-bottom:3px;padding:0 0 5px 0;clear:both;-moz-border-radius:10px;">
+              <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Voeux sur activit&eacute;s</legend>
+              <webobject name = "AucVoeuxActiv">
+                <webobject name = "VoeuxActivTBV" />
+                <div style = "text-align:right;">
+                  <webobject name = "CanAddVoeuxActiv"> <webobject name = "AbAddVoeuxActiv" />&nbsp;&nbsp;&nbsp;&nbsp; </webobject>
+                  <webobject name = "CanAddRealiseActiv"> <webobject name = "AbAddRealiseActiv" />&nbsp;&nbsp;&nbsp;&nbsp; </webobject>
+                </div>
+                <div style = "display:none;">
+                  <webobject name = "AucEditVoeux">
+                    <webobject name = "CawEditVoeux">
+                      <webobject name = "IsVoeuxEdited"> <webobject name = "EditVoeux" /> </webobject>
+                    </webobject>
+                  </webobject>
+                </div>
+              </webobject>
+            </fieldset>
+            <div class = "valide" style = "height:12px;width:10px;border:0.5px solid black;display:inline;float:left;">&nbsp;</div><span style = "font-style:italic;font-size:10px;float:left;">&nbsp;:&nbsp;Voeux validés</span>
+            <webobject name = "AulRefreshVoeuxActivLink" />
+            <webobject name = "ModVerrouEC" />
+          </webobject>
+          <webobject name = "IsEnsWithServiceValided">
+            <div class = "notetip" style = "font-weight:bold;margin:5px auto;background-position:10px 5px;width:450px;">Votre service est valid&eacute;, l'ajout ou la modification de voeux est impossible.</div>
+          </webobject>
+        </webobject>
+      </div>
+    </div>
+  </webobject>
+</webobject>

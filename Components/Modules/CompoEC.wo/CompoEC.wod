@@ -1,0 +1,76 @@
+
+EcNotNull : ERXNonNullConditional {
+  condition = selectedEc;
+}
+Else : ERXElse {
+} 
+ECLibelle : WOString {
+  value = selectedEc.mecLibelle;
+}
+
+ECcode : WOString {
+  value = selectedEc.mecCode;
+}
+
+SearchEC : SearchMaquette {
+  ec = session.defaultEditingContext;
+  selectedObj = selectedEc;
+  selectedYear = session.selectedYear;  
+  treeDelegate = treeDelegate;
+  windowTitle = "Recherche EC";
+  idToRefresh = ^updateContainerID;
+  onSelectObj = closeSearchWin;
+  cawsearchzoneid = cawsearchzoneid;
+  diplomePickerDelegate = diplomePickerDelegate;
+}
+
+IsTreeItemEcLocked : WOConditional {
+  condition = isTreeItemEcLocked;
+}
+
+ImgVerrou : WOImage {
+  alt = "verrou";
+  framework = "FwkCktlThemes";
+  filename = "images/16x16/001_42_16x16.png";
+  align = "absmiddle";
+  title = "Element verrouillé";
+}
+
+IsMultiDiplomes : WOConditional {
+  condition = isMultiDiplomes;
+}
+
+IsNotMultiDiplome : WOConditional {
+  condition = isMultiDiplomes;
+  negate = true;
+}
+
+LstDipl : WORepetition {
+  list = lstDiplomesEc;
+  item = diplOccur;
+}
+
+LibDipl : WOString {
+  value = diplOccur.fdipAbreviation;
+}
+
+LibUniqueDiplome : WOString {
+  value = libUniqueDiplome;
+}
+
+IsMembreEquipe : WOConditional {
+  condition = isMembreEquipe;
+}
+
+LstEquipe : WORepetition {
+  list = lstEquipe;
+  item = responsableOccur;
+}
+
+LibEquipe : WOString {
+  value = responsableOccur.toFwkpers_Individu.nomCompletAffichage;
+}
+
+Role : WOString {
+  value = responsableOccur;
+}

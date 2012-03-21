@@ -1,0 +1,92 @@
+<webobject name = "Wrapper">
+  <webobject name = "AucEc">
+    <div class = "block" style = "width:90%;margin:10px auto;">
+      <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+        <span style = "margin-left:20px">El&eacute;ment constitutif (E.C.)</span>
+      </div>
+      <div class = "subBox corpsBlock">
+        <div style = "max-width:700px;"> <webobject name = "EC" /> </div>
+        <webobject name = "IsSelectedEC">
+          <fieldset style = "margin-top:20px;padding:0 0 5px 0;-moz-border-radius:10px;">
+            <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Actions p&eacute;dagiques</legend>
+            <webobject name = "EcNotNull">
+              <webobject name = "Frm">
+                <webobject name = "AucGrps">
+                  <div class = "cktlajaxtableview" style = "border:none;">
+                    <div class = "cktlAjaxTableView_DivHeaderAndBody">
+                      <table width = "97%" style = "margin:0 auto;" class = "tableWithBorder" cellspacing = "0">
+                        <thead>
+                          <tr>
+                            <th rowspan = "2">Libelle</th>
+                            <th style = "width:50px;text-align:center;" rowspan = "2">Type</th>
+                            <th style = "width:50px;text-align:center;" rowspan = "2">Heures</th>
+                            <th style = "text-align:center;" colspan = "2">Groupes</th>
+                            <th style = "text-align:center;" colspan = "2">Co&ucirc;t</th>
+                          </tr>
+                          <tr>
+                            <th style = "width:50px;text-align:center;">Pr&eacute;vus</th>
+                            <th style = "width:50px;text-align:center;">Reels</th>
+                            <th style = "width:50px;text-align:center;">Pr&eacute;vus</th>
+                            <th style = "width:50px;text-align:center;">Reels</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <webobject name = "LstAps">
+                            <webobject name = "Tr">
+                              <td style = "text-align:left;"><webobject name = "LibAp" /></td>
+                              <td align = "center"><webobject name = "TypeAp" /></td>
+                              <td align = "right"><webobject name = "HeuresAp" /></td>
+                              <webobject name = "IsEdited">
+                                <td align = "right"> <webobject name = "EditGrpPrevusAp" /> </td>
+                                <td align = "right"> <webobject name = "EditGrpReelAp" /> </td>
+                              </webobject>
+                              <webobject name = "IsNotEdited">
+                                <td align = "right"><webobject name = "GrpPrevusAp" /></td>
+                                <td align = "right"><webobject name = "GrpReelAp" /></td>
+                              </webobject>
+                              <td align = "right"><webobject name = "CoutPrevu" /></td>
+                              <td align = "right"><webobject name = "CoutReel" /></td>
+                            </webobject>
+                          </webobject>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div style = "text-align:right;">
+                    <webobject name = "CanEditGrp"> <webobject name = "AbEditGrp" />&nbsp;&nbsp;&nbsp;&nbsp; </webobject>
+                    <webobject name = "IsEdited">
+                      <webobject name = "CasbValid" />&nbsp;&nbsp; 
+                      <webobject name = "CasbReset" />
+                    </webobject>
+                  </div>
+                </webobject>
+              </webobject>
+            </webobject>
+          </fieldset>
+          <fieldset style = "margin-top:20px;padding:0 0 5px 0;-moz-border-radius:10px;">
+            <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Activit&eacute;s p&eacute;dagiques</legend>
+            <webobject name = "AucActivites">
+              <webobject name = "ActiviteTBV" />
+              <webobject name = "CanAddActivite">
+                <div style = "text-align:right;"> <webobject name = "AbAddActiv" />&nbsp;&nbsp;&nbsp;&nbsp; </div>
+              </webobject>
+              <div style = "display:none;"> <webobject name = "TriggerRefreshActivites" /></div>
+              <div style = "display:none;">
+                <webobject name = "AucEditActivite">
+                  <webobject name = "CawEditActv">
+                    <webobject name = "IsActiviteEdited"> <webobject name = "EditActivite" /> </webobject>
+                  </webobject>
+                </webobject>
+              </div>
+            </webobject>
+          </fieldset>
+          <webobject name = "AulRefreshLink" />
+          
+          <webobject name = "AucVerrou"><webobject name = "ModVerrouEC"/></webobject>
+          
+        </webobject>
+      </div>
+    </div>
+  </webobject>
+  
+</webobject>

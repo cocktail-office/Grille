@@ -1,0 +1,29 @@
+Lib : WOString {
+  value = libEns;
+}
+
+IsLockedEc : WOConditional {
+	condition = isVerrouEC;
+}
+
+ImgVerrou : WOImage {
+  alt = "verrou";
+  framework = "FwkCktlThemes";
+  filename = "images/16x16/001_42_16x16.png";
+  align = "absmiddle";
+  title = "Service validé";
+}
+GoToVoeuxEns : WOHyperlink {
+  action = goToVoeuxEns;
+  style = "font-weight:normal;";
+  alt = "voeux par enseignant";
+  title = "voeux par enseignant";
+}
+
+CanChangeEnseignant : WOConditional {
+  condition = canChangeEnseignant;
+}
+
+Else : ERXElse {
+	
+}

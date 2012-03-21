@@ -1,0 +1,197 @@
+ErreurContainer : AjaxUpdateContainer { 
+	id = "erreureditactivite";
+	style = "z-index:9999;";
+}
+
+MessageUtil : MessageUtil { 
+  idErreur = "erreureditactivite";
+  idMessage = "idmessageactivite";
+}
+
+Frm : ERXOptionalForm {
+  multipleSubmit = true;
+}
+
+LibActivite : WOTextField {
+  value = editedActivite.commentaire;
+  size = "50";
+}
+
+PubTypes : WOPopUpButton {
+  list = lstTypesActivites;
+  item = typeActiviteOccur;
+  displayString = typeActiviteOccur.libLong;
+  selection = editedActivite.toTypeActivite;
+}
+
+HeuresActivite : WOTextField {
+  value = editedActivite.nbHeuresActivite;
+  numberformat = "0";
+  size = "3";
+  style = "text-align:right;";
+}
+ 
+RbtLienDom : WORadioButton {
+  name = "rbtlien";
+  value = typeDomaine;  
+  id = "liendom";
+  selection = typeLien;
+}
+
+RbtLienDipl : WORadioButton  {
+  name = "rbtlien";
+  value = typeDiplome;  
+  id = "liendipl";
+  selection = typeLien;
+}
+
+RbtLienSpec : WORadioButton {
+  name = "rbtlien";
+  value = typeSpecialisation;  
+  id = "lienspec";
+  selection = typeLien;
+}
+
+RbtLienPar : WORadioButton {
+  name = "rbtlien";
+  value = typeParcours;  
+  id = "lienpar";
+  selection = typeLien;
+}
+
+RbtLienSem : WORadioButton {
+  name = "rbtlien";
+  value = typeSemestre;  
+  id = "liensem";
+  selection = typeLien;
+}
+
+RbtLienUe : WORadioButton {
+  name = "rbtlien";
+  value = typeUe;  
+  id = "lienue";
+  selection = typeLien;
+}
+
+RbtLienEc : WORadioButton {
+  name = "rbtlien";
+  value = typeEc;  
+  id = "lienec";
+  selection = typeLien;
+}
+
+AofTypeLien : AjaxObserveField {
+  action = chooseTypeLink;
+  updateContainerID = "selectionlink";
+}
+
+AucSelectionLink : AjaxUpdateContainer {
+  id = "selectionlink";
+}
+AucSelectionLinkFenetre : AjaxUpdateContainer {
+  id = "selectionlinkFenetre";
+}
+IsDomSelect : WOConditional {
+  condition = isDomSelect;
+}
+
+IsDiplSelect : WOConditional {
+  condition = isDiplSelect;
+}
+
+SearchMaquette : SearchMaquette {  
+  ec = editedObj.editingContext;
+  selectedObj = editedObj;
+  selectedYear = editedActivite.toFwkScolarite_ScolFormationAnnee;  
+  treeDelegate = treeDelegate;
+  windowTitle = windowTitle;
+  popup = false;
+  parentSelectedObj = editedActivite; 
+  cawsearchzoneid = cawsearchzoneid;
+  idToRefresh = "selectionlink";
+  onSelectObj = closeSearchWin;
+  showLink = false;
+  diplomePickerDelegate = diplomePickerDelegate;
+}
+
+CasbValider : CktlAjaxSubmitButton {
+	action = valide;		
+	title = "Valider";
+	text = "Valider";
+	type = "validate";	
+	updateContainerID = "erreureditactivite";
+	onSuccess = onSuccessValid;  
+}
+
+CasbCancel : CktlAjaxSubmitButton {
+	action = cancel;		
+	title = "Annuler";
+	text = "Annuler";
+	type = "reset";	
+	updateContainerID = "erreureditactivite";
+}
+
+AofLien : AjaxObserveField {
+  updateContainerID = "selectionlinkFenetre";
+  fullSubmit = true;
+  action = typeLienChange;
+}
+
+AulRefreshLink : AjaxUpdateLink {
+  updateContainerID = "selectionlink";
+  id = "refreshLink";
+  button = true;
+  action = refreshLink;
+  style = "display:none;";
+}
+
+PubDomaine : WOPopUpButton {
+  list = lstDomaines;
+  item = domaineOccur;
+  selection = editedActivite.lien;//editedActivite.toFwkScolarite_ScolFormationDomaine;
+  displayString = domaineOccur.fdomLibelle;
+  noSelectionString = "< Choisissez un domaine >";
+}
+
+AbSearchTree : CktlAjaxButton {
+	action = openSearchMaquette;		
+	title = "Chercher";
+	text = "Recherche";
+	type = "find";	
+	//updateContainerID = "selectionlinkFenetre";
+}
+
+Else : ERXElse {
+	
+}
+LieeA : ActiviteLieeA {
+  value = editedActivite.lien;
+}
+
+IsSameLink : WOConditional {
+  condition = isSameLink;
+}
+
+DPSearchDipl : DiplomePicker {
+  selectedDiplome = selectedDiplome;//editedActivite.toFwkScolarite_ScolFormationDiplome;
+  isSpecSelect = false;
+  selectedYear = session.selectedYear;
+  isGradeSelect = false;
+  editingContext = editedActivite.editingContext;
+  delegate = diplomePickerEditRightDelegate; 
+}
+
+IsGrilleurSpec : WOConditional {
+  condition = isGrilleurSpec;
+}
+
+CanChooseParcours : WOConditional {
+  condition = canChooseParcours;
+}
+
+CanChooseUE : WOConditional {
+  condition = canChooseUe;
+}
+CanChooseEc : WOConditional {
+  condition = canChooseEc;
+}

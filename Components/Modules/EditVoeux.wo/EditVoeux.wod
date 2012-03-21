@@ -1,0 +1,393 @@
+ErreurContainer : AjaxUpdateContainer {
+	id = "erreureditvoeux";
+	style = "z-index:9999;";
+}
+
+MessageUtil : MessageUtil {
+  idErreur = "erreureditvoeux";
+  idMessage = "idmessagevoeux";
+}  
+
+Frm : ERXOptionalForm {
+  multipleSubmit = true;
+}
+
+AulRefreshLink : AjaxUpdateLink {
+  updateContainerID = "selectionlink";
+  id = "refreshLink";
+  button = true;
+  action = refreshLink;
+  style = "display:none;";
+}
+CasbValider : CktlAjaxSubmitButton {
+	action = valide;		
+	title = "Valider";
+	text = "Valider";
+	type = "validate";	
+	updateContainerID = "erreureditvoeux";
+	onSuccess = onSuccessValid;
+}
+
+CasbCancel : CktlAjaxSubmitButton {
+	action = cancel;		
+	title = "Annuler";
+	text = "Annuler";
+	type = "reset";	
+	updateContainerID = "erreureditvoeux";
+}
+
+Enseignant : WOString {
+  value = editedVoeux.toFwkpers_IndividuEnseignant.nomPrenomAffichage;
+}
+
+ImgVerrou : WOImage {
+  alt = "verrou"; 
+  framework = "FwkCktlThemes";
+  filename = "images/16x16/001_42_16x16.png";
+  align = "absmiddle";
+  title = "Service validé";
+}
+
+AP : WOString {
+  value = editedVoeux.toFwkScolarite_ScolariteFwkScolMaquetteAp.mapLibelle;
+}
+
+ActiviteLib : WOString {
+  value = editedVoeux.toActivite.libelleActivite; //.commentaire;
+}
+
+NbHeures : WOTextField {
+  value = nbHeuresVoeux;
+  numberformat = "##";
+  size = "2";
+  style = "text-align:right;margin-right:0;";
+}
+
+CanShowValidVoeux : WOConditional {
+  condition = canValidVoeux;
+}
+
+IsVoeuxLocked : WOConditional {
+  condition = isVoeuxLocked;
+}
+
+CbxValidVoeux : WOCheckBox {
+  value = "O";
+  selection = editedVoeuxValide;
+  disabled = canNotValidVoeux;
+}
+
+SearchAP : SearchMaquette {
+  ec = editedVoeux.editingContext;
+  selectedObj = editedVoeux.toFwkScolarite_ScolariteFwkScolMaquetteAp;
+  selectedYear = session.selectedYear;  
+  treeDelegate = treeDelegate;
+  windowTitle = "Recherche AP";
+  idToRefresh = aucapid;
+  popup = false;
+  onSelectObj = closeSearchWin;
+  diplomePickerDelegate = diplomePickerDelegate;
+}
+
+AucAp : AjaxUpdateContainer {
+	id = aucapid;
+	elementName = "span";
+}
+
+IsListAp : ERXNonNullConditional {
+  condition = lstApDispos;
+}
+
+IsNotListAp : ERXNonNullConditional {
+  condition = lstApDispos;
+  negate = true;
+}
+
+Else : ERXElse {
+}
+
+AucActiv : AjaxUpdateContainer {
+	id = aucactivid;
+	elementName = "span";
+}
+ 
+LstAp : WOPopUpButton {
+  list = lstApDispos;
+  item = apOccur;
+  displayString = apOccurLibelle;
+  selection = editedVoeux.toFwkScolarite_ScolariteFwkScolMaquetteAp;
+  noSelectionString = "Choisissez une action";
+  disabled = canNotChangeAp;
+}
+
+AmdSearch : AjaxModalDialog {
+	closable = false;
+	resizable = true;
+	id = searchZoneId;
+	width = "640";
+	height = "450";
+	title = "Recherche enseignant";
+	centerVertically = true;
+}
+AucSearch : AjaxUpdateContainer {
+  id = aucSearch;
+  class="subBox";
+}
+
+MyForm1 : WOForm {
+	id = "id";
+	name = "form1";
+	multipleSubmit = true;
+	//action = doNothing;
+	onsubmit = "return false;";
+	
+}
+
+
+MSearchEnseignant : ModSearchEnseignant {
+	enseignant = searchedEnseigant;
+	updateContainerID = "aucEnseignant";
+	onSelectEnseignant = selectEnsFromSearch;
+	onCancelSearchEnseignant = setSearchOff;
+}
+
+AucEnseignant : AjaxUpdateContainer {
+  id = "aucEnseignant";
+}
+AbSearchEns : CktlAjaxButton {
+	action = setSearchOn;		
+	title = "Chercher";
+	text = "Chercher";
+	type = "find";	
+	updateContainerID = aucSearch;
+}
+
+IsInSearch : WOConditional {
+  condition = searchMode;
+}
+
+CbxDemi : WOCheckBox {
+   value = "0.5";
+   selection = etDemi;
+   numberformat = "0.0";
+}
+
+IsApSelection : WOConditional {
+  condition = ^isApSelection;
+}
+IsActivSelection : WOConditional {
+  condition = ^isActivSelection;
+}
+
+IsListActiv : ERXNonNullConditional {
+  condition = lstActivDispos;
+}
+
+IsNoListActiv : ERXNonNullConditional {
+  condition = lstActivDispos;
+  negate = true;
+}
+
+LstActiv : WOPopUpButton {
+  list = lstActivDispos;
+  item = activOccur;
+  displayString = libActiviteOccur;
+  selection = editedVoeux.toActivite;
+  noSelectionString = "Choisissez une activité";
+  disabled = canNotChangeAp;
+}
+
+IsApSelected : ERXNonNullConditional {
+	condition = editedVoeux.toFwkScolarite_ScolariteFwkScolMaquetteAp;
+}
+
+TotalVoeuxAp : WOString {
+  value = totalVoeuxAp;
+}
+TotalHeuresAp : WOString {
+  value = totalDispoAp;
+}
+
+AofAp : AjaxObserveField {
+  updateContainerID = aucTriggerChangeApid;
+  action = calculTotalAp;
+}
+
+AucInfosAp : AjaxUpdateContainer {
+  id = aucinfosapid;
+}
+AucInfosActiv : AjaxUpdateContainer {
+  id = aucinfosactivid;
+}
+
+IsActivSelected : ERXNonNullConditional {
+	condition = editedVoeux.toActivite;
+}
+
+TotalVoeuxActiv : WOString {
+  value = totalVoeuxActiv;
+}
+
+
+TotalHeuresActiv : WOString {
+  value = editedVoeux.toActivite.nbHeuresActivite;
+}
+
+AofActiv : AjaxObserveField {
+  updateContainerID = aucTriggerChangeActivid;
+  action = calculTotalActiv;
+}
+
+CanChangeEns : WOConditional {
+  condition = canChangeEnseignant;
+}
+
+SearchActiv : SearchMaquette {
+  ec = editedVoeux.editingContext;
+  selectedObj = editedVoeux.toActivite;
+  selectedYear = session.selectedYear;  
+  treeDelegate = activTreeDelegate;
+  windowTitle = "Recherche Activité";
+  idToRefresh = aucactivid;
+  popup = false;
+  onSelectObj = closeSearchWinActiv;
+  diplomePickerDelegate = diplomePickerDelegate;
+}
+
+HaveMultiActiv : WOConditional {
+  condition = haveMultiActiv;
+}
+
+Activite : WOString {
+  value = activiteLib;  
+}
+
+HasCreateur : ERXNonNullConditional {
+  condition = editedVoeux.toFwkpers_IndividuCreateur;
+}
+
+IndivCreateur : WOString {
+  value = editedVoeux.toFwkpers_IndividuCreateur.nomPrenomAffichage;
+}
+
+IsServiceValided : WOConditional {
+  condition = isServiceValided;
+}
+
+
+IsEcLocked : WOConditional {
+  condition = isEcLocked;
+}
+
+IsEcForActivLocked : WOConditional {
+  condition = isEcForActivLocked;
+}
+
+AucButtonsZone : AjaxUpdateContainer {
+  id = aucbuttonszoneid;
+  style = "text-align:center;";
+}
+
+CanValid : WOConditional {
+	condition = canValid;
+}
+
+MsgCannotValid : WOString {
+  value = msgCannotValid;
+  escapeHTML = false;
+}
+
+IsTreeItemEcLocked : WOConditional {
+  condition = isTreeItemEcLocked;
+}
+
+IsTreeItemActivEcLocked : WOConditional {
+  condition = isTreeItemActivEcLocked;
+}
+
+CheckEtDemi : WOConditional {
+  condition = false;
+}
+
+ComboEtDemi : WOConditional {
+  condition = true;
+}
+
+PubEtDemi : WOPopUpButton {
+  list = lstEtDemi;
+  item = etDemiOccur;
+  selection = etDemi;
+  displayString = displayEtDemi;
+  style = "margin-left:0;";
+}
+
+CanChangeAp : WOConditional {
+  condition = canChangeAp;
+}
+
+AucValideVoeux : AjaxUpdateContainer {
+  id = aucValidVoeuxId;
+  elementName = "tr";
+}
+
+AucTriggerChangeAp : AjaxUpdateContainer {
+  id = aucTriggerChangeApid;
+}
+
+AucTriggerChangeActiv : AjaxUpdateContainer {
+  id = aucTriggerChangeActivid;
+}
+
+AutChangeAp : AjaxUpdateTrigger {
+  updateContainerIDs = changeApIds;
+}
+AutChangeActiv : AjaxUpdateTrigger {
+ updateContainerIDs = changeActivIds
+}
+CanChangeHrVoeux : WOConditional {
+  condition = canChangeHrVoeux;
+}
+
+NbHrVoeux : WOString {
+  value = editedVoeux.nbHeuresVoeux;
+  numberformat = "0.##";
+}
+
+ShowRealise : WOConditional {
+  condition = CanShowRealise;
+}
+
+CanChangeRealise : WOConditional {
+  condition = canChangeRealise;
+}
+
+NbHrRealise : WOString {
+  value = editedVoeux.nbHeureRealise;
+  numberformat = "0.##";
+}
+
+NbRealise : WOTextField {
+  value = nbHeuresRealise;
+  numberformat = "##";
+  size = "2";
+  style = "text-align:right;margin-right:0;";
+}
+
+CbxDemiRealise : WOCheckBox {
+   value = "0.5";
+   selection = etDemiRealise;
+   numberformat = "0.0";
+}
+
+PubEtDemiRealise : WOPopUpButton {
+  list = lstEtDemi;
+  item = etDemiOccur;
+  selection = etDemiRealise;
+  displayString = displayEtDemi;
+  style = "margin-left:0;";
+}
+
+AucRealise : AjaxUpdateContainer {
+  id = aucrealiseid;
+  elementName = "tr";
+}

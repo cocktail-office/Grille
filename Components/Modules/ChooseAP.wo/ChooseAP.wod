@@ -1,0 +1,28 @@
+Cadre : WrapperPopUp {
+	titre = "Recherche d'une AP";
+}
+
+Arbre : Arbre {
+	selectedEOObjet = selectedEOObjet;
+	selectedYear = currentYear;
+	ec = getEcEdit;
+	delegate = delegate;	
+}
+
+IsLink : WOConditional {
+  condition = delegate.isLink;
+}
+
+IsNotLink : WOConditional {
+  condition = delegate.isLink;
+  negate = true;
+}
+
+ActionLink : WOHyperlink {
+	action = selectAp; 
+	onSuccess = "function (ok) {refreshParentAndClose('majAp','N');}"; 
+}
+
+LibelleELP : WOString {
+  value = delegate.libelleArbre;
+}

@@ -1,0 +1,8 @@
+Cadre : Wrapper {
+	titre = "Contrat de Licence";
+	showMenu = showMenu;
+}
+
+Message : WOString {
+  value = message;
+}

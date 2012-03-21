@@ -1,0 +1,59 @@
+Wrapper : Wrapper {
+  titre = "GRILLE Gestion types activitées";
+}
+
+ActPrestTV : ActePrestationTbV {
+  dg = displayGroup;
+  cssStyle = "margin:0 auto;"; 
+  width = "500px";
+  canEdit = canEditObj;
+  afficherBarreDeStatut=true;
+  editMethodName = "editObj";
+  editMethodObject = editMethodeObject;
+  idToRefreshEdit = auceditobjid;
+  idToRefreshDelete = auclisteid;  
+  isEditEnabled = true;
+  onSuccessDelete = "function (majDel) {refreshPresta();}";
+  commitOnValid = true;
+}
+AulRefreshPresta : AjaxUpdateLink {
+  //updateContainerID = auclisteid;
+  action = search;
+  functionName = "refreshPresta";
+}
+CanEditObj : WOConditional {
+  condition = canEditObj;
+}
+
+CabAddActPrest : CktlAjaxButton {
+	action = addObj;		
+	title = "Ajout";
+	text = "Ajouter un acte de prestation";
+	type = "new";	
+	updateContainerID = auceditobjid;
+}
+
+
+CawEditObj : CktlAjaxWindow {
+  	closable = false;
+	resizable = true;
+	id = caweditobjid;
+	width = "600";
+	height = "150";
+}
+
+
+AucListe : AjaxUpdateContainer {
+  id = auclisteid;
+}
+
+AucEditObj : AjaxUpdateContainer {
+  id = auceditobjid;
+}
+
+MGestionActePrestation : ModGestionActePrestation {
+	actePrestation = editingActePrestation;
+	updateContainerID = auclisteid;
+	closeWindowId = caweditobjid;
+	afterCloseAction = search;
+}

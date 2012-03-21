@@ -1,0 +1,28 @@
+Cadre : Wrapper {
+	titre = "Gestion AP";
+}
+SearchAP : SearchMaquette {
+  ec = session.defaultEditingContext;
+  selectedObj = selectedAp;
+  selectedYear = session.selectedYear;
+  idToRefresh = "majAp";
+  treeDelegate = treeDelegate;
+  windowTitle = "Recherhce AP";
+}
+
+APLibelle : WOString {
+  value = selectedAp.mapLibelle;
+}
+
+AucAP : AjaxUpdateContainer {
+  id = "majAp";
+}
+
+LstDipl : WORepetition {
+  list = lstDiplomesAp;
+  item = diplOccur;
+}
+
+LibDipl : WOString {
+  value = diplOccur.fdipAbreviation;
+}

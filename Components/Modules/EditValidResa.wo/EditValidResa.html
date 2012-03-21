@@ -1,0 +1,39 @@
+<div class = "searchzone" style = "height:100%;text-align:center;">
+  <br />
+  <table align = "center">
+    <td class = "required" style = "text-align:right;">Total heures des p&eacute;riodes s&eacute;lectionn&eacute;es :</td>
+    <td class = "required" style = "text-align:left;"><webobject name = "TtHrPeriodes" /></td>
+  </table>
+  <fieldset style = "margin:5px;padding:0 0 5px 0;clear:both;-moz-border-radius:10px;">
+    <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Voeux correspondants aux p&eacute;riodes</legend>
+    <webobject name = "VoeuxTBV" />
+    <webobject name = "Frm">
+      <webobject name = "ValidMode">
+        <webobject name = "HasToCreat">
+          Cr&eacute;er les voeux r&eacute;alis&eacute;s suivants : 
+          <webobject name = "CbxCreat"><webobject name = "LibToCreate" /></webobject>
+        </webobject>
+        Ajouter 
+        <webobject name = "NbHeuresFaites" />
+        heures au r&eacute;alis&eacute; des voeux correspondants 
+        <br />
+        Valider les 
+        <webobject name = "NbPeriodes" />
+        périodes 
+        sélectionnées :
+        <webobject name = "AbValidPeriodes" />
+      </webobject>
+      <webobject name = "DeValidMode">
+        Retirer 
+        <webobject name = "NbHeuresFaites" />
+        heures au r&eacute;alis&eacute; des voeux correspondants 
+        <br />
+        D&eacute;-valider les 
+        <webobject name = "NbPeriodes" />
+        périodes 
+        sélectionnées :
+        <webobject name = "AbDeValidPeriodes" />
+      </webobject>
+    </webobject>
+  </fieldset>
+</div>

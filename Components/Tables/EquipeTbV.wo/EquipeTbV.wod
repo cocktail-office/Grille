@@ -1,0 +1,51 @@
+TBV : CktlAjaxTableView {
+	id = componentId;
+	colonnes = colonnes;
+	dg = ^dg;
+	item = objectOccur;
+	selectionMultipleEnabled = false;
+	selectionEnabled = false;	
+	afficherBarreDeNavigation = showNavigBar; 
+	afficherBarreDeStatut = ^afficherBarreDeStatut;
+	updateContainerID = ^updateContainerID;
+	cssClass = ^cssClass;
+	height = ^height;
+	width = ^width;
+	cssStyle = ^cssStyle;
+	rowCssClass = classLigne;
+	widthBarreDeNavigation = "100%";
+}
+DisplayTable : WOConditional {
+  condition = displayTable;
+}
+
+HaveDeletedObj : ERXNonZeroConditional {
+  condition = getDeletedObjects.count;
+}
+
+DivMsg : WOGenericContainer {
+  elementName = "div";
+  class = "blocInfo";
+}
+
+AbSaveChanges : CktlAjaxButton {
+	action = commitSave;		
+	title = "Confirmer";
+	text = "Confirmer";
+	type = "validate";	
+	onSuccess = ^onSuccessDelete;
+}
+
+AbCancelChanges : CktlAjaxButton {
+updateContainerID = ^idToRefreshDelete;
+	action = cancelSave;		
+	title = "Annuler";
+	text = "Annuler";
+	type = "reset";	
+	onSuccess = ^onSuccessDelete;
+}
+
+
+Else : ERXElse {
+
+}

@@ -1,0 +1,182 @@
+<div class = "searchzone" style = "height:100%;">
+  &nbsp;<br />
+  <fieldset style = "margin-top:0;margin-bottom:0;">
+    <legend>Voeux</legend>
+    <table width = "100%">
+      <tr>
+        <td class = "required" style = "text-align:right;width:140px;">Enseignant : </td>
+        <td>
+          <webobject name = "AucEnseignant">
+            <webobject name = "Enseignant" />
+            <webobject name = "IsServiceValided">&nbsp;&nbsp;<webobject name = "ImgVerrou" /></webobject>&nbsp;&nbsp;&nbsp; 
+            <webobject name = "CanChangeEns"><webobject name = "AbSearchEns" /></webobject>
+            <webobject name = "AucSearch">
+              <webobject name = "AmdSearch">
+                <webobject name = "IsInSearch">
+                  <webobject name = "MyForm1"><webobject name = "MSearchEnseignant" /> </webobject>
+                </webobject>
+              </webobject>
+            </webobject>
+          </webobject>
+        </td>
+      </tr>
+      <webobject name = "IsApSelection">
+        <webobject name = "IsNotListAp">
+          <tr>
+            <td class = "required" style = "text-align:right;">AP : </td>
+            <td>
+              <webobject name = "AucAp">
+                <webobject name = "AP" />
+                <webobject name = "IsEcLocked">&nbsp;&nbsp;<webobject name = "ImgVerrou" /></webobject>&nbsp;&nbsp;&nbsp; 
+              </webobject>
+              <webobject name = "CanChangeAp">
+                <webobject name = "SearchAP" />
+                <webobject name = "IsTreeItemEcLocked"><webobject name = "ImgVerrou" /></webobject>
+              </webobject>
+            </td>
+          </tr>
+        </webobject>
+      </webobject>
+      <webobject name = "IsActivSelection">
+        <webobject name = "IsNoListActiv">
+          <tr>
+            <td class = "required" style = "text-align:right;">Activit&eacute; : </td>
+            <td>
+              <webobject name = "AucActiv">
+                <webobject name = "ActiviteLib" />
+                <webobject name = "IsEcForActivLocked">&nbsp;&nbsp;<webobject name = "ImgVerrou" /></webobject>&nbsp;&nbsp;&nbsp; 
+              </webobject>
+              <webobject name = "CanChangeAp">
+                <webobject name = "SearchActiv" />
+                <webobject name = "IsTreeItemActivEcLocked"><webobject name = "ImgVerrou" /></webobject>
+              </webobject>
+            </td>
+          </tr>
+        </webobject>
+      </webobject>
+    </table>
+    <webobject name = "Frm">
+      <table width = "100%">
+        <webobject name = "IsApSelection">
+          <webobject name = "IsListAp">
+            <tr>
+              <td class = "required" valign = "top" style = "text-align:right;">AP : </td>
+              <td>
+                <webobject name = "CanChangeAp">
+                  <webobject name = "AofAp">
+                    <webobject name = "LstAp" />
+                    <webobject name = "IsEcLocked">&nbsp;&nbsp;<webobject name = "ImgVerrou" /></webobject>&nbsp;&nbsp;&nbsp; 
+                  </webobject>
+                </webobject>
+                <webobject name = "Else"> <webobject name = "AP" /> </webobject>
+              </td>
+            </tr>
+          </webobject>
+          <tr>
+            <td class = "required"></td>
+            <td>
+              <webobject name = "AucInfosAp">
+                <webobject name = "IsApSelected">
+                  <table>
+                    <tr>
+                      <td style = "text-align:center;width:50%;white-space:nowrap;">Total heures AP : <webobject name = "TotalHeuresAp" /> </td>
+                      <td style = "text-align:center;white-space:nowrap;">Total voeux de l'AP : <webobject name = "TotalVoeuxAp" /> </td>
+                    </tr>
+                  </table>
+                </webobject>
+              </webobject>
+            </td>
+          </tr>
+        </webobject>
+        <webobject name = "IsActivSelection">
+          <webobject name = "IsListActiv">
+            <tr>
+              <td class = "required" style = "text-align:right;">Activit&eacute; : </td>
+              <td>
+                <webobject name = "CanChangeAp">
+                  <webobject name = "HaveMultiActiv">
+                    <webobject name = "AofActiv"> <webobject name = "LstActiv" /> </webobject>
+                  </webobject>
+                  <webobject name = "Else"><webobject name = "Activite" /> </webobject>
+                </webobject>
+                <webobject name = "Else"><webobject name = "ActiviteLib" /></webobject>
+              </td>
+            </tr>
+          </webobject>
+          <tr>
+            <td class = "required"></td>
+            <td>
+              <webobject name = "AucInfosActiv">
+                <webobject name = "IsActivSelected">
+                  <table>
+                    <tr>
+                      <td style = "text-align:center;width:50%;white-space:nowrap;">Total heures activit&eacute; : <webobject name = "TotalHeuresActiv" /> </td>
+                      <td style = "text-align:center;white-space:nowrap;">Total voeux de l'activit&eacute; : <webobject name = "TotalVoeuxActiv" /> </td>
+                    </tr>
+                  </table>
+                </webobject>
+              </webobject>
+            </td>
+          </tr>
+        </webobject>
+        <tr>
+          <td class = "required" style = "text-align:right;width:140px;">Nb heures du voeux : </td>
+          <td>
+            <webobject name = "CanChangeHrVoeux">
+              <webobject name = "NbHeures" />
+              <webobject name = "CheckEtDemi"> &nbsp;&frac12;&nbsp;<webobject name = "CbxDemi" /> </webobject>
+              <webobject name = "ComboEtDemi"><webobject name = "PubEtDemi" /> </webobject>
+            </webobject>
+            <webobject name = "Else"> <webobject name = "NbHrVoeux" /> </webobject>
+          </td>
+        </tr>
+        <webobject name = "AucValideVoeux">
+          <webobject name = "CanShowValidVoeux">
+            <td style = "text-align:right;">Voeux valid&eacute; : </td>
+            <td><webobject name = "CbxValidVoeux" /></td>
+          </webobject>
+          <webobject name = "Else">
+            <webobject name = "IsVoeuxLocked">
+              <td></td>
+              <td style = "text-align:left;">Le voeux est valid&eacute; </td>
+            </webobject>
+          </webobject>
+        </webobject>
+        <webobject name = "HasCreateur">
+          <tr>
+            <td style = "text-align:right;">Cr&eacute;ateur du voeux:</td>
+            <td><webobject name = "IndivCreateur" /></td>
+          </tr>
+        </webobject>
+        <webobject name = "AucRealise">
+	        <webobject name = "ShowRealise">
+	          
+	            <td class = "required" style = "text-align:right;width:140px;">Nb heures r&eacute;alis&eacute;es : </td>
+	            <td>
+	              <webobject name = "CanChangeRealise">
+	                <webobject name = "NbRealise" />
+	                <webobject name = "CheckEtDemi"> &nbsp;&frac12;&nbsp;<webobject name = "CbxDemiRealise" /> </webobject>
+	                <webobject name = "ComboEtDemi"><webobject name = "PubEtDemiRealise" /> </webobject>
+	              </webobject>
+	              <webobject name = "Else"> <webobject name = "NbHrRealise" /> </webobject>
+	            </td>
+	          
+	        </webobject>
+	        </webobject>
+        
+      </table>
+      <br />
+      <webobject name = "AulRefreshLink" />
+      <webobject name = "AucButtonsZone">
+        <webobject name = "CanValid"><webobject name = "CasbValider" /></webobject>
+        <webobject name = "Else">
+          <div class = "notetip" style = "font-weight:bold;margin:5px auto;background-position:10px 5px;width:500px;"><webobject name = "MsgCannotValid" /></div>
+        </webobject>
+        &nbsp;&nbsp;<webobject name = "CasbCancel" />
+      </webobject>
+    </webobject>
+  </fieldset>
+  <webobject name = "ErreurContainer"> <webobject name = "MessageUtil" /> </webobject>
+  <webobject name = "AucTriggerChangeAp"><webobject name = "AutChangeAp" /></webobject>
+  <webobject name = "AucTriggerChangeActiv"><webobject name = "AutChangeActiv" /></webobject>
+</div>

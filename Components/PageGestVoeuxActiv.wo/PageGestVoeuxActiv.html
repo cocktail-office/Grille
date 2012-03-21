@@ -1,0 +1,69 @@
+<webobject name = "Wrapper">
+  <webobject name = "AucActiv">
+    <div class = "block" style = "width:90%;margin:10px auto;">
+      <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+        <span style = "margin-left:20px">Voeux par activit&eacute;</span>
+      </div>
+      <div class = "subBox corpsBlock" style = "padding:5px 0;">
+        <table style = "background-color:#F1F5FA;border:1px solid black;min-width:500px;">
+          <tr>
+            <td class = "boxTitre" style = "text-align:right;width:150px;">Activit&eacute; : </td>
+            <td colspan = "4" style = "text-align:left;"><webobject name = "LibActivite" /></td>
+            <td rowspan = "3" style = "text-align:right;width:80px;"> <webobject name = "SearchActiv" /></td>
+          </tr>
+          <tr>
+            <td class = "boxTitre" style = "text-align:right;">Type : </td>
+            <td colspan = "4" style = "text-align:left;"><webobject name = "TypeActiv" /></td>
+          </tr>
+          <tr>
+            <td class = "boxTitre" style = "text-align:right;">li&eacute; &agrave; : </td>
+            <td colspan = "4" style = "text-align:left;"><webobject name = "LieA" />
+            <webobject name = "IsLockedEc">&nbsp;<webobject name = "ImgVerrou" /></webobject>
+            </td>
+          </tr>
+          <webobject name = "IsActivSelected">
+            <webobject name = "AucTotalHrVoeux">
+              <td class = "boxTitre" style = "text-align:right;">Nombre heures activit&eacute; : </td>
+              <td style = "width:80px;font-weight:normal;text-align:left;"><webobject name = "HeuresActivite" /></td>
+              <td class = "boxTitre" style = "text-align:right;width:120px;">Total heures voeux : <br> Total réalise : </td>
+              <td style = "width:80px;font-weight:normal;text-align:left;"><webobject name = "TotalHeuresVoeux" /><br><webobject name = "TotalHeuresRealise" /></td>
+              <td class = "boxTitre" style = "width:120px;text-align:right;">Bilan voeux : <br>Bilan réalisé : </td>
+              <td style = "font-weight:bold;text-align:left;"><webobject name = "BalanceActiv" /><br><webobject name = "BalanceRealise" /></td>
+            </webobject>
+          </webobject>
+        </table>
+        <webobject name = "IsActivSelected">
+          <fieldset style = "margin-top:20px;margin-bottom:3px;padding:0 0 5px 0;;clear:both;-moz-border-radius:10px;">
+            <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Voeux sur activit&eacute;s</legend>
+            <webobject name = "AucVoeuxActiv">
+              <webobject name = "VoeuxActivTBV" />
+              <div style = "text-align:right;">
+              <webobject name = "CanAddVoeux">
+                 <webobject name = "AbAddVoeuxActiv" />&nbsp;&nbsp;&nbsp;&nbsp; 
+              </webobject>
+              <webobject name = "CanAddRealiseActiv"> <webobject name = "AbAddRealiseActiv" />&nbsp;&nbsp;&nbsp;&nbsp; </webobject>
+              </div>
+              <div style = "display:none;">
+                <webobject name = "AucEditVoeux">
+                  <webobject name = "CawEditVoeux">
+                    <webobject name = "IsVoeuxEdited"> <webobject name = "EditVoeux" /> </webobject>
+                  </webobject>
+                </webobject>
+              </div>
+            </webobject>
+          </fieldset>
+          <div class = "valide" style = "height:12px;width:10px;border:0.5px solid black;display:inline;float:left;">&nbsp;</div><span style = "font-style:italic;font-size:10px;float:left;">&nbsp;:&nbsp;Voeux validés</span>
+          <webobject name = "AulRefreshVoeuxActivLink" />
+          <webobject name = "IsEnsWithServiceValided">
+            <div class = "notetip" style = "font-weight:bold;margin:5px auto;background-position:10px 5px;width:450px;">Votre service est valid&eacute;, l'ajout ou la modification de voeux est impossible.</div>
+          </webobject>
+          <webobject name = "Else">
+          <webobject name = "IsActiviteLieEcVerrouillé">
+            <div class = "notetip" style = "font-weight:bold;margin:5px auto;background-position:10px 5px;width:450px;">Cette activité est liée à un E.C. vérouillé, l'ajout ou la modification de voeux est impossible.</div>
+          </webobject>
+          </webobject>
+        </webobject>
+      </div>
+    </div>
+  </webobject>
+</webobject>

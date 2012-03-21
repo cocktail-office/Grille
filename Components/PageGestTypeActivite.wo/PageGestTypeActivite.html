@@ -1,0 +1,56 @@
+<webobject name = "Wrapper">
+  <div style = "text-align:center">
+    <h1>Gestion des types activités</h1>
+    <webobject name = "frmSearch">
+      <div class = "block" style = "width:400px;margin:10px auto;">
+        <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+          <span style = "margin-left:20px">Recherche</span>
+        </div>
+        <div class = "subBox corpsBlock">
+          Libelle commence par : 
+          <webobject name = "SearchObj" />
+          <div align = "right" style = "margin-right:15px;">
+          <webobject name = "CasbSearch" />
+          </div>
+          <webobject name = "AsbTriggerSearch" />
+        </div>
+      </div>
+    </webobject>
+    <webobject name = "AucListe">
+      <webobject name = "TypeTb" />
+      <webobject name = "AulRefreshLst" />
+      <webobject name = "CanEditObj">
+      <webobject name = "AbAdd" />
+        &nbsp;&nbsp;&nbsp; 
+      </webobject>
+    </webobject>
+    <webobject name = "AucEditObj">
+      <webobject name = "CawEditObj">
+        <webobject name = "IsEdited">          
+          <webobject name = "AucEditForm">
+	          <webobject name = "frm">
+	            <table align = "center">
+	              <tr>
+	                <th style = "text-align:right;">Libelle court : </th>
+	                <td><webobject name = "LibCourt" /></td>
+	              </tr>
+	              <tr>
+	                <th style = "text-align:right;">Libelle : </th>
+	                <td><webobject name = "Libelle" /></td>
+	              </tr>
+	              <tr>
+	                <td style = "text-align:right" colspan = "2">
+	                  <webobject name = "CasbValider" />&nbsp;&nbsp;<webobject name = "CasbCancel" />
+	                </td>
+	              </tr>
+	            </table>
+	          </webobject>
+	          </webobject>
+          
+          <webobject name = "ErreurContainer"> <webobject name = "MessageUtil" /> </webobject>
+        </webobject>
+      </webobject>
+    </webobject>
+  </div>
+  <webobject name = "AucTrigDelete"><webobject name = "AutDelObj" /></webobject>
+</webobject>

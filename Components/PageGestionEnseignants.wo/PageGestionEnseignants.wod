@@ -1,0 +1,134 @@
+Wrapper : Wrapper {
+  titre = "GRILLE : Gestion des enseignants";
+}
+
+ModEnseigant : ModInfosEns {
+  enseignant = session.selectedEns;
+  onSelectEnseignant = selectEns;
+  showDetails = true;
+  totalVoeuxZoneId = aucBilanEnsid;
+}
+IsEnsSelected : ERXNonNullConditional {
+  condition = session.selectedEns;
+}
+
+AucReport : AjaxUpdateContainer {
+  id = aucreportsid;	
+}
+
+ReportTV : ReportTbV {
+  dg = dgReports;
+  cssStyle = "margin:0 auto;"; 
+  //width = "650px";
+  canEdit = canAddReport;
+  afficherBarreDeStatut=false;
+  editMethodName = "editReport";
+  editMethodObject = editMethodeObject;
+  idToRefreshEdit = aucgestionreportid;
+  idToRefreshDelete = aucreportsid;    
+  isEditEnabled = true;
+  onSuccessDelete = "function (majDel) {refreshReports();}";
+  commitOnValid = true;
+}
+
+AulRefreshReportsLink : AjaxUpdateLink {
+  id = aulrefreshreportsid;
+  button = true;
+  action = refreshReports;
+  functionName = "refreshReports";    
+}
+
+
+AucGestionReport : AjaxUpdateContainer {
+	id = aucgestionreportid;
+}
+
+MGestionReport : ModGestionReport {
+	editedReport = editedReport;
+	updateContainerID = aucreportsid;
+	onValidMethod = refreshReports;
+}
+
+CawGestionReport : CktlAjaxWindow {
+	id = cawgestionreportid;
+	closable = false;
+	resizable = true;
+	width = "500";
+	height = "220";
+//	title = "Recherche enseignant";
+}
+
+CanAddReport : WOConditional {
+  condition = canAddReport;
+}
+
+AbAddReport : CktlAjaxButton {
+	action = AddReport;		
+	title = "Ajout";
+	text = "Ajouter un report d'heure";
+	type = "new";	
+	updateContainerID = aucgestionreportid;
+}
+
+AucPrestations : AjaxUpdateContainer {
+  id = aucprestationsid;	
+}
+
+PrestEnseignantTV : PrestationEnseignantTbV {
+  dg = dgPrestations;
+  cssStyle = "margin:0 auto;"; 
+  //width = "650px";
+  canEdit = canAddReport;
+  afficherBarreDeStatut=false;
+  editMethodName = "editPrestation";
+  editMethodObject = editMethodeObject;
+  idToRefreshEdit = aucgestionprestationid;
+  idToRefreshDelete = aucprestationsid;    
+  isEditEnabled = true;
+  onSuccessDelete = "function (majDel) {refreshPrestations();}";
+  commitOnValid = true;
+}
+
+AulRefreshPrestationsLink : AjaxUpdateLink {
+  id = aulrefreshprestationsid;
+  button = true;
+  action = refreshPrestations;
+  functionName = "refreshPrestations";    
+}
+
+AbAddPrestation : CktlAjaxButton {
+	action = AddPrestation;		
+	title = "Ajout";
+	text = "Ajouter d'une prestation";
+	type = "new";	
+	updateContainerID = aucgestionprestationid;
+}
+
+AucGestionPrestation : AjaxUpdateContainer {
+	id = aucgestionprestationid;
+}
+
+CawGestionPresta : CktlAjaxWindow {
+	id = cawgestionprestationsid;
+	closable = false;
+	resizable = true;
+	width = "600";
+	height = "290";
+	title = "Ajouter une prestation";
+}
+
+FormGestPresta : ERXOptionalForm {
+	multipleSubmit = true;
+	onsubmit = "return false;";
+}
+
+MGestionPrestation : ModGestionPrestation {
+	prestationEnseignant = editedPrestation;
+	updateContainerID = aucprestationsid;
+	closeWindowId = cawgestionprestationsid;
+	onValidMethod = refreshPrestations;
+}
+
+AucInfosEns : AjaxUpdateContainer {
+  id = aucinfosensid;
+}

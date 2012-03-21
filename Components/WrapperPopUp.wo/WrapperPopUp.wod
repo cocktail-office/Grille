@@ -1,0 +1,50 @@
+Titre : WOString {
+	value = titre;
+}
+
+CssDefaultWin : ERXStyleSheet {
+	filename = "css/default.css";	
+	framework = "app";
+}
+
+CssCktlCommon : ERXStyleSheet {
+	filename = "css/CktlCommon.css";
+	framework = "FwkCktlThemes";	
+}
+
+CssCktlCommonCouleur : ERXStyleSheet {
+	filename = "css/CktlCommonOrange.css";
+	framework = "FwkCktlThemes";	
+}
+
+
+Body : WOBody {
+}
+
+ContentContainer : AjaxUpdateContainer {
+	id = "main";
+	
+	
+}
+Content : WOComponentContent {
+	
+}
+ErreurContainer : AjaxUpdateContainer {
+	id = "ErreurContainer";
+	style = "z-index:9999;";
+}
+
+
+CssModules : ERXStyleSheet {
+	filename = "css/GrilleModules.css";
+	framework = "app";
+}
+
+
+MessageUtil : MessageUtil {
+  idMessage = "idmessage";
+  idErreur = "ErreurContainer";
+}
+
+
+

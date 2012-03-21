@@ -1,0 +1,120 @@
+Cadre : Wrapper {
+  titre = "Gestion des activités";
+}
+
+ActiviteTBV : ActiviteTbV { 
+  dg = displayGroup;
+  width = "100%";
+  canEdit = canEditActivite;
+  objectOccur = activOccur;
+  afficherBarreDeStatut=true;
+  editMethodName = "editActivite";
+  editMethodObject = editMethodeObject;
+  idToRefreshEdit = "aucTriggerEditMode";
+  idToRefreshDelete = "resultsearch";  
+  onSuccessDelete = "function (majDel) {refreshActivites();}";
+  commitOnValid = true;
+  isEditEnabled = true;
+}
+Frm : WOForm {
+  multipleSubmit = true;
+  onKeyPress="if (event.keyCode == 13) {triggerSearch();return false;}";
+}
+
+LibSearch : WOTextField {
+  value = searchDico.libelle;  
+}
+
+PubTypeActivites : WOPopUpButton { 
+  list = lstTypeActivite;
+  item = typeActiviteOccur;
+  displayString = typeActiviteOccur.libLong;
+  selection = searchDico.typeActivite;
+  noSelectionString = "Tous";
+}
+
+CasbSearch : CktlAjaxSubmitButton {
+	action = searchActivite;		
+	title = "Chercher";
+	text = "Cherche";
+	type = "find";	
+	updateContainerID = "resultsearch";
+}
+
+AsbTriggerSearch : AjaxSubmitButton {
+	action = searchActivite;			
+	updateContainerID = "resultsearch";
+	functionName = "triggerSearch";
+}
+
+
+AucResult : AjaxUpdateContainer {
+  id = "resultsearch";
+  style = "width:70em;margin:0 auto;";
+}
+
+CanAddActivite : WOConditional {
+  condition = canAddActivite;
+}
+
+AbAddActiv : CktlAjaxButton {
+	action = AddActivite;		
+	title = "Ajout";
+	text = "Ajouter une activité";
+	type = "new";	
+	updateContainerID = "editactivite";
+}
+
+AulAddActivite : AjaxUpdateLink {  
+  updateContainerID = "editactivite";
+  action = AddActivite;  
+  //onSuccess = "function (show) {openWindowt('<b>Ajout d\'une activité</b>','Ajout','editactivite',700,400,null,null,'O',false,false);}";
+}
+
+ImgAdd : WOImage { 
+  filename = "images/16x16/001_01_16x16.png";
+  framework = "FwkCktlThemes";
+  border = 0;
+  style = "vertical-align:middle";
+  alt = "Ajouter";
+}
+
+AucEditActivite : AjaxUpdateContainer {
+  id = "editactivite";
+  style = "height:100%;";
+}
+
+
+IsActiviteEdited : WOConditional {
+  condition = isActiviteEdited;
+}
+
+EditActivite : EditActivite {
+  ec = editedActivite.editingContext;
+  editedActivite = editedActivite;  
+  typeLien = editedActivite.typeLien;
+  functionRefresh = "refreshActivites()";
+  idWindow = caweditobjid;
+}
+AulRefreshActivites : AjaxUpdateLink {
+  updateContainerID = "resultsearch";
+  action = searchActivite;
+  functionName = "refreshActivites";
+}
+
+AucTriggerEditMode : AjaxUpdateContainer {
+	id = "aucTriggerEditMode";
+}
+
+AutEditMode : AjaxUpdateTrigger {
+	updateContainerIDs = lstEditZones;
+}
+
+CawEditObj : CktlAjaxWindow {
+  	closable = false;
+	resizable = true;
+	id = caweditobjid;
+	width = "700";
+	height = "400";
+	zIndex = 8888;
+}

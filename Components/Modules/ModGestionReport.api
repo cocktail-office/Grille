@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+        <wo class="ModGestionReport.java" wocomponentcontent="false">
+
+        <binding name="editedReport"/>
+        <validation message="'editingReport' is a required binding.">
+            <unbound name="editedReport"/>
+        </validation>
+    <binding name="updateContainerID"/>
+    <binding name="onValidMethod"/>
+    </wo>
+</wodefinitions>

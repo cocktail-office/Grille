@@ -1,0 +1,62 @@
+<webobject name = "Cadre">
+  <fieldset style = "width:45em;margin-left:auto;margin-right:auto;">
+    <legend>Recherche enseignants</legend>
+    <webobject name = "FrmSearchRef">
+      <table>
+        <tr>
+          <td align = "right"> Nom :</td>
+          <td><webobject name = "RefName" /></td>
+        </tr>
+        <tr>
+          <td align = "right">Pr&eacute;nom :</td>
+          <td><webobject name = "RefFirstName" /></td>
+        </tr>
+        <tr>
+          <td colspan = "2" align = "right"> <webobject name = "AsbSubmitt" /> </td>
+        </tr>
+      </table>
+    </webobject>
+    <div id = "WatchContainerLoading" style = "display: none;padding: 5px;"> <webobject name = "Wait" />&nbsp;&nbsp;Requete en cours ... </div>
+    <webobject name = "AbiSearch" />
+    <webobject name = "AucResults">
+      <webobject name = "IsEmptyList"> Il n'y a aucun individu r&eacute;pondant aux crit&egrave;res de recherche ! </webobject>
+      <webobject name = "IsNotEmptyList">
+        
+        <table style = "width:30em;">
+          <caption>Individus</caption>
+          <thead>
+            <tr>
+              <th>Voir</th>
+              <th width = "8">Civilit&eacute;</th>
+              <th>Nom</th>
+              <th>Pr&eacute;nom</th>
+              <th>Choix</th>
+            </tr>
+          </thead>
+          <webobject name = "UpdateBodyTb">
+            <webobject name = "RepRefs">
+              <webobject name = "TrIndivOccur">
+                <td align = "center" width = "10">
+                  <webobject name = "AulVoirInfo"><webobject name = "ImgVoir" /></webobject>
+                </td>
+                <td align = "center"><webobject name = "AffEtudCivilite" /></td>
+                <td> <webobject name = "AffEtudName" /> </td>
+                <td><webobject name = "AffEtudFirstName" /></td>
+                <td align = "center" width = "10">
+                  <webobject name = "SelectIndiv"><webobject name = "ImgSelect" /></webobject>
+                </td>
+              </webobject>
+            </webobject>
+          </webobject>
+        </table>
+      </webobject>
+      <webobject name = "AucMaj"> <webobject name = "AutMaj" /> </webobject>
+    </webobject>
+    <div style = "display:none;">
+      <webobject name = "AucInfosIndividu">
+        <webobject name = "IsAffInfos"> <webobject name = "DetaisIndiv" /> </webobject>
+      </webobject>
+    </div>
+    <webobject name = "AucMajSearch"> <webobject name = "AutMajSearch" /> </webobject>
+  </fieldset>
+</webobject>

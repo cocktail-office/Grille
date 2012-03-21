@@ -1,0 +1,26 @@
+
+IsLockedEc : WOConditional {
+	condition = isVerrouEC;
+}
+
+ImgVerrou : WOImage {
+  alt = "verrou";
+  framework = "FwkCktlThemes";
+  filename = "images/16x16/001_42_16x16.png";
+  align = "absmiddle";
+  title = "lié à un E.C. vérouillé";
+}
+GoToGestActiv : WOHyperlink {
+  action = goToGestActivite;
+  style = "font-weight:normal;";
+  alt = "voeux activité";
+  title = "voeux de l'activité";
+}
+
+AcronymActiv : AcronymCompo {
+  title = value.toTypeActivite.libLong;
+  value = value.toTypeActivite.libCourt;
+  libelle = value.commentaire;
+  masque = "(%)-";
+  
+}

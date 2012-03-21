@@ -1,0 +1,35 @@
+Wrapper : Wrapper {
+  titre = "Login";
+}
+FormLogin : WOForm {
+	id = "FormLogin"; 
+	directActionName = "validerLogin";
+	multipleSubmit = true;
+}
+Login : WOTextField {
+	id = "LoginId";
+	name = "identifiant";
+	value = login;
+	tabindex = "1";
+}
+MotDePasse : WOPasswordField {
+	name = "mot_de_passe";
+	value = password;
+	class = "alignToLeft";
+	tabindex = "2";
+}
+Valider : CktlSubmitButton {
+	text = "Se connecter";
+	directActionName = "validerLogin";
+	type = "process";
+}
+
+ErreurContainer : AjaxUpdateContainer {
+	id = messagecontainerid;
+	style = "z-index:9999;";
+}
+
+MessageUtil : MessageUtil { 
+  idErreur = messagecontainerid;
+  idMessage = messageutilid;
+}

@@ -1,0 +1,54 @@
+
+NameIndiv : WOString {
+  value = consultedIndiv.getNomCompletAffichage;
+}
+
+Mailto : WOHyperlink {
+	href = mailToConsultedIndivEmailPro;	
+	tip = "Envoyer un mail à ";	
+}
+
+Email : WOString {
+  value = consultedIndivEmailPro; 
+}
+
+LstStructures : WORepetition {
+	list = consultedIndiv.toRepartStructures;
+	item = consultedIndivRepartStrucOccur;	
+}
+
+Structure : WOString {
+  value = consultedIndivRepartStrucOccur.toStructureGroupe.llStructure;
+}
+
+DivStr : WOGenericContainer {
+  elementName = "div";
+  class = classRowStr;
+}
+
+LstTelephones : WORepetition {
+	list = consultedIndivLstTel;
+	item = consultedIndivTelOccur;	
+}
+
+Telephone : WOString {
+  value = consultedIndivTelOccur.telephoneFormateAvecIndicatif;
+}
+
+DivTel : WOGenericContainer {
+  elementName = "div";
+  class = classRowStr;
+  style = "clear: both;";
+}
+
+TypeTel : WOString {
+  value = consultedIndivTelOccur.toTypeNoTel.lTypeNoTel;
+}
+Grade : WOString {
+  value = gradeOccur.llGrade;
+}
+
+LstGrades : WORepetition {
+list = gradesConsultedIndiv;
+item = gradeOccur;
+}

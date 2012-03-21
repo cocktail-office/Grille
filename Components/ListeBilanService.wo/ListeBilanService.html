@@ -1,0 +1,39 @@
+<webobject name = "Wrapper">
+  <div class = "block" style = "width:90%;max-width:820px;margin:10px auto;">
+    <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+      <span style = "margin-left:20px">Bilan des services enseignants</span>
+    </div>
+    <div class = "subBox corpsBlock">
+      <webobject name = "Form">
+        <div style = "padding:5px 0;">
+          <fieldset style = "margin-top:20px;padding:0 0 5px 0;clear:both;-moz-border-radius:10px;">
+            <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Colonnes disponibles</legend>
+            <webobject name = "AucLstColonnes">
+              <webobject name = "AOFCols">
+                <webobject name = "EcbmColonnes">
+                  <webobject name = "SpanLib"><webobject name = "LibCol" /></webobject>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</webobject>
+              </webobject>
+            </webobject>
+            <webobject name = "CabAllCols" />&nbsp;<webobject name = "CabNoCols" />
+            <webobject name = "ErreurContainer"> <webobject name = "MessageUtil" /> </webobject>
+          </fieldset>
+          <fieldset style = "margin-top:20px;padding:0 0 5px 0;clear:both;-moz-border-radius:10px;">
+            <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Filtrer par service</legend>
+            Service : 
+            <webobject name = "PubService" />
+          </fieldset>
+          <webobject name = "CabPrintEtat" />
+        </div>
+      </webobject>
+    </div>
+  </div>
+  <webobject name = "AucPrintProgress">
+    <script language = "javascript">
+      function throwPdf() {
+      	window.location.replace('<webobject name = "WauExport" />');
+      }
+    </script>
+    <webobject name = "AmdPrintProgress"> <webobject name = "PrintProgressBar" /> <br>&nbsp;</webobject>
+  </webobject>
+  <webobject name = "AulShowMessage" />
+</webobject>

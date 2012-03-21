@@ -1,0 +1,200 @@
+Titre : WOString {
+	value = titre;
+}
+ 
+CssCktlCommon : ERXStyleSheet {
+	filename = "css/CktlCommon.css";
+	framework = "FwkCktlThemes";	
+}
+ 
+CssCktlCommonCouleur : ERXStyleSheet {
+	filename = "css/CktlCommonOrange.css";
+	framework = "FwkCktlThemes";	
+}
+
+
+DynMenu : ERXJavaScript {
+	filename = "scripts/dynMenu.js";
+	framework = "app";
+}
+
+BrowserSelect : ERXJavaScript {
+	filename = "scripts/browserdetect.js";
+	framework = "app";
+}
+
+Body : WOBody {
+    onload=onLoadWarpper;
+}
+
+Content : WOComponentContent {
+	
+}
+ErreurContainer : AjaxUpdateContainer {
+	id = "ErreurContainer";
+	style = "z-index:9999;";
+}
+
+UserFirstName : WOString {
+  value = cktlSession.connectedUserInfo.prenom;
+}
+
+UserName : WOString {
+  value = cktlSession.connectedUserInfo.nom;
+}
+
+IsConnected : WOConditional {
+  condition = isConnected;
+}
+
+ShowMenu : WOConditional {
+  condition = showMenu;
+}
+
+CssModules : ERXStyleSheet {
+	filename = "css/GrilleModules.css";
+	framework = "app";
+}
+
+ImgLogo: WOImage { 
+	alt = "Logo Universite";
+	src = application.mainLogoURL;
+}
+
+MessageUtil : MessageUtil {
+  idMessage = "idmessage";
+  idErreur = "ErreurContainer";
+}
+
+Menu : Menu {
+
+}
+
+PubAnnee : WOPopUpButton {
+  list = getLstAnnees;
+  selection =selectedYear;
+  item = yearOccur;
+  displayString = libAnnee;  
+  onchange = "this.form.submit();";
+}
+
+FrmAnnees : WOForm {
+	action = changeSelectedYear;
+	style = "text-align:center;margin:5px 0;";
+}
+
+Copyright : WOString {
+	value = copyright;
+	escapeHTML = false;
+}
+Version : WOString {
+	value = version;
+	escapeHTML = false;
+}
+
+
+
+Base : WOString {
+  value = connectionBase;
+  escapeHTML = false;
+}
+
+
+Out : WOHyperlink {
+   action = killSession;   
+}
+
+ImgOut: WOImage {
+	alt = "Accueil";
+    filename = "images/16x16/logout_16x16.png";
+    framework = "FwkCktlThemes";
+	border = 0;
+	title = "Retour accueil";
+	align = "absmiddle";
+	height = "15";
+}
+
+ImgAdmin: WOImage {
+	alt = "Admin";
+	filename = "img/sisadmin.png";
+	framework = "app";
+	border = 0;
+	title = "Administrateur";
+	align = "absmiddle";
+	height = "15";
+}
+
+HaveAdminRight : WOConditional {
+  condition = session.gUser.haveAdminRight;
+}
+
+LstProfils : WORepetition {
+  list = lstProfilsUser;
+  item = profilOccur;
+}
+
+Profil : AjaxExpansion {
+	insertion = "Effect.blind";
+	insertionDuration = "0.1";
+	string = profilOccur;	
+	
+}
+
+LstResponsabilites : WORepetition {
+  list = lstRespForProfil;
+  item = respOccur;
+}
+
+DiplREsp : WOString {
+  value = respOccur.toFwkScolarite_ScolFormationSpecialisation.fspnLibelle;
+}
+
+HasREsponsabilites : WOConditional {
+  condition = hasResponsabilites;
+}
+
+Else : ERXElse {
+	
+}
+
+LibProfil : WOString {
+  value = profilOccur;
+}
+
+HasRespSpec : ERXNonNullConditional {
+	condition = lstRespForProfil;
+}
+
+HasRespPar : ERXNonNullConditional {
+	condition = lstRespParForProfil;
+}
+
+HasRespUe : ERXNonNullConditional {
+	condition = lstRespUeForProfil;
+}
+
+HasRespEc : ERXNonNullConditional {
+	condition = lstRespEcForProfil;
+}
+LstRespPar : WORepetition {
+  list = lstRespParForProfil;
+  item = respParOccur;
+}
+LstRespUe : WORepetition {
+  list = lstRespUeForProfil;
+  item = respUeOccur;
+}
+LstRespEc : WORepetition {
+  list = lstRespEcForProfil;
+  item = respEcOccur;
+}
+
+ParLib : WOString {
+  value = parcoursProfilLib;
+}
+UeLib : WOString {
+  value = ueProfilLib;
+}
+EcLib : WOString {
+  value = ecProfilLib;
+}

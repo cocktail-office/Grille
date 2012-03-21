@@ -1,0 +1,1 @@
+Ces templates fonctionnent avec EOGenerator (et non Velocity EOGenerator inclus dans les versions 3.3.x de WOLips)

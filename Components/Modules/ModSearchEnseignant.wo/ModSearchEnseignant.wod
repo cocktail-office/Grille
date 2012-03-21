@@ -1,0 +1,40 @@
+EnseignantSrch : PersonneSrch {
+  selectedPersonne = ^enseignant;
+  utilisateurPersId = session.gUser.persId;
+  isReadOnly = true;  
+  showDetail = false;
+  showDetailInModalBox = true;
+  persTypeInterneExterne = searchTypeIntExt;
+  persType = searchTypePhysMoral;
+  showStructures = false;
+  titre = "Recherche enseignant";
+  updateContainerIDOnSelectionnerPersonneInTableview=aucselectlinkid;  
+  displayGroup = dgEnseignant;
+  qualifierForIndividus = enseignantsQualifier;  
+}
+
+AucSelect : AjaxUpdateContainer {
+  id = aucselectlinkid;
+  style = "margin-left:auto; margin-right:auto; text-align:center;";
+}
+
+IsEns : ERXNonNullConditional {
+	condition = enseignant;
+}
+
+BSelectFromSearch : CktlAjaxButton {  
+	action = setSearchOff;	
+	type = "validate";
+	text = textButtonChoisirPersonne;
+	updateContainerID = ^updateContainerID;
+}
+
+
+BCloseSearch : CktlAjaxButton {
+  	action = cancelSearch;
+	title = "Annuler";
+	text = "Annuler";
+	type = "reset";
+	updateContainerID = ^updateContainerID;
+}
+

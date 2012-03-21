@@ -1,0 +1,8 @@
+Wrapper : Wrapper {
+  titre = "GRILLE : Extractions, impressions";
+}
+
+
+ReportComponent : WOSwitchComponent {
+	WOComponentName = currentSubcomponentDisplay;
+}

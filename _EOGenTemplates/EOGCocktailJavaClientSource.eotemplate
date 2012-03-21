@@ -1,0 +1,216 @@
+<$comment
+EO Template for use by "eogenerator" based upon MiscMerge engine.
+You may customize this file to modify the templates generated
+by this tool.  See the MiscMerge documentation for a description
+of the parsing language.  The engine gets passed this file and an
+EOEntity to process, so the methods used must be ones that an
+EOEntity can respond to.
+
+BE SURE NOT TO INCLUDE DATES IN THIS FILE.  Since the "eogenerator"
+tool tries to compare the newly generated file with the old file,
+adding dates to this file will guarantee the old file gets
+overridden by the new file, forcing a recompilation of your EO.$>
+// <$GEN_PREFIX$><$classNameWithoutPackage$>.java
+// 
+/*
+ * Copyright Cocktail, 2001-2006 
+ * 
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software. You can use, 
+ * modify and/or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info". 
+ * 
+ * As a counterpart to the access to the source code and rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty and the software's author, the holder of the
+ * economic rights, and the successive licensors have only limited
+ * liability. 
+ * 
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading, using, modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean that it is complicated to manipulate, and that also
+ * therefore means that it is reserved for developers and experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or 
+ * data to be ensured and, more generally, to use and operate it in the 
+ * same conditions as regards security. 
+ * 
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ */
+// Created by eogenerator
+// DO NOT EDIT.  Make changes to <$classNameWithoutPackage$>.java instead.
+
+<$foreach package clientClassPackage do$>package <$package$>;
+<$endforeach do$>
+import com.webobjects.foundation.*;
+import com.webobjects.eocontrol.*;
+import java.math.BigDecimal;
+import java.util.Enumeration;
+import java.util.NoSuchElementException;
+
+<$comment This is how to put in a custom EO superclass.  We also declare
+this class as being abstract, since it should never be instantiated.
+$>
+public abstract class <$GEN_PREFIX$><$classNameWithoutPackage$> extends <$if hasParentEntity$><$javaParentClassName$><$else$>EOGenericRecord<$endif$> {
+
+    public static final String ENTITY_NAME = "<$name$>";
+<$if externalName$>
+    public static final String ENTITY_TABLE_NAME = "<$externalName$>";<$endif$>
+<$foreach attribute clientClassAttributes.@sortedNameArray do$>
+    public static final String <$attribute.name.uppercaseUnderbarString$>_KEY = "<$attribute.name$>";<$endforeach$>
+<$foreach attribute clientClassAttributes.@sortedNameArray do$><$if attribute.columnName$>
+    public static final String <$attribute.name.uppercaseUnderbarString$>_COLKEY = "<$attribute.columnName$>";<$endif$><$endforeach$>
+<$foreach rel clientClassToOneRelationships.@sortedNameArray do$>
+    public static final String <$rel.name.uppercaseUnderbarString$>_KEY = "<$rel.name$>";<$endforeach$>
+<$foreach rel clientClassToManyRelationships.@sortedNameArray do$>
+    public static final String <$rel.name.uppercaseUnderbarString$>_KEY = "<$rel.name$>";<$endforeach$>
+<$foreach spec javaBeautifiedFetchSpecificationDictionaries.@sortedNameArray do$>
+    public static final String <$spec.fetchName.uppercaseUnderbarString$>_SPEC = "<$spec.fetchName$>";<$endforeach$>
+
+<$comment
+	<$if !isAbstractEntity$>
+    public static <$classNameWithoutPackage$> newInstance(final EOEditingContext context) {
+    	final EODistributedClassDescription desc = (EODistributedClassDescription) EOClassDescription.classDescriptionForEntityName(ENTITY_NAME); 
+    	final EOEnterpriseObject object = desc.createInstanceWithEditingContext(context, null);
+    	context.insertObject(object);
+    	return (<$classNameWithoutPackage$>)object;
+    }<$endif$>
+$>
+	
+    public <$GEN_PREFIX$><$classNameWithoutPackage$>() {
+        super();
+    }
+
+<$foreach FetchSpec javaBeautifiedFetchSpecificationDictionaries.@sortedNameArray do$>
+    public static NSArray objectsFor<$FetchSpec.niceName$>(EOEditingContext context<$foreach Binding FetchSpec.bindings do2$>, <$Binding.codeType$><$Binding.name$>Binding<$endforeach do2$>) {
+        EOFetchSpecification spec = EOFetchSpecification.fetchSpecificationNamed(<$FetchSpec.fetchName.uppercaseUnderbarString$>_SPEC, ENTITY_NAME);
+<$if FetchSpec.bindings.@count > 0$>
+        NSMutableDictionary bindings = new NSMutableDictionary();
+<$foreach Binding FetchSpec.bindings do2$>
+        if (<$Binding.name$>Binding != null)
+            bindings.setObjectForKey(<$Binding.name$>Binding, "<$Binding.name$>");<$endforeach do2$>
+        spec = spec.fetchSpecificationWithQualifierBindings(bindings);
+<$endif$>
+        return context.objectsWithFetchSpecification(spec);
+    }
+<$endforeach do$>
+
+<$foreach Attribute clientClassAttributes.@sortedNameArray do$>
+    public <$Attribute.javaValueClassName$> <$Attribute.name$>() {
+        return (<$Attribute.javaValueClassName$>)storedValueForKey(<$Attribute.name.uppercaseUnderbarString$>_KEY);
+    }
+    public void set<$Attribute.name.initialCapitalString$>(<$Attribute.javaValueClassName$> aValue) {
+        takeStoredValueForKey(aValue, <$Attribute.name.uppercaseUnderbarString$>_KEY);
+    }
+<$endforeach do$>
+
+
+<$foreach ToOneRelationship clientClassToOneRelationships.@sortedNameArray do$>
+    public <$ToOneRelationship.destinationEntity.referenceClientClassName$> <$ToOneRelationship.name$>() {
+        return (<$ToOneRelationship.destinationEntity.referenceClientClassName$>)storedValueForKey(<$ToOneRelationship.name.uppercaseUnderbarString$>_KEY);
+    }
+    public void set<$ToOneRelationship.name.initialCapitalString$>(<$ToOneRelationship.destinationEntity.referenceClientClassName$> aValue) {
+        takeStoredValueForKey(aValue, <$ToOneRelationship.name.uppercaseUnderbarString$>_KEY);
+    }
+	
+    public void set<$ToOneRelationship.name.initialCapitalString$>Relationship(<$ToOneRelationship.destinationEntity.referenceClientClassName$> value) {
+        if (value == null) {
+            <$ToOneRelationship.destinationEntity.referenceClientClassName$> object = <$ToOneRelationship.name$>();
+            if (object != null)
+                removeObjectFromBothSidesOfRelationshipWithKey(object, <$ToOneRelationship.name.uppercaseUnderbarString$>_KEY);
+        }
+        else {
+            addObjectToBothSidesOfRelationshipWithKey(value, <$ToOneRelationship.name.uppercaseUnderbarString$>_KEY);
+        }
+    }
+<$endforeach do$>
+
+
+<$foreach ToManyRelationship clientClassToManyRelationships.@sortedNameArray tomanyrels$>
+    public NSArray <$ToManyRelationship.name$>() {
+        return (NSArray)storedValueForKey(<$ToManyRelationship.name.uppercaseUnderbarString$>_KEY);
+    }
+    public void set<$ToManyRelationship.name.initialCapitalString$>(NSMutableArray aValue) {
+        takeStoredValueForKey(aValue, <$ToManyRelationship.name.uppercaseUnderbarString$>_KEY);
+    }
+    public void addTo<$ToManyRelationship.name.initialCapitalString$>(<$ToManyRelationship.destinationEntity.referenceClientClassName$> object) {
+        NSMutableArray array = (NSMutableArray)<$ToManyRelationship.name$>();
+        willChange();
+        array.addObject(object);
+    }
+    public void removeFrom<$ToManyRelationship.name.initialCapitalString$>(<$ToManyRelationship.destinationEntity.referenceClientClassName$> object) {
+        NSMutableArray array = (NSMutableArray)<$ToManyRelationship.name$>();
+        willChange();
+        array.removeObject(object);
+    }
+	
+    public void addTo<$ToManyRelationship.name.initialCapitalString$>Relationship(<$ToManyRelationship.destinationEntity.referenceClientClassName$> object) {
+        addObjectToBothSidesOfRelationshipWithKey(object, <$ToManyRelationship.name.uppercaseUnderbarString$>_KEY);
+    }
+    public void removeFrom<$ToManyRelationship.name.initialCapitalString$>Relationship(<$ToManyRelationship.destinationEntity.referenceClientClassName$> object) {
+        removeObjectFromBothSidesOfRelationshipWithKey(object, <$ToManyRelationship.name.uppercaseUnderbarString$>_KEY);
+    }
+	
+<$endforeach tomanyrels$>
+
+
+
+
+
+
+	/* Finders */
+
+  public static NSArray fetchAll(EOEditingContext editingContext) {
+    return fetchAll(editingContext, null);
+  }
+
+  public static NSArray fetchAll(EOEditingContext editingContext, NSArray sortOrderings) {
+    return fetchAll(editingContext, null, sortOrderings);
+  }
+
+  public static NSArray fetchAll(EOEditingContext editingContext, EOQualifier qualifier, NSArray sortOrderings) {
+    EOFetchSpecification fetchSpec = new EOFetchSpecification(ENTITY_NAME, qualifier, sortOrderings);
+    fetchSpec.setIsDeep(true);
+    NSArray eoObjects = (NSArray)editingContext.objectsWithFetchSpecification(fetchSpec);
+    return eoObjects;
+  }
+
+  public static <$classNameWithoutPackage$> fetchByKeyValue(EOEditingContext editingContext, String keyName, Object value) {
+    return fetchByQualifier(editingContext, new EOKeyValueQualifier(keyName, EOQualifier.QualifierOperatorEqual, value));
+  }
+
+  public static <$classNameWithoutPackage$> fetchByQualifier(EOEditingContext editingContext, EOQualifier qualifier) {
+    NSArray eoObjects = fetchAll(editingContext, qualifier, null);
+    <$classNameWithoutPackage$> eoObject;
+    int count = eoObjects.count();
+    if (count == 0) {
+      eoObject = null;
+    }
+    else if (count == 1) {
+      eoObject = (<$classNameWithoutPackage$>)eoObjects.objectAtIndex(0);
+    }
+    else {
+      throw new IllegalStateException("There was more than one TestEntity that matched the qualifier '" + qualifier + "'.");
+    }
+    return eoObject;
+  }
+
+  public static <$classNameWithoutPackage$> fetchRequiredByKeyValue(EOEditingContext editingContext, String keyName, Object value) {
+    return fetchRequiredByQualifier(editingContext, new EOKeyValueQualifier(keyName, EOQualifier.QualifierOperatorEqual, value));
+  }
+
+  public static <$classNameWithoutPackage$> fetchRequiredByQualifier(EOEditingContext editingContext, EOQualifier qualifier) {
+    <$classNameWithoutPackage$> eoObject = fetchByQualifier(editingContext, qualifier);
+    if (eoObject == null) {
+      throw new NoSuchElementException("There was no TestEntity that matched the qualifier '" + qualifier + "'.");
+    }
+    return eoObject;
+  }
+
+
+}
+

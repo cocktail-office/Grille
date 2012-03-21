@@ -1,0 +1,88 @@
+<webobject name = "AucInfosEns">
+  <div style = "border:1px solid black;max-width:750px;margin-left:auto;margin-right:auto;">
+    <table width = "100%" style = "background:#F1F5FA;">
+      <tr>
+        <td class = "boxTitre" style = "width:110px;text-align:right;">Enseignant : </td>
+        <td colspan = "4" style = "font-weight:bold;text-align:left;"><webobject name = "NomEns" /></td>
+        <webobject name = "CanChangeEns">
+          <td style = "text-align:center;"> <webobject name = "AbSearchEns" /> </td>
+        </webobject>
+      </tr>
+      <webobject name = "IsEnsSelected">
+        <webobject name = "IsNotShowDetails">
+          <tr style = "margin-padding-bottom:2px;">
+            <td class = "boxTitre" style = "width:110px;text-align:right;">Quotit&eacute; : </td>
+            <td style = "width:80px;font-weight:normal;text-align:left;"><webobject name = "Quotite" />%</td>
+            <td class = "boxTitre" style = "width:110px;text-align:right;">Service statutaire : </td>
+            <td style = "font-weight:normal;width:80px;text-align:left;"><webobject name = "Service" />h</td>
+            <td class = "boxTitre" style = "width:110px;text-align:right;">Position : </td>
+            <td style = "font-weight:normal;text-align:left;"><webobject name = "LastPosition" /></td>
+          </tr>
+        </webobject>
+      </webobject>
+    </table>
+    <webobject name = "IsEnsSelected">
+      <webobject name = "AucBilanVoeux">
+        <table width = "100%" style = "background:#F1F5FA;">
+          <tr style = "margin-top:-5px;">
+            <td class = "boxTitre" style = "text-align:right;">D&eacute;charges : </td>
+            <td style = "font-weight:normal;text-align:left;"><webobject name = "Decharge" />h</td>
+            <td class = "boxTitre" style = "width:80px;text-align:right;">Prestations : </td>
+            <td style = "font-weight:normal;width:80px;text-align:left;"><webobject name = "Prestation" />h</td>
+            <td class = "boxTitre" style = "width:80px;text-align:right;">Reports : </td>
+            <td style = "font-weight:normal;text-align:left;"><webobject name = "Report" />h</td>
+          </tr>
+          <tr>
+            <td class = "boxTitre" style = "width:110px;text-align:right;">Service due : </td>
+            <td style = "width:80px;font-weight:bold;text-align:left;"><webobject name = "ServiceDue" />h</td>
+            <td class = "boxTitre" style = "width:110px;text-align:right;">Total voeux : </td>
+            <td style = "font-weight:bold;text-align:left;"><webobject name = "TotalVoeux" />h</td>
+            <td class = "boxTitre" style = "width:110px;text-align:right;">Bilan voeux : </td>
+            <td style = "font-weight:bold;text-align:left;"><webobject name = "BalanceEns" />h</td>
+          </tr>
+          <tr>            
+            <td colspan = "2" style = "width:80px;font-weight:bold;text-align:left;">&nbsp;</td>
+            <td class = "boxTitre" style = "width:110px;text-align:right;">Total réalisé : </td>
+            <td style = "font-weight:bold;text-align:left;"><webobject name = "TotalFait" />h</td>
+            <td class = "boxTitre" style = "width:110px;text-align:right;">Bilan réalisé : </td>
+            <td style = "font-weight:bold;text-align:left;"><webobject name = "BalanceFaitEns" />h</td>
+          </tr>
+        </table>
+        <webobject name = "ErreurContainerService"> <webobject name = "MessageUtil" /> </webobject>
+      </webobject>
+    </webobject>
+  </div>
+  <webobject name = "IsEnsSelected">
+    <webobject name = "IsShowDetails">
+      <fieldset style = "margin:5px 10px 0 10px;padding:0;clear:both; max-width:750px;margin-left:auto;margin-right:auto;-moz-border-radius:10px;">
+        <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Affectations</legend>
+        <webobject name = "AffectatinsTbV" />
+        <b>quotit&eacute; sur l'ann&eacute;e 
+          <webobject name = "Annee" />:<webobject name = "Quotite" />%</b>
+      </fieldset>
+      <fieldset style = "margin:5px 5px 0 0;padding:0;width:420px;display:inline;vertical-align:top;-moz-border-radius:10px;">
+        <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">D&eacute;charges</legend>
+        <webobject name = "DechargesTbV" />
+      </fieldset>
+      <fieldset style = "margin:5px 0 0 5px;padding:0;width:315px;display:inline;vertical-align:top;-moz-border-radius:10px;">
+        <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Position</legend>
+        <webobject name = "PositionTbV" />
+      </fieldset>
+      <fieldset style = "margin:5px 10px 0 10px;padding:0;clear:both; max-width:750px;margin-left:auto;margin-right:auto;-moz-border-radius:10px;">
+        <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Corps</legend>
+        <webobject name = "CorpsTbV" />
+        <b>Service statutaire sur l'ann&eacute;e 
+          <webobject name = "Annee" />:<webobject name = "Service" />h</b>
+      </fieldset>
+    </webobject>
+  </webobject>
+</webobject>
+<webobject name = "AucSearch">
+  <webobject name = "AmdSearch">
+    <webobject name = "IsInSearch">
+      <webobject name = "MyForm1">
+      <webobject name = "MSearchEnseignant" />      
+      </webobject>      
+    </webobject>
+  </webobject>
+</webobject>

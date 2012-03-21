@@ -1,0 +1,42 @@
+<webobject name = "Cadre">
+  <h1>Gestion des Activit&eacute;s</h1>
+  <div class = "block" style = "width:500px;margin:10px auto;">
+    <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+      <span style = "margin-left:20px">Recherche</span>
+    </div>
+    <div class = "subBox corpsBlock">
+      <webobject name = "Frm">
+        <table>
+          <tr>
+            <td style = "text-align:right;">Libell&eacute; commence par&nbsp;:</td>
+            <td><webobject name = "LibSearch" /></td>
+          </tr>
+          <tr>
+            <td style = "text-align:right;">Type activit&eacute;&nbsp;:</td>
+            <td><webobject name = "PubTypeActivites" /></td>
+          </tr>
+          <tr>
+            <td colspan = "2" style = "text-align:right;">
+              <webobject name = "CasbSearch" />
+              <webobject name = "AsbTriggerSearch" />
+            </td>
+          </tr>
+        </table>
+      </webobject>
+    </div>
+  </div>
+  <br />
+  <webobject name = "AulRefreshActivites" />
+  <webobject name = "AucResult">
+    <webobject name = "ActiviteTBV" />
+    <webobject name = "CanAddActivite"> <webobject name = "AbAddActiv" />&nbsp;&nbsp;&nbsp; </webobject>
+  </webobject>
+  <div style = "display:none;">
+    <webobject name = "AucEditActivite">
+      <webobject name = "CawEditObj">
+        <webobject name = "IsActiviteEdited"> <webobject name = "EditActivite" /> </webobject>
+      </webobject>
+    </webobject>
+  </div>
+  <webobject name = "AucTriggerEditMode"><webobject name = "AutEditMode" /></webobject>
+</webobject>

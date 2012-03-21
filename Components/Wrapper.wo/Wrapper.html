@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml" lang = "fr">
+  <head>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8" />
+    <webobject name = "CssCktlCommon" />
+    <webobject name = "CssCktlCommonCouleur" />
+    <webobject name = "CssModules" />
+    <title><webobject name = "Titre" /> </title>
+    <webobject name = "DynMenu" />
+    <webobject name = "BrowserSelect" />
+  </head>
+  <webobject name = "Body">
+    <table width = "90%" style = "margin:0px auto;padding:0px;" cellpadding = "0" cellspacing = "0">
+      <tr>
+        <td rowspan = "3" width = "10"><webobject name = "ImgLogo" /></td>
+        <td align = "center" colspan = "2">
+          <h1>Grille des charges d'enseignement </h1>
+        </td>
+      </tr>
+      <tr>
+        <td width = "90%"> <hr class = "cadre" style = "border-width:1px;height:0;background:none;" /> </td>
+        <webobject name = "IsConnected">
+          <td nowrap = "nowrap">
+            <span class = "cartouche">&nbsp;Utilisateur&nbsp;connect&eacute;&nbsp;:&nbsp;<b>
+                <webobject name = "UserFirstName" />&nbsp;<webobject name = "UserName" />
+              </b>
+              <webobject name = "HaveAdminRight">&nbsp;<webobject name = "ImgAdmin" /></webobject>
+              &nbsp;<webobject name = "Out"><webobject name = "ImgOut" /></webobject>&nbsp;</span>
+          </td>
+        </webobject>
+      </tr>
+    </table>
+    <webobject name = "ErreurContainer"> <webobject name = "MessageUtil" /> </webobject>
+    <table width = "100%" border = "0">
+      <webobject name = "ShowMenu">
+        <tr>
+          <td align = "center" valign = "top" rowspan = "2" style = "padding:0 0 0 5px;">
+            <div class = "block" style = "width:125px;margin:25px auto 10px auto;">
+              <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0;text-align:center;"> Ann&eacute;e Universitaire </div>
+              <div class = "subBox corpsBlock" style = "text-align:left;">
+                <webobject name = "FrmAnnees"> <webobject name = "PubAnnee" /> </webobject>
+              </div>
+            </div>
+            <div class = "block" style = "margin:10px auto;">
+              <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0;text-align:center;"> Profils </div>
+              <div class = "subBox corpsBlock" style = "text-align:left;">
+                <ul style = "margin:0;padding:0 0 0 10px;">
+                  <webobject name = "LstProfils">
+                    <li>
+                      <webobject name = "HasREsponsabilites">
+                        <webobject name = "Profil">
+                          <div style = "position:absolute;border:1px solid black;background-color:#DCDCDC;z-index:999;">
+                            <webobject name = "HasRespSpec">
+                              <ul style = "list-style-type:circle">
+                                <webobject name = "LstResponsabilites">
+                                  <li><webobject name = "DiplREsp" /></li>
+                                </webobject>
+                              </ul>
+                            </webobject>
+                            <webobject name = "HasRespPar">
+                              <ul style = "list-style-type:circle">
+                                <webobject name = "LstRespPar">
+                                  <li><webobject name = "ParLib" /></li>
+                                </webobject>
+                              </ul>
+                            </webobject>
+                            <webobject name = "HasRespUe">
+                              <ul style = "list-style-type:circle">
+                                <webobject name = "LstRespUe">
+                                  <li><webobject name = "UeLib" /></li>
+                                </webobject>
+                              </ul>
+                            </webobject>
+                            <webobject name = "HasRespEc">
+                              <ul style = "list-style-type:circle">
+                                <webobject name = "LstRespEc">
+                                  <li><webobject name = "EcLib" /></li>
+                                </webobject>
+                              </ul>
+                            </webobject>
+                          </div>
+                        </webobject>
+                      </webobject>
+                      <webobject name = "Else"> <webobject name = "LibProfil" /> </webobject>
+                    </li>
+                  </webobject>
+                </ul>
+              </div>
+            </div>
+          </td>
+          <td valign = "top"><webobject name = "Menu" /></td>
+        </tr>
+      </webobject>
+      <tr>
+        <td id = "main" valign = "top" align = "center"><webobject name = "Content" /></td>
+      </tr>
+    </table>
+    <table border = "0" width = "100%">
+      <tr>
+        <td colspan = "2"><hr class = "cadre" style = "position:relative;border-width:1px;height:0;" /></td>
+      </tr>
+      <tr valign = "middle">
+        <td align = "left" width = "50%" class = "textNote">
+          <webobject name = "Copyright" />
+          <br />
+          <webobject name = "Base" />
+        </td>
+        <td align = "right" width = "50%" class = "textNote">
+          Version : 
+          <b> <webobject name = "Version" /> </b>
+        </td>
+      </tr>
+    </table>
+  </webobject>
+</html>

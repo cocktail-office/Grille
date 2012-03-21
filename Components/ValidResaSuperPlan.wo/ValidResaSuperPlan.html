@@ -1,0 +1,121 @@
+<webobject name = "Wrapper">
+  <div class = "block" style = "width:90%;margin:10px auto;max-width:820px;min-width:500px;">
+    <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+      <span style = "margin-left:20px">Validation des r&eacute;servations de SuperPlan</span>
+    </div>
+    <div class = "subBox corpsBlock">
+      <fieldset style = "margin-top:20px;padding:5px;-moz-border-radius:10px;width:80%;min-width:400px;">
+        <legend style = "background-color:#FFFCF8;border:none;margin-left:30px;"> Recherche de r&eacute;servation dans SuperPlan<webobject name = "IndicateurBusy" /></legend>
+        <webobject name = "Form">
+          <table width = "95%" cellpadding = "0" cellspacing = "0">
+            <tr>
+              <td style = "text-align:right;width:200px;"> Chercher pour un semestre : </td>
+              <td class = "required">&nbsp; 
+                <webobject name = "AucSemestre"><webobject name = "LibSemestre" /></webobject>
+                &nbsp;&nbsp;&nbsp;<webobject name = "AbSearchTree" />
+                <webobject name = "AbClearSemestre" />
+              </td>
+            </tr>
+            <tr>
+              <td class = "" style = "text-align:right;">Chercher pour un individu : </td>
+              <td class = "required">
+                <webobject name = "AucIndividu">
+                  &nbsp; 
+                  <webobject name = "Individu" />&nbsp;&nbsp;&nbsp;<webobject name = "AbSearchIndiv" />
+                  <webobject name = "AbClearIndiv" />
+                </webobject>
+              </td>
+            </tr>
+            <tr>
+              <td class = "" style = "text-align:right;">Chercher pour type d'AP : </td>
+              <td class = "required"> <webobject name = "PopTypeAp" /> </td>
+            </tr>
+            <tr>
+              <td class = "" style = "text-align:right;">Heures : </td>
+              <td class = "">
+                <label><webobject name = "RbtValide" />&nbsp;Valid&eacute;es</label>&nbsp;&nbsp;&nbsp;<label><webobject name = "RbtNoValide" />&nbsp;Non&nbsp;Valid&eacute;es</label>
+                &nbsp;&nbsp;&nbsp;<label><webobject name = "RbtValideTout" />&nbsp;Toutes</label>&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+            <tr>
+              <td class = "" style = "text-align:right;">du : <webobject name = "Debut" /></td>
+              <td class = ""> &nbsp;&nbsp;au : <webobject name = "Fin" /></td>
+            </tr>
+            <tr>
+              <td colspan = "2" style = "text-align:center;"><webobject name = "CabSearch" /></td>
+            </tr>
+          </table>
+        </webobject>
+      </fieldset>
+      <webobject name = "AucSearch">
+        <webobject name = "AmdSearch">
+          <webobject name = "IsInSearch">
+            <webobject name = "MyForm1"><webobject name = "IndivSrch" /> </webobject>
+            <webobject name = "AucSelect">
+              <webobject name = "IsIndiv"> <webobject name = "BSelectFromSearch" /> </webobject>
+            </webobject>
+          </webobject>
+        </webobject>
+      </webobject>
+      <webobject name = "AucLstResa">
+        <webobject name = "ShowSearchResult">
+          <fieldset style = "margin:20px auto 0 auto;padding:0 0 5px 0;-moz-border-radius:10px;width:95%;">
+            <legend style = "background-color:#FFFCF8;border:none;margin-left:30px;">R&eacute;sultat de la recherche des r&eacute;servations AP</legend>
+            <webobject name = "ResaTbV" />
+          </fieldset>
+          <webobject name = "AucLstIntervenants">
+            <div class = "block" style = "width:99%;margin:10px auto;min-width:500px;">
+              <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+                <webobject name = "CanShowOccupants">
+                  <span style = "margin-left:20px">R&eacute;servations sur l'A.P. : <webobject name = "SelectedAp" /></span>
+                </webobject>
+                <webobject name = "Else">
+                  <webobject name = "SearchNotNull">
+                    <span style = "font-weight:bold;font-style: italic;display:block;text-align:center;">Cliquez sur une r&eacute;servation pour afficher les d&eacute;tails</span>
+                  </webobject>
+                </webobject>
+              </div>
+              <webobject name = "CanShowOccupants">
+                <div class = "subBox corpsBlock">
+                  <fieldset style = "vertical-align:top;display:inline;margin:20px 5px 0 0;padding:0 0 5px 0;-moz-border-radius:10px;width:45%;">
+                    <legend style = "background-color:#FFFCF8;border:none;margin-left:10px;">Intervenants de la r&eacute;servation </legend>
+                    <webobject name = "ResaOccupTbV" />
+                  </fieldset>
+                  <webobject name = "AucLstPeriodes">
+                    <fieldset style = "vertical-align:top;display:inline;margin:20px 0 0 5px;padding:0 0 5px 0;-moz-border-radius:10px;width:45%;">
+                      <legend style = "background-color:#FFFCF8;border:none;margin-left:10px;">
+                        <webobject name = "CanShowPeriodes"> P&eacute;riodes pour <webobject name = "Occupant" /></webobject>
+                        <webobject name = "Else">
+                          <span style = "font-weight:bold;font-style: italic;">Cliquez sur un intervenant pour afficher les p&eacute;riodes</span>
+                        </webobject>
+                      </legend>
+                      <webobject name = "ShowPeriodeResult">
+                        <webobject name = "PeriodesTbV" />
+                        <webobject name = "AucValidPeriode">
+                          <webobject name = "CanValidePeriode"><webobject name = "AbValidPeriodes" /></webobject>
+                          <webobject name = "CanDeValidePeriode"><webobject name = "AbDeValidPeriodes" /></webobject>
+                        </webobject>
+                      </webobject>
+                    </fieldset>
+                     <webobject name = "ErreurContainer"> <webobject name = "MessageUtil" /> </webobject>
+                  </webobject>
+                </div>
+              </webobject>
+            </div>
+          </webobject>
+        </webobject>
+      </webobject>
+    </div>
+  </div>
+  <div style = "display:none;">
+    <webobject name = "AucSelectionLinkFenetre"> <webobject name = "SearchMaquette" /> </webobject>
+  </div>
+  <div style = "display:none;">
+    <webobject name = "AucEditValid">
+	    <webobject name = "IsValidMode">
+	      <webobject name = "CawEditValid"> <webobject name = "EditValidResa" /> </webobject>
+	    </webobject>
+	    </webobject>
+    
+  </div>
+</webobject>
+<webobject name = "Busy" />

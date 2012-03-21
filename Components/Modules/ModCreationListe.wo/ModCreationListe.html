@@ -1,0 +1,89 @@
+<webobject name = "FormListe">
+  <fieldset style = "text-align:left;max-width:750px;">
+    <legend><webobject name = "Titre" /></legend>
+    <table width = "99%">
+      <tr>
+        <td style = "text-align:right;">Code liste:</td>
+        <td> <webobject name = "CanEditCode"><webobject name = "Code" /></webobject>
+        <webobject name = "Else"><webobject name = "CodeEc"/></webobject>
+        </td>
+      </tr>
+      <tr>
+        <td style = "text-align:right;">Libelle :</td>
+        <td> <webobject name = "Libelle" /></td>
+      </tr>
+      <tr>
+        <td style = "text-align:right;vertical-align:top;">Formation :</td>
+        <td style = "text-align:left;border:1px solid #CCCCCC;background-color:OldLace;">
+          <webobject name = "AucFormation">
+            <webobject name = "Formation" />
+            <br />
+            <webobject name = "Parcours" />
+          </webobject>
+          <webobject name = "AbSearchTree" />
+        </td>
+      </tr>
+    </table>
+    <div class = "block" style = "width:99%;margin:5px auto;">
+      <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+        <span style = "margin-left:20px">Eléments constitutifs de la liste</span>
+      </div>
+      <div class = "subBox corpsBlock">
+        <table width = "100%">
+          <tr>
+            <td style = "text-align:right;">Filtrer les EC sur le libellé :</td>
+            <td>
+              <webobject name = "OFLib"><webobject name = "FieldFiltreEC" /></webobject>
+              <div style = "float:left;font-syle:italic;">Utilisez le caract&egrave;re 
+                <b>%</b>
+                comme jocker.</div>
+            </td>
+          </tr>
+          <tr>
+            <td style = "text-align:center;" colspan = "2"><webobject name = "AbFilterEC" /> </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td colspan = "3" style = "text-align:center;"><b>Choisissez les elp a mettre dans la liste.</b></td>
+          </tr>
+          <tr>
+            <td>
+              <b>EC de la formation choisie :</b> 
+              <webobject name = "AulViderListeEc">[vider]</webobject>
+              <webobject name = "AucListeEc">
+                <webobject name = "AslListeEC">
+                  <li> <webobject name = "CurrentEc" /> </li>
+                </webobject>
+              </webobject>
+            </td>
+            <td>
+              <webobject name = "AulAddSelected" />
+              <br />
+              <br />
+              <webobject name = "AulAddAll" />
+              <br />
+              <br />
+              <webobject name = "AulRemoveSelected" />
+              <br />
+              <br />
+              <webobject name = "AulRemoveAll" />
+            </td>
+            <td>
+              <b>EC de la liste :</b> 
+              <webobject name = "AucListRetainedEc">
+                <webobject name = "AslListRetainedEC">
+                  <li><webobject name = "CurrentRetainedEc" /></li>
+                </webobject>
+              </webobject>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <p style = "text-align:center;"> <webobject name = "CasbValider" /> </p>
+  </fieldset>
+</webobject>
+<div style = "display:none;">
+  <webobject name = "AucSelectionLinkFenetre"> <webobject name = "SearchMaquette" /> </webobject>
+</div>

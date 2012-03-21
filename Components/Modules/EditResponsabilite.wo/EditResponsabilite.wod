@@ -1,0 +1,134 @@
+
+
+AucIndividu : AjaxUpdateContainer {
+  id = aucindividuid;
+}
+
+Individu : WOString {
+  value = editedResp.toOneIndividu.nomPrenomAffichage;
+}
+
+AbSearchIndiv : CktlAjaxButton {
+	action = setSearchOn;		
+	title = "Chercher";
+	text = "Chercher";
+	type = "find";	
+	updateContainerID = aucSearch;
+}
+
+AucSearch : AjaxUpdateContainer {
+  id = aucSearch;
+  class="subBox";
+  style = "display:none;";
+}
+
+AmdSearch : AjaxModalDialog {
+	closable = true;
+	resizable = true;
+	id = searchZoneId;
+	width = "640";
+	height = "450";
+	title = "Recherche individu";
+	centerVertically = true;
+}
+
+IsInSearch : WOConditional {
+  condition = true;
+}
+
+MyForm1 : WOForm {
+	id = "id";
+	name = "form1";
+	multipleSubmit = true;
+	//action = doNothing;
+	onsubmit = "return false;";
+	
+}
+
+IndivSrch : PersonneSrch {
+  selectedPersonne = selIndiv;
+  utilisateurPersId = session.gUser.persId;
+  isReadOnly = true;  
+  showDetail = false;
+  showDetailInModalBox = true;
+  persTypeInterneExterne = "interne";
+  showStructures = false;
+  persType = "individu";
+  titre = "Recherche individu";
+  updateContainerIDOnSelectionnerPersonneInTableview=aucselectlinkid;
+  editingContext = editedResp.editingContext;  
+
+}
+
+AucSelect : AjaxUpdateContainer {
+  id = aucselectlinkid;
+  style = "margin-left:auto; margin-right:auto; text-align:center;";
+}
+
+IsIndiv : ERXNonNullConditional {
+	condition = selIndiv;
+}
+
+BSelectFromSearch : CktlAjaxButton {  
+	action = setSearchOff;	
+	type = "validate";
+	text = textButtonChoisirPersonne;
+	updateContainerID = aucindividuid;
+}
+
+CasbValider : CktlAjaxSubmitButton {
+	action = valide;		
+	title = "Valider";
+	text = "Valider";
+	type = "validate";	
+	updateContainerID = erreureditrespid;
+	onSuccess = onSuccessValid;  
+}
+
+CasbCancel : CktlAjaxSubmitButton {
+	action = cancel;		
+	title = "Annuler";
+	text = "Annuler";
+	type = "reset";	
+	
+}
+DiplomePicker : DiplomePicker {
+  selectedSpec = editedResp.toFwkScolarite_ScolFormationSpecialisation;
+  isSpecSelect = true;
+  selectedYear = session.selectedYear;
+  isGradeSelect = true;
+  editingContext = session.defaultEditingContext;
+  delegate = session.currentDiplomePickerDelegate;
+}
+
+Specialisation : WOString {
+  value = editedResp.toFwkScolarite_ScolFormationSpecialisation.fspnLibelle;
+}
+
+Frm : WOForm {
+  multipleSubmit = true;
+}
+
+PubResp : WOPopUpButton {
+  list = lstResp;
+  item = respOccur;
+  displayString = respOccur.cresLibelle;
+  selection = editedResp.toFwkScolarite_ScolConstanteResponsabilite;
+}
+
+ErreurContainer : AjaxUpdateContainer { 
+	id = erreureditrespid;
+	style = "z-index:9999;";
+}
+
+MessageUtil : MessageUtil { 
+  idErreur = erreureditrespid;
+  idMessage = "idmessageresponsabilite";
+}
+
+IsCreation : WOConditional {
+  condition = isCreationMode;
+}
+IsModification : WOConditional {
+  condition = isEditMode;
+}

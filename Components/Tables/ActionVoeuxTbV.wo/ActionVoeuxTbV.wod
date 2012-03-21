@@ -1,0 +1,31 @@
+TableAction : TableAction {
+  idToRefreshEdit=^idToRefreshEdit;
+  idToRefreshDelete=^idToRefreshDelete;
+  lstDeletedObjects=^lstDeletedObjects;
+  editMethodName=^editMethodName;
+  editMethodObject=^editMethodObject;
+  onSuccessEdit=^onSuccessEdit;
+  isEditEnabled=^isEditEnabled;
+  canEdit=^canEdit;
+  hyperlinkTarget=^hyperlinkTarget;
+  canDelete=^canDelete;
+  value=^value;
+}
+
+CanRealise : WOConditional {
+  condition = ^canRealise;
+}
+
+AulEditRealise : AjaxUpdateLink {  
+  updateContainerID = ^idToRefreshEdit;
+  action = editRealise;
+  onSuccess = ^onSuccessEdit;
+}
+ImgRealise : WOImage {
+  filename = "images/16x16/process_16x16.png";
+  framework = "FwkCktlThemes";
+  border = 0;
+  style = "vertical-align:middle";
+  alt = "Saisie du réalisé";
+  title= "Saisie du réalisé";
+}

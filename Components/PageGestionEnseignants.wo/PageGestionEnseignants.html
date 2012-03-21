@@ -1,0 +1,48 @@
+<webobject name = "Wrapper">
+  <div class = "block" style = "width:90%;margin:10px auto;max-width:800px;">
+    <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+      <span style = "margin-left:20px">Enseignants</span>
+    </div>
+    <div class = "subBox corpsBlock">
+      <div style = "text-align:center;padding-top:5px;">
+        <webobject name = "ModEnseigant" />
+        <webobject name = "AucInfosEns">
+          <webobject name = "IsEnsSelected">
+            <fieldset style = "margin:5px;padding:0 0 5px 0;clear:both;max-width:750px;margin-left:auto;margin-right:auto;-moz-border-radius:10px;">
+              <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Report d'heures</legend>
+              <webobject name = "AucReport">
+                <webobject name = "ReportTV" />
+                <webobject name = "CanAddReport">
+                  <div style = "text-align:right;"> <webobject name = "AbAddReport" />&nbsp;&nbsp;&nbsp;&nbsp; </div>
+                </webobject>
+                <div style = "display:none;">
+                  <webobject name = "AucGestionReport">
+                    <webobject name = "CawGestionReport"> <webobject name = "MGestionReport" /> </webobject>
+                  </webobject>
+                </div>
+              </webobject>
+            </fieldset>
+            <webobject name = "AulRefreshReportsLink" />
+            <fieldset style = "margin:5px;padding:0 0 5px 0;clear:both;max-width:750px;margin-left:auto;margin-right:auto;-moz-border-radius:10px;">
+              <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Pr&eacute;stations</legend>
+              <webobject name = "AucPrestations">
+                <webobject name = "PrestEnseignantTV" />
+                <webobject name = "CanAddReport">
+                  <div style = "text-align:right;"> <webobject name = "AbAddPrestation" />&nbsp;&nbsp;&nbsp;&nbsp; </div>
+                </webobject>
+                <div style = "display:none;">
+                  <webobject name = "AucGestionPrestation">
+                    <webobject name = "CawGestionPresta">
+                      <webobject name = "FormGestPresta"><webobject name = "MGestionPrestation" /></webobject>
+                    </webobject>
+                  </webobject>
+                </div>
+              </webobject>
+            </fieldset>
+            <webobject name = "AulRefreshPrestationsLink" />
+          </webobject>
+        </webobject>
+      </div>
+    </div>
+  </div>
+</webobject>

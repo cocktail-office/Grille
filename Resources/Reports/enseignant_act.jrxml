@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="enseignant_act" language="groovy" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MEC_KEY" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[new Integer(33635)]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT ACT.MEC_KEY,i.prenom||' '||i.nom_usuel ENSEIGNANT,TA.LIB_COURT,SUM(NVL(V.NB_HEURE_REALISE,0))  NB_HEURE_REALISE,SUM(NVL(V.NB_HEURES_VOEUX,0)) NB_HEURES_VOEUX
+,'('||TA.lib_court||') - '||ACT.COMMENTAIRE LIB_ACT,ACT.ACTIVITE_KEY
+FROM GRILLE_ENS.ACTIVITE ACT,GRILLE_ENS.TYPE_ACTIVITE TA,GRILLE_ENS.VOEUX V,grhum.individu_ulr i
+WHERE TA.TYPE_ACTIVITE_KEY = ACT.TYPE_ACTIVITE_KEY
+AND V.ACTIVITE_KEY = ACT.ACTIVITE_KEY
+AND I.NO_INDIVIDU = V.NO_INDIVIDU
+AND ACT.MEC_KEY = $P{MEC_KEY}
+GROUP BY ACT.MEC_KEY, i.prenom||' '||i.nom_usuel, TA.LIB_COURT,'('||TA.lib_court||') - '||ACT.COMMENTAIRE,ACT.ACTIVITE_KEY
+ORDER BY ACT.ACTIVITE_KEY]]>
+	</queryString>
+	<field name="MEC_KEY" class="java.math.BigDecimal"/>
+	<field name="ENSEIGNANT" class="java.lang.String"/>
+	<field name="LIB_COURT" class="java.lang.String"/>
+	<field name="NB_HEURE_REALISE" class="java.math.BigDecimal"/>
+	<field name="NB_HEURES_VOEUX" class="java.math.BigDecimal"/>
+	<field name="LIB_ACT" class="java.lang.String"/>
+	<field name="ACTIVITE_KEY" class="java.math.BigDecimal"/>
+	<variable name="SUM_HR" class="java.math.BigDecimal" resetType="Group" resetGroup="ActiviteGrp" calculation="Sum">
+		<variableExpression><![CDATA[$F{NB_HEURE_REALISE}]]></variableExpression>
+	</variable>
+	<variable name="SUM_FAIT" class="java.math.BigDecimal" resetType="Group" resetGroup="ActiviteGrp" calculation="Sum">
+		<variableExpression><![CDATA[$F{NB_HEURES_VOEUX}]]></variableExpression>
+	</variable>
+	<group name="ActiviteGrp">
+		<groupExpression><![CDATA[$F{ACTIVITE_KEY}]]></groupExpression>
+		<groupFooter>
+			<band height="16">
+				<textField pattern="###0.00;-###0.00">
+					<reportElement mode="Opaque" x="351" y="0" width="43" height="16" backcolor="#F6F6F6"/>
+					<box>
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{SUM_HR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="1" y="0" width="307" height="16" backcolor="#F6F6F6"/>
+					<box topPadding="2" leftPadding="2" rightPadding="10">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Total "+$F{LIB_ACT}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement mode="Opaque" x="308" y="0" width="43" height="16" backcolor="#F6F6F6"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{SUM_FAIT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="120" height="16" backcolor="#FCFEF2"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nom enseignant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="351" y="0" width="43" height="16" backcolor="#FCFEF2"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fait]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="121" y="0" width="187" height="16" backcolor="#FCFEF2"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Activité]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="308" y="0" width="43" height="16" backcolor="#FCFEF2"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Voeux]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="351" y="0" width="43" height="16"/>
+				<box topPadding="2" leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{NB_HEURE_REALISE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="120" height="16"/>
+				<box topPadding="2" leftPadding="2" rightPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ENSEIGNANT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="0" width="187" height="16"/>
+				<box topPadding="2" leftPadding="2" rightPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{LIB_ACT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="308" y="0" width="43" height="16"/>
+				<box>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{NB_HEURES_VOEUX}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,156 @@
+Cadre : WrapperPopUp {
+	titre = "Recherche d'un enseignant";
+}
+
+FrmSearchRef : WOForm {
+	multipleSubmit = true;
+	onKeyPress="if (event.keyCode == 13) $(searchBtb).click();";	
+}
+
+RefName : WOTextField {
+  value = indSearch.name;
+  id = "refName";
+}
+
+RefFirstName : WOTextField {
+  value = indSearch.firstname;
+  id = "refFirstName";
+}
+
+AsbSubmitt : AjaxSubmitButton {
+  value = "Chercher";
+  //updateContainerID = "majSearch";
+  updateContainerID = "affResult";
+  action = searchIndividu;
+  onClick = "$('affResult').hide();";
+  onSuccess = "function (searchSucess) {$('affResult').show();} ";
+  id = "searchBtb";
+}
+
+AbiSearch : AjaxBusyIndicator {
+	watchContainerID = "affResult"; 
+	onCreate = "function() { $('WatchContainerLoading').show();   }";
+  	onComplete = "function() { $('WatchContainerLoading').hide(); }";
+}
+
+AucResults : AjaxUpdateContainer {
+	id = "affResult";
+	style = "display:none";
+}
+
+IsEmptyList : WOConditional {
+  condition = isEmptyList;
+}
+IsNotEmptyList : WOConditional {
+  condition = isEmptyList;
+  negate = true;
+}
+
+
+UpdateBodyTb : AjaxUpdateContainer {
+	id = "tbodyRef";
+	elementName = "tbody";
+}
+RepRefs : WORepetition {
+	list = dgIndiv.displayedObjects;
+	item = IndivOccur;
+}
+
+AffEtudFirstName : WOString {
+  value = IndivOccur.prenomAffichage;
+}
+
+AffEtudName : WOString {
+  value = IndivOccur.nomAffichage;
+}
+
+SelectIndiv : AjaxUpdateLink {
+	action = selectIndividu;
+	title = "Selectioner cet individu";
+	onSuccess = onSuccessSelectIndiv; 
+}
+
+ImgVoir : WOImage { 
+	alt = "Voir";
+	title = "Voir";
+	filename = "img/eyes.png";
+	border = 0; 
+}
+
+ImgSelect : WOImage {
+	alt = "Choisir";
+	title = "Choisir";
+	filename = "img/ok.png";
+	border = 0; 
+}
+AutMaj : AjaxUpdateTrigger {
+	updateContainerIDs = lstZonesUpdates;
+}
+Wait : WOImage {
+  framework = "Ajax";
+  filename = "wait20.gif";
+  id = "busy";
+  align = "absmiddle";
+}
+
+AucMaj : AjaxUpdateContainer {
+	id = "maj";
+}
+
+
+AulVoirInfo : AjaxUpdateLink {
+  updateContainerID = "infosIndividu";
+  action = consultIndiv;
+ // onClick = "selectThis(this.parentNode.parentNode)";  
+  onSuccess = "function (show) {openWindowt('Informations','Informations individus','infosIndividu',620,160,489,37);}";
+}
+
+
+AucInfosIndividu : AjaxUpdateContainer {
+	id = "infosIndividu";		
+}
+
+
+IsAffInfos : WOConditional {
+  condition = isAffInfo;
+}
+
+
+TrIndivOccur : WOGenericContainer {
+  elementName = "tr";
+  class = classRowIndiv;
+}
+
+AucMajSearch : AjaxUpdateContainer {
+	id = "majSearch";
+}
+
+AutMajSearch : AjaxUpdateTrigger {
+	updateContainerIDs = lstUpdateSearch;
+}
+
+AffEtudCivilite : WOString {
+  value = IndivOccur.toCivilite.cCivilite;
+}
+
+
+DetaisIndiv : DetailsIndividus {
+	consultedIndiv = consultedIndiv;
+	ec = session.defaultEditingContext;
+}
+
+
+//PersonneGestion : PersonneGestion {
+//	editingContext = nestedEdc;
+//	selectedPersonne = selectedPersonne;
+//	utilisateurPersId = userPersId;	
+//	disableSrch = editMode;
+//	disableSelection = false;
+//	disableForm = false;
+	//callbackOnSelectionnerPersonne = ajouterLeContactSelectionne;
+//	onSelectionnerPersonneSuccess = "function (){parent.Windows.close('SearchEns_win');}";
+	//callbackAfterFormEnregistrer = ajouterLeContactSelectionne;
+//	onFormEnregistrerSuccess = "function (){parent.Windows.close('SearchEns_win');}";
+//	callbackAfterFormAnnuler = annuler;
+//	onFormAnnulerSuccess = "function (){parent.Windows.close('SearchEns_win');}";
+//}

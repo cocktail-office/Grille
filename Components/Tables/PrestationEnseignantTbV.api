@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+        <wo class="PrestationEnseignantTableView.java" wocomponentcontent="false">
+
+        <binding defaults="Boolean" name="alwaysDisplayTable"/>
+    <binding name="dg"/>
+    </wo>
+</wodefinitions>

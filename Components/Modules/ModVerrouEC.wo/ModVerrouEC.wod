@@ -1,0 +1,58 @@
+IsLockedEc : WOConditional {
+	condition = isVerrouEC;
+}
+
+ImgVerrou : WOImage {
+  alt = "verrou";
+  framework = "FwkCktlThemes";
+  filename = "images/16x16/001_42_16x16.png";
+  align = "absmiddle";
+}
+
+IsNotLockedEc : WOConditional {
+	condition = isVerrouEC;
+	negate = true;
+}
+
+AucLockEc : AjaxUpdateContainer {
+	id = auclockecid;
+}
+
+CanLockEc : WOConditional {
+	condition = canLockEc;
+}
+
+CabLockEc : CktlAjaxButton {
+	action = lockEc;		
+	title = "Valider";
+	text = "Verrouiller l'élément";
+	type = "lock";	
+	updateContainerID = auclockecid;	
+}
+
+NomLocker : WOString { 
+  value = verrouForEc.toFwkpers_IndividuVerrou.nomPrenomAffichage;
+}
+
+CabUnLockEc : CktlAjaxButton {
+	action = unLockEc;		
+	title = "Déverrouiller";
+	text = "Enlever le verrou";
+	type = "reset";	
+	updateContainerID = auclockecid;	
+}
+
+ErreurVerrouContainer : AjaxUpdateContainer {
+	id = erreurlockecid;
+	style = "z-index:9999;";
+}
+
+MessageUtilVerrou : MessageUtil {
+  idErreur = erreurlockecid;
+  idMessage = messageverrouid;
+}  
+
+Dverrou : WOString {
+  value = verrouForEc.dVerrou;
+  dateformat = "%d/%m/%Y";
+}

@@ -1,0 +1,133 @@
+Wrapper : Wrapper { 
+	titre = "Liste des enseignants";
+}
+
+EcbmCorps : ERXCheckboxMatrix {
+  item = corpsItem;
+  list = lstCorps;
+  selections = selectedCorps;
+  maxColumns = 3;
+}
+
+LibCol : WOString {
+  value = colItem.cellName;
+}
+
+EcbmColonnes : ERXCheckboxMatrix {
+  item = colItem;
+  list = lstColonnes;
+  selections = selectedCols;
+  maxColumns = 2;
+}
+
+LibCorps : WOString {
+  value = corpsItem.lcCorps;
+}
+
+AucLstColonnes : AjaxUpdateContainer {
+  id = auclstcolonnesid;
+}
+
+CabAllCols : CktlAjaxButton {
+  updateContainerID = auclstcolonnesid;
+  action = selAllCols;
+  text = "Tout";
+}
+
+CabNoCols : CktlAjaxButton {
+  updateContainerID = auclstcolonnesid;
+  action = selNoCols;
+  text = "Rien";
+}
+
+CabAllCorps : CktlAjaxButton {
+  updateContainerID = auccorpsid;
+  action = selAllCorps;
+  text = "Tout";
+}
+
+CabNoCorps : CktlAjaxButton {
+  updateContainerID = auccorpsid;
+  action = selNoCorps;
+  text = "Rien";
+}
+
+AucCorps : AjaxUpdateContainer {
+  id = auccorpsid;
+}
+
+PubService : WOPopUpButton {
+  list = lstSevices;
+  item = serviceOccur;
+  selection = selectedService;
+  displayString = serviceOccur.llStructure;
+  noSelectionString = "Tous";
+}
+
+CabPrintEtat : CktlAjaxSubmitButton {
+	action = print;
+	type = "print";
+	text = "Générer l'état";
+}
+
+Form : WOForm {
+  multipleSubmit = true;
+}
+
+AOFCols : AjaxObserveField {
+  action = checkCols; 
+  fullSubmit = true;
+  updateContainerID = auclstcolonnesid;
+}
+
+ErreurContainer : AjaxUpdateContainer {
+	id = messagecontainerid;
+	style = "z-index:9999;";
+}
+
+MessageUtil : MessageUtil { 
+  idErreur = messagecontainerid;
+  idMessage = messageutilid;
+}
+
+SpanLib : WOGenericContainer {
+  elementName = "span";
+  style = styleLibelleColonne;
+}
+
+
+AucPrintProgress : AjaxUpdateContainer {
+  id = aucprintprogressid;
+}
+
+WauExport : WOActionURL {
+	action = exportFile;
+}
+
+AmdPrintProgress : CktlAjaxWindow {// AjaxModalDialog {
+	width = "500";
+	height ="50";
+	title = "Génération de l'état ...";
+	id =winprintprogressid;
+	//centerVertically = true;
+	closable = false;
+} 
+
+
+PrintProgressBar : AjaxProgressBar {
+  allowCancel = false;
+  progress = printProgress;
+  visibleAfterDone = true;
+  visibleBeforeStart = true;
+  id = printProgressBarid;  
+  succeededFunction = "throwPdf();"; 
+  finishedFunction = "CAW.close();";//"Modalbox.hide();";
+  failedFunction = "showMessages();";
+  progressOfText = " sur ";
+  
+}
+
+AulShowMessage : AjaxUpdateLink {
+	updateContainerID = messagecontainerid;
+	functionName = "showMessages";
+}

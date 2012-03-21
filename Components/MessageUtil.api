@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+    <wo class="MessageUtil" wocomponentcontent="false">    <binding name="idErreur"/>
+        <validation message="'idErreur' is a required binding.">
+            <unbound name="idErreur"/>
+        </validation>
+    </wo>
+</wodefinitions>

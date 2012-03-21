@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+        <wo class="ModCreationListe.java" wocomponentcontent="false">
+
+        <binding name="editedListe"/>
+        <validation message="'editedListe' is a required binding.">
+            <unbound name="editedListe"/>
+        </validation>
+    <binding name="titre"/>
+    <binding name="updateContainerID"/>
+    <binding defaults="Boolean" name="canEditCode"/>
+    </wo>
+</wodefinitions>

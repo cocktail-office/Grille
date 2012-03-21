@@ -1,0 +1,69 @@
+TtHrPeriodes : WOString {
+  value = ttHrPeriodes;
+}
+
+VoeuxTBV : VoeuxTbV {
+  dg = dgVoeux;
+  width = "99%";
+  canEdit = false;
+  afficherBarreDeStatut=false;
+  isEditEnabled = false;
+  colonnesKeys = colonnesVoeuxKeys;
+  objectOccur = voeuxOccur;
+  canRealise = false;
+  selectionMultipleEnabled = false;
+  selectionEnabled = false;
+  height="100px";
+}
+
+NbHeuresFaites : WOTextField {
+  value = nbHeuresFaites;
+  numberformat = "0.00";
+  maxlength = 6;
+  size = 5;
+  style = "text-align:right;";
+}
+
+NbPeriodes : WOString {
+  value = nbPeriode;
+}
+
+AbValidPeriodes : CktlSubmitButton {
+	action = validPeriodes;		
+	title = "Valider les périodes ";	
+	type = "validate";
+	text = "Valider les périodes ";	
+}
+
+
+ValidMode : WOConditional {
+  condition = isValidMode;
+}
+DeValidMode : WOConditional {
+  condition = isDeValidMode;
+}
+
+AbDeValidPeriodes : CktlSubmitButton {
+	action = devalidPeriodes;		
+	title = "Dé-valider les périodes ";	
+	type = "reset";
+	text = "Dé-valider les périodes ";	
+}
+
+
+Frm : WOForm {
+}
+
+CbxCreat : ERXCheckboxMatrix {
+  item = creatOccur;
+  list = lstToCreate;
+  selections = selectedToCreate;
+}
+
+LibToCreate : WOString {
+  value = libToCreate;
+}
+
+HasToCreat : ERXNonNullConditional {
+  condition = lstToCreate;
+}

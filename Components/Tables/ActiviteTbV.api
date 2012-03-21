@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+    <wo class="ActiviteTableView" wocomponentcontent="false">    
+        <binding name="editMethodName"/>
+        <binding name="onSuccessEdit"/>
+        <binding name="idToRefreshEdit"/>
+        <binding name="canEdit"/>
+    <validation message="'canEdit' is a required binding.">
+            <unbound name="canEdit"/>
+        </validation>
+    <validation message="'editMethodName' is a required binding.">
+            <unbound name="editMethodName"/>
+        </validation>
+    <binding name="editMethodObject"/>
+        <validation message="'editMethodObject' is a required binding.">
+            <unbound name="editMethodObject"/>
+        </validation>
+    <binding name="idToRefreshDelete"/>
+    <binding name="onSuccessDelete"/>
+    <binding name="objectOccur"/>
+    </wo>
+</wodefinitions>

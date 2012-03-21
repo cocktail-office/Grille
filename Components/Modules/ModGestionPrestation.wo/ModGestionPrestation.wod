@@ -1,0 +1,78 @@
+FormGestPrest : WOForm {
+	id = formgestprestid;
+	name = formgestprestid;
+	multipleSubmit = true;
+	onsubmit = "return false;";
+}
+
+PubActePrestation : WOPopUpButton {
+	id = pubactprestationid;
+	list = listActesPrestations;
+	item = itemActePrestation;
+	displayString = itemActePrestation.libComplet;
+	noSelectionString = "-- sélectionner un acte de prestation --";
+	selection = prestationEnseignant.toActePrestation;
+}
+
+StructureAutoComplete : CktlAjaxAutoComplete {
+	list = getFilteredRne;
+	value = rneInput;
+	selection = prestationEnseignant.toFwkpers_Rne;
+	item = itemRne;
+	displayString = itemRne.llRne;
+	minChars = 3;
+	tabindex = "8";
+	id = "ac_rne";
+	name="ac_rne";
+	autoSelect = false;
+	size = 40;
+}
+
+THeuresCM : WOTextField {
+	value = prestationEnseignant.nbHeuresCm;
+	size = "3";
+	numberformat = "#";
+}
+
+THeuresTD : WOTextField {
+	value = prestationEnseignant.nbHeuresTd;
+	size = "3";
+	numberformat = "#";
+}
+
+THeuresTP : WOTextField {
+	value = prestationEnseignant.nbHeuresTp;
+	size = "3";
+	numberformat = "#";
+}
+
+TaCommentaire : WOText {
+	value = prestationEnseignant.commentaire;
+	cols = "40";
+	rows = "3";
+	style = "font-size:12px;";
+}
+
+CasbValide : CktlAjaxSubmitButton {
+	action = saveChanges;
+	title = "Enregistrer";
+	text = "Valider";
+	type = "validate";	
+}
+
+CasbCancel : CktlAjaxSubmitButton {
+	action = cancel;		
+	title = "Annuler";
+	text = "Annuler";
+	type = "reset";	
+	updateContainerID = erreurId;
+}
+
+AucMessage : AjaxUpdateContainer {
+	id = erreurId;
+}
+
+Message : MessageUtil {
+	idErreur = erreurId;
+	idMessage = messageId;
+}

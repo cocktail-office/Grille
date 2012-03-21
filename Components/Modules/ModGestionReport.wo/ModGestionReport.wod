@@ -1,0 +1,52 @@
+FormGestReport : WOForm {
+	id = formgestreportid;
+	name = formgestreportid;
+	multipleSubmit = true;
+	onsubmit = "return false;";
+}
+
+AucMessage : AjaxUpdateContainer {
+	id = erreurId;
+}
+
+Message : MessageUtil {
+	idErreur = erreurId;
+	idMessage = messageId;
+}
+
+PubAnnee : WOPopUpButton {
+	id = pubanneeid;
+	list = listAnnees;
+	item = itemAnnee;
+	displayString = anneeDescription;
+	noSelectionString = "-- sélectionner une année --";
+	selection = editedReport.toFwkScolarite_ScolFormationAnnee;
+}
+
+TNbHeures : WOTextField {
+	value = editedReport.nbHeures;
+	numberformat = "#";
+	size = 3;
+}
+
+TACommentaire : WOText {
+	value = editedReport.commentaireReport;
+	cols = "40";
+	rows = "3";
+	style = "font-size:12px;";
+}
+
+CasbValide : CktlAjaxSubmitButton {
+	action = saveChanges;
+	title = "Enregistrer";
+	text = "Valider";
+	type = "validate";	
+}
+
+CasbCancel : CktlAjaxSubmitButton {
+	action = cancel;		
+	title = "Annuler";
+	text = "Annuler";
+	type = "reset";	
+	updateContainerID = erreurId;
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+        <wo class="ModGestionPrestation.java" wocomponentcontent="false">
+
+        <binding name="prestationEnseignant"/>
+        <validation message="'prestationEnseignant' is a required binding.">
+            <unbound name="prestationEnseignant"/>
+        </validation>
+    <binding name="updateContainerID"/>
+    <binding name="onValidMethod"/>
+    </wo>
+</wodefinitions>

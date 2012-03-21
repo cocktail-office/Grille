@@ -1,0 +1,180 @@
+FormListe : ERXOptionalForm { 
+	id = formlisteid;
+	name = formlisteid;
+	multipleSubmit = true;
+}
+
+Code : WOTextField { 
+	value = editedListe.glCode;
+}
+
+Libelle : WOTextField {
+	value = editedListe.glLibelle;
+	size = "65";
+}
+
+Formation : WOTextField {
+	value = editedListe.toFwkScolarite_ScolFormationSpecialisation.fspnLibelle;
+	readonly = "readonly";
+	size = "65";
+	style = "background:none;border:none;";
+}
+
+Parcours : WOTextField {
+	value = editedListe.toFwkScolarite_ScolMaquetteParcours.mparLibelle;
+	readonly = "readonly";
+	size = "65";
+	style = "background:none;border:none;";
+}
+
+AucFormation : AjaxUpdateContainer {
+	elementName = "div";
+	id = aucformationid;
+}
+
+AulFindFormation : AjaxUpdateLink {
+	action = openTreeFormation;
+	class = "blink link_find";
+}
+AbSearchTree : CktlAjaxButton {
+	action = openTreeFormation;		
+	title = "Chercher une formation";
+	text = "Chercher une formation";
+	type = "find";	
+}
+
+SearchMaquette : SearchMaquette {
+  ec = editedListe.editingContext;
+  selectedObj = editedListe.parcours;
+  selectedYear = editedListe.toFwkScolarite_ScolFormationAnnee;  
+  treeDelegate = treeParDelegate;
+  windowTitle = "Rechercher formation";
+  popup = false;
+  parentSelectedObj = editedListe; 
+  cawsearchzoneid = cawsearchzoneid;
+  idToRefresh = aucformationid;
+  onSelectObj = closeSearchWin;
+  showLink = false;
+}
+
+FieldFiltreEC : WOTextField {
+	value = inputFiltreEC;
+}
+
+
+OFLib : AjaxObserveField {
+	elementName = "span";
+	style = "float:left;";
+}
+
+
+AulFiltreEC : AjaxUpdateLink {
+	action = afficherEC;
+	class = "blink link_find";
+}
+
+AbFilterEC : CktlAjaxSubmitButton {
+	action = afficherEC;		
+	title = "Afficher les EC";
+	text = "Afficher les EC de la formation";
+	type = "find";	
+}
+
+AucListeEc : AjaxUpdateContainer {
+	id = auclisteecid;
+	class = "div_liste_ec";
+}
+AslListeEC : AjaxSelectionList {
+	list = listEc; 
+	item = itemEc;
+	selection = selectedEc;
+}
+
+AulViderListeEc : AjaxUpdateLink {
+	action = viderListeEc;
+}
+
+CurrentEc : WOString {
+	value = itemEc.codeEtLibelle;
+}
+
+AucListRetainedEc : AjaxUpdateContainer {
+	id = auclistretainedecid;
+	class = "div_liste_ec";
+}
+
+AslListRetainedEC : AjaxSelectionList {
+	list = editedListe.toGrilleListeEcs;
+	item = itemGrilleListeEc;
+	selection = selectedGrilleListeEc;
+}
+
+CurrentRetainedEc : WOString {
+	value = itemGrilleListeEc.toFwkScolarite_ScolMaquetteEc.codeEtLibelle;
+}
+
+
+AulAddAll : AjaxSubmitButton {
+	action = addAll;
+	class = "blink link_last";
+	button = false;
+	value = "";
+	title = "Ajouter tous les EC !";
+}
+
+AulAddSelected : AjaxSubmitButton {
+	action = addSelected;
+	class = "blink link_next";
+	button = false;
+	value = "";
+	title = "Ajouter EC sélectionné !";
+}
+
+AulRemoveAll : AjaxSubmitButton {
+	action = removeAll;
+	class = "blink link_first";
+	button = false;
+	value = "";
+	title = "Retirer tous les EC !";
+}
+
+AulRemoveSelected : AjaxSubmitButton {
+	action = removeSelected;
+	class = "blink link_previous";
+	button = false;
+	value = "";
+	title = "Retirer EC sélectionné !";
+}
+
+AucSelectionLinkFenetre : AjaxUpdateContainer {
+  id = "selectionlinkFenetre";
+}
+
+SubmitEnregister : AjaxSubmitButton {
+	action = save;
+	class = "blink link_save";
+	button = false;
+	value = "Enregistrer";	
+}
+
+CasbValider : CktlAjaxSubmitButton {
+	action = save;		
+	title = "Valider";
+	text = "Valider";
+	type = "validate";		
+}
+
+Titre : WOString {
+  value = ^titre;
+}
+
+CanEditCode : WOConditional {
+  condition = ^canEditCode;
+}
+Else : ERXElse {
+	
+}
+
+CodeEc : WOString {
+  value = editedListe.glCode;
+}

@@ -1,0 +1,29 @@
+Cadre : Wrapper {
+	titre = "Grille";
+}
+
+goCas : WOHyperlink {
+	directActionName = "casLogin";
+}
+
+LoginTmp : WOHyperlink {
+	pageName = "LoginTempEtud";	
+}
+
+IsNotConnected : WOConditional {
+  condition = isConnected;
+  negate = true;
+}
+
+IsConnected : WOConditional {
+  condition = isConnected;
+}
+
+UrlImgEnter : WOResourceURL {
+   filename = "img/enter.png"; 
+}
+
+UrlImgContact : WOResourceURL {
+   filename = "img/contact.png"; 
+}
+

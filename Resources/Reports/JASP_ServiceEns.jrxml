@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="JASP_ServiceEns" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ANNEE" class="java.lang.Integer" isForPrompting="false">
+		<parameterDescription><![CDATA[Annee univ]]></parameterDescription>
+		<defaultValueExpression><![CDATA[2010]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NO_INDIVIDU" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[340]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/jluc/src/WO/Grille/Resources/Reports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PROPOSITION" class="java.lang.Boolean"/>
+	<parameter name="VOEUX_VALID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select ens.nom_affichage nom,ens.prenom_affichage prenom,to_char(sysdate,'DD/MM/YYYY') dateDuJour,
+grille_ens.F_potentiel_brut_For_ens($P{ANNEE},ens.no_individu) nbr_heu_srv_sta,
+grille_ens.F_quotite_For_ens($P{ANNEE},ens.no_individu) pour_pre,
+grille_ens.F_total_decharges_For_ens($P{ANNEE},ens.no_individu) decharge,
+grille_ens.F_total_reports_For_ens($P{ANNEE},ens.no_individu) report,
+   grille_ens.F_total_prestation_For_ens($P{ANNEE},ens.no_individu) prestation
+from grhum.individu_ulr ens
+where  ens.no_individu = $P{NO_INDIVIDU}]]>
+	</queryString>
+	<field name="NOM" class="java.lang.String"/>
+	<field name="PRENOM" class="java.lang.String"/>
+	<field name="DATEDUJOUR" class="java.lang.String"/>
+	<field name="NBR_HEU_SRV_STA" class="java.math.BigDecimal"/>
+	<field name="POUR_PRE" class="java.math.BigDecimal"/>
+	<field name="DECHARGE" class="java.math.BigDecimal"/>
+	<field name="REPORT" class="java.math.BigDecimal"/>
+	<field name="PRESTATION" class="java.math.BigDecimal"/>
+	<variable name="ANNEEPLUS" class="java.lang.Integer">
+		<variableExpression><![CDATA[new Integer($P{ANNEE}.intValue()+1)]]></variableExpression>
+	</variable>
+	<variable name="CURRENT_PAGE_NUMBER" class="java.lang.String">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SERVICE_TOTAL" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{DECHARGE}.add($V{SERVICE}).add($F{PRESTATION}).subtract($F{REPORT})]]></variableExpression>
+	</variable>
+	<variable name="RESULTAT_SERVICE" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{SERVICE}.subtract($V{SERVICE_EFFECTIF})]]></variableExpression>
+	</variable>
+	<variable name="TotalVoeuxAction" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="TotalVoeuxActivite" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="SERVICE" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{TotalVoeuxAction}.add($V{TotalVoeuxActivite}).add($F{PRESTATION})]]></variableExpression>
+	</variable>
+	<variable name="SERVICE_EFFECTIF" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{NBR_HEU_SRV_STA}.multiply($F{POUR_PRE}).divide(BigDecimal.valueOf(100),BigDecimal.ROUND_CEILING).subtract($F{REPORT}).subtract($F{DECHARGE})]]></variableExpression>
+	</variable>
+	<variable name="AffTotalAction" class="java.lang.Integer">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="86" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="85"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<line>
+				<reportElement x="0" y="40" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="9" y="44" width="539" height="37">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Référence : article 7 du décret N°84-431 du 6 juin 1984 fixant les dispositions statutaires communes applicables aux enseignants-chercheurs et portant statut particulier du corps des professeurs des universités et du corps des maîtres de conférences.]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="193" y="3" width="177" height="42">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["SERVICE DES ENSEIGNANTS et ENSEIGNANTS-CHERCHEURS Année universitaire "+$P{ANNEE}+"-"+$V{ANNEEPLUS}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="190" y="41" width="177" height="42">
+					<printWhenExpression><![CDATA[$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["PROPOSITION DE SERVICE POUR  L'ANNÉE "+$P{ANNEE}+"-"+$V{ANNEEPLUS}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="152" y="3" width="251" height="42">
+					<printWhenExpression><![CDATA[$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["GRILLE DES ENSEIGNEMENTS"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="252" splitType="Stretch">
+			<rectangle>
+				<reportElement positionType="Float" x="23" y="91" width="438" height="20"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="23" y="96" width="438" height="17" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vous n'avez pas de service sur enseignements]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="282" y="8" width="266" height="15"/>
+				<textElement>
+					<font fontName="Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Prénom : "+$F{PRENOM}]]></textFieldExpression>
+			</textField>
+			<subreport isUsingCache="true">
+				<reportElement positionType="Float" x="0" y="86" width="548" height="25" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="VOEUX_VALID">
+					<subreportParameterExpression><![CDATA[$P{VOEUX_VALID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NO_INDIVIDU">
+					<subreportParameterExpression><![CDATA[$P{NO_INDIVIDU}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ANNEE">
+					<subreportParameterExpression><![CDATA[$P{ANNEE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="TOTAL" toVariable="TotalVoeuxAction"/>
+				<returnValue subreportVariable="REPORT_COUNT" toVariable="AffTotalAction"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "JASP_SUB_VoeuxActions.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement positionType="Float" x="22" y="137" width="438" height="20"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="22" y="141" width="439" height="18" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vous n'avez pas de service sur activités]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="Float" x="20" y="185" width="500" height="19" backcolor="#FFFFFF"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="25" y="71" width="165" height="20"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Service d'enseignement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="25" y="120" width="431" height="20"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Activités en application du référentiel de l'Université de Provence]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="9" y="8" width="271" height="15"/>
+				<textElement>
+					<font fontName="Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Nom : "+$F{NOM}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="134" width="548" height="25" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="VOEUX_VALID">
+					<subreportParameterExpression><![CDATA[$P{VOEUX_VALID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NO_INDIVIDU">
+					<subreportParameterExpression><![CDATA[$P{NO_INDIVIDU}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ANNEE">
+					<subreportParameterExpression><![CDATA[$P{ANNEE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="Total" toVariable="TotalVoeuxActivite"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "JASP_SUB_VoeuxActiv.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement positionType="Float" x="20" y="166" width="500" height="19" backcolor="#DFDFDF"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="20" y="168" width="100" height="16" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Service Statutaire]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="120" y="168" width="100" height="16" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Temps présence]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="220" y="168" width="100" height="16" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Heures Décharge]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="320" y="168" width="100" height="16" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="420" y="168" width="100" height="16" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Prestations externes]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="20" y="186" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NBR_HEU_SRV_STA}!=null?$F{NBR_HEU_SRV_STA}:"-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="120" y="186" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{POUR_PRE}!=null?$F{POUR_PRE}+"%":"-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="220" y="186" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NBR_HEU_SRV_STA}!=null?$F{DECHARGE}:"-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="320" y="186" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NBR_HEU_SRV_STA}!=null?$F{REPORT}:"-")]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="20" y="185" width="500" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="120" y="166" width="1" height="39"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="220" y="166" width="1" height="39"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="319" y="166" width="1" height="39"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="420" y="166" width="1" height="39"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement positionType="Float" x="20" y="209" width="500" height="19" backcolor="#DFDFDF"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" x="20" y="228" width="500" height="19" backcolor="#FFFFFF"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="20" y="211" width="100" height="16" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Hr Enseignement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="121" y="209" width="100" height="16" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Hr Activité]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="220" y="211" width="100" height="16" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Service à effectuer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="320" y="211" width="100" height="16" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Service Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="420" y="211" width="100" height="16" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Déficit/Excédent]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="121" y="209" width="1" height="38"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="220" y="209" width="1" height="38"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="319" y="209" width="1" height="38"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="420" y="209" width="1" height="38"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField evaluationTime="Auto" pattern="" isBlankWhenNull="false">
+				<reportElement positionType="Float" x="20" y="228" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TotalVoeuxAction}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto" pattern="###0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="122" y="228" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TotalVoeuxActivite}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement positionType="Float" x="421" y="186" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{PRESTATION}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto" pattern="###0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="221" y="228" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NBR_HEU_SRV_STA}.multiply($F{POUR_PRE}).divide(BigDecimal.valueOf(100),BigDecimal.ROUND_CEILING).subtract($F{REPORT}).subtract($F{DECHARGE})]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto" pattern="###0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="421" y="228" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[(($V{TotalVoeuxAction}.add($V{TotalVoeuxActivite}).add($F{PRESTATION})).subtract($F{NBR_HEU_SRV_STA}.multiply($F{POUR_PRE}).divide(BigDecimal.valueOf(100),BigDecimal.ROUND_CEILING).subtract($F{REPORT}).subtract($F{DECHARGE})).compareTo(BigDecimal.valueOf(0))>0)?"+"+($V{TotalVoeuxAction}.add($V{TotalVoeuxActivite}).add($F{PRESTATION})).subtract($F{NBR_HEU_SRV_STA}.multiply($F{POUR_PRE}).divide(BigDecimal.valueOf(100),BigDecimal.ROUND_CEILING).subtract($F{REPORT}).subtract($F{DECHARGE})):($V{TotalVoeuxAction}.add($V{TotalVoeuxActivite}).add($F{PRESTATION})).subtract($F{NBR_HEU_SRV_STA}.multiply($F{POUR_PRE}).divide(BigDecimal.valueOf(100),BigDecimal.ROUND_CEILING).subtract($F{REPORT}).subtract($F{DECHARGE}))]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="25" width="548" height="17"/>
+				<subreportParameter name="NO_INDIVIDU">
+					<subreportParameterExpression><![CDATA[$P{NO_INDIVIDU}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ANNEE">
+					<subreportParameterExpression><![CDATA[$P{ANNEE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "JASP_SUB_Affectations.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="48" width="200" height="19"/>
+				<subreportParameter name="NO_INDIVIDU">
+					<subreportParameterExpression><![CDATA[$P{NO_INDIVIDU}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ANNEE">
+					<subreportParameterExpression><![CDATA[$P{ANNEE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "JASP_SUB_Grades.jasper"]]></subreportExpression>
+			</subreport>
+			<textField evaluationTime="Auto" pattern="###0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="321" y="228" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($V{TotalVoeuxAction}.add($V{TotalVoeuxActivite}).add($F{PRESTATION}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="0" width="109" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DATEDUJOUR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="0" width="211" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+"/"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="0" width="181" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="195">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="187">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="282" y="41" width="10" height="11">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="280" y="42" width="276" height="145">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[      Favorable
+      Défavorable
+Motivation :
+
+
+
+
+
+Fait à                                le
+
+Le Directeur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="42" width="276" height="145">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[      Favorable
+      Défavorable
+Motivation :
+
+
+
+
+
+Fait à                                le
+
+Le Directeur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="7" width="276" height="20">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<text><![CDATA[Avis motivé du Directeur de laboratoire de rattachement]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="5" y="41" width="10" height="11">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="5" y="54" width="10" height="11">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="282" y="54" width="10" height="11">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="7" width="276" height="20">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<text><![CDATA[Vu la consultation du conseil de l’UFR  en date du :
+Avis motivé du Directeur de la composante]]></text>
+			</staticText>
+			<line>
+				<reportElement x="278" y="0" width="1" height="187">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="33" width="555" height="1">
+					<printWhenExpression><![CDATA[!$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<frame>
+				<reportElement x="278" y="7" width="270" height="180">
+					<printWhenExpression><![CDATA[$P{PROPOSITION}]]></printWhenExpression>
+				</reportElement>
+				<rectangle>
+					<reportElement x="2" y="20" width="268" height="131">
+						<printWhenExpression><![CDATA[$P{PROPOSITION}]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="13" y="25" width="245" height="20">
+						<printWhenExpression><![CDATA[$P{PROPOSITION}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Signature enseignant]]></text>
+				</staticText>
+				<line>
+					<reportElement x="2" y="45" width="268" height="1">
+						<printWhenExpression><![CDATA[$P{PROPOSITION}]]></printWhenExpression>
+					</reportElement>
+				</line>
+			</frame>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

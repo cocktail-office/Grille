@@ -1,0 +1,190 @@
+Wrapper : Wrapper {
+	titre = "Gestion utilisateurs";
+}
+
+DiplomePicker : DiplomePicker {
+  selectedSpec = selectedSpec;
+  isSpecSelect = true;
+  selectedYear = session.selectedYear;
+  isGradeSelect = true;
+  editingContext = session.defaultEditingContext;
+  delegate = session.currentDiplomePickerDelegate;
+}
+
+Form : WOForm {
+  multipleSubmit = true;
+}
+
+EquipeTbV : EquipeTbV { 
+  dg = displayGroup;
+  width = "95%";
+  canEdit = true;
+  objectOccur = respOccur;
+  afficherBarreDeStatut=true;
+  editMethodName = "editResp";
+  editMethodObject = editMethodeObject;
+  idToRefreshEdit = auceditrespid;
+  idToRefreshDelete = auclstrespid;  
+  onSuccessDelete = "function (majDel) {refreshResp();}";
+  commitOnValid = true;
+  isEditEnabled = true;
+}
+
+AulRefreshResp : AjaxUpdateLink {
+  updateContainerID = auclstrespid;
+  action = searchResp;
+  functionName = "refreshResp";
+}
+
+AucLstResp : AjaxUpdateContainer {
+  id = auclstrespid;
+}
+
+AofDiplChange : AjaxObserveField {
+  action = searchResp;
+  updateContainerID = auclstrespid;
+}
+
+CabSearch : CktlAjaxSubmitButton {
+	action = searchResp;		
+	title = "Chercher";
+	text = "Chercher les responsabilités";
+	type = "find";	
+	updateContainerID = auclstrespid;
+}
+
+AucEditResp : AjaxUpdateContainer {
+  id = auceditrespid;
+  style = "height:100%;";
+}
+
+CawEditObj : CktlAjaxWindow {
+  	closable = false;
+	resizable = true;
+	id = caweditobjid;
+	width = "700";
+	height = "300";
+	zIndex = 8888;
+}
+
+IsRespEdited : ERXNonNullConditional {
+  condition = editedResp;
+}
+
+EditResponsabilite : EditResponsabilite {
+  editedResp = editedResp;	
+  functionRefresh = "refreshResp()";
+  idWindow = caweditobjid;
+  mode = modeEdition;
+}
+
+
+AbAddResp : CktlAjaxButton {
+	action = AddResp;		
+	title = "Ajout";
+	text = "Ajouter une responsabilité";
+	type = "new";	
+	updateContainerID = auceditrespid;
+}
+
+IsSpecSelected : ERXNonNullConditional {
+  condition = selectedSpec;
+}
+
+ErreurContainer : AjaxUpdateContainer { 
+	id = erreurid;
+	style = "z-index:9999;";
+}
+
+MessageUtil : MessageUtil { 
+  idErreur = erreurid;
+  idMessage = "idmessagegestionrespons";
+}
+
+ShowSearchResult : WOConditional {
+	condition = haveSearched;
+}
+
+
+AucSearch : AjaxUpdateContainer {
+  id = aucSearch;
+  class="subBox";
+  style = "display:none;";
+}
+
+AmdSearch : AjaxModalDialog { 
+	closable = true;
+	resizable = true;
+	id = searchZoneId;
+	width = "640";
+	height = "450";
+	title = "Recherche individu";
+	centerVertically = true;
+}
+
+IsInSearch : WOConditional {
+  condition = true;
+}
+
+MyForm1 : WOForm {
+	id = "id";
+	name = "form1";
+	multipleSubmit = true;
+	//action = doNothing;
+	onsubmit = "return false;";
+	
+}
+
+IndivSrch : PersonneSrch {
+  selectedPersonne = selIndiv;
+  utilisateurPersId = session.gUser.persId;
+  isReadOnly = true;  
+  showDetail = false;
+  showDetailInModalBox = true;
+  persTypeInterneExterne = "interne";
+  showStructures = false;
+  persType = "individu";
+  titre = "Recherche individu";
+  updateContainerIDOnSelectionnerPersonneInTableview=aucselectlinkid;
+  editingContext = session.defaultEditingContext;  
+
+}
+
+AucSelect : AjaxUpdateContainer {
+  id = aucselectlinkid;
+  style = "margin-left:auto; margin-right:auto; text-align:center;";
+}
+
+IsIndiv : ERXNonNullConditional {
+	condition = selIndiv;
+}
+
+BSelectFromSearch : CktlAjaxButton {  
+	action = setSearchOff;	
+	type = "validate";
+	text = textButtonChoisirPersonne;
+	updateContainerID = aucindividuid;
+}
+
+
+AucIndividu : AjaxUpdateContainer {
+  id = aucindividuid;
+}
+
+Individu : WOString {
+  value = searchedIndiv.nomPrenomAffichage;
+}
+
+AbSearchIndiv : CktlAjaxButton {
+	action = setSearchOn;		
+	title = "Chercher";
+	//text = "Chercher";
+	type = "find";	
+	updateContainerID = aucSearch;
+}
+AbClearIndiv : CktlAjaxButton {
+	action = clearSearchedInd;		
+	title = "Effacer";	
+	type = "cancel";	
+	updateContainerID = aucindividuid;
+}

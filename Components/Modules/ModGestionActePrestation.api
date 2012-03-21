@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+        <wo class="ModGestionActePrestation.java" wocomponentcontent="false">
+
+        <binding name="actePrestation"/>
+        <validation message="'actePrestation' is a required binding.">
+            <unbound name="actePrestation"/>
+        </validation>
+    <binding name="updateContainerID"/>
+    <binding name="closeWindowId"/>
+    <binding name="afterCloseAction"/>
+    </wo>
+</wodefinitions>

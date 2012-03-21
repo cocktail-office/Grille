@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+    <wo class="ModVerrouEC" wocomponentcontent="false">    <binding name="selectedEc"/>
+        <validation message="'selectedEc' is a required binding.">
+            <unbound name="selectedEc"/>
+        </validation>
+    <binding name="gUser"/>
+        <validation message="'gUser' is a required binding.">
+            <unbound name="gUser"/>
+        </validation>
+    <binding name="updateContainerID"/>
+    </wo>
+</wodefinitions>

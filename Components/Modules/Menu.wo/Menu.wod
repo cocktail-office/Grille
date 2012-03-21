@@ -1,0 +1,122 @@
+GoGestEnseignants : WOHyperlink {
+	pageName = "PageGestionEnseignants";
+}
+
+GoToArbre : WOHyperlink {
+	pageName = "VoeuxArbre";
+}
+
+GoToVoeuxEns : WOHyperlink {	
+	action = goToVoeux;
+}
+
+GoToVoeuxElp : WOHyperlink {	
+	action = goToVoeuxElp;
+}
+
+GoToVoeuxActiv : WOHyperlink {	
+	action = goToVoeuxActiv;
+}
+
+GoGestionEC : WOHyperlink {
+	action = goToGestionEc;
+	class = "boxTitre"; 
+}
+
+GoGestionTypeActivite : WOHyperlink {
+	action = goToGestionTypeActivite;
+	class = "boxTitre" ;
+}
+
+
+
+GoGestionActePrestation : WOHyperlink {
+	action = goToGestionActePrestation;
+	class = "boxTitre" ;
+}
+
+GoGestionActivite : WOHyperlink {
+	action = goToGestionActivite;
+	class = "boxTitre" ;
+}
+
+GoCreationListe : WOHyperlink {
+	action = goCreationListe;
+}
+
+GoPrintCoefEqTD : WOHyperlink {	
+	action = goPrintCoefEqTD;
+} 
+
+GoEtatService : WOHyperlink {
+	action = goEtatService;
+}
+
+GoPrintListeActes : WOHyperlink {
+	action = goPrintListeActes;
+}
+
+GoPrestaAnnee : WOHyperlink {
+	action = goPrestaAnnee;
+}
+
+GoActivitesAnnee : WOHyperlink {
+	action = goActivitesAnnee;
+}
+
+CanShowMenuEns : WOConditional {
+  condition = canShowMenuEns;
+}
+
+
+GoListeEnsCorps : WOHyperlink {
+	action = goListeEnsCorps;
+}
+
+GoListeVoeuxActiv : WOHyperlink {
+	action = goListeVoeuxActiv;
+}
+
+GoListeDecharges : WOHyperlink {
+	action = goListeDecharges;
+}
+
+GoChargeEnseignement : WOHyperlink {
+	action = goChargeEnseignement;
+}
+
+GoBilanService : WOHyperlink {
+	action = goBilanService;
+}
+
+CanShowTypePresta : WOConditional {
+  condition = canShowTypePresta;
+}
+
+CanShowTypeActivite : WOConditional {
+  condition = canShowTypesActiv;
+}
+
+CanShowEditions : WOConditional {
+  condition = canShowEditions;
+}
+
+CanShowAdmin : WOConditional {
+  condition = canShowAdmin;
+}
+
+GoToEquipeDipl : WOHyperlink {
+	action = gotoEquipeDipl;
+}
+
+GoToChangeId :WOHyperlink {
+	pageName = "PageChangeIndentite";
+}
+
+CanShowGestionRealise : WOConditional {
+  condition = canShowGestionRealise;
+}
+
+GoToGestionRealise :WOHyperlink {
+	pageName = "ValidResaSuperPlan";
+}

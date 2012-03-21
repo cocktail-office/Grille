@@ -1,0 +1,12 @@
+Value : WOString {
+  value = libAcronym;
+}
+
+Acronym : WOGenericContainer {
+  elementName = "acronym";
+  title = title;
+}
+
+Libelle : WOString {
+  value = libelle;
+}

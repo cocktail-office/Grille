@@ -1,0 +1,58 @@
+IsUe : ERXInstanceOfConditional { 
+  className = "EOScolMaquetteUe";
+  object = ^value;
+}
+LibUe : WOString {
+  value = mueLibelle;
+}
+IsEc : ERXInstanceOfConditional {
+  className = "EOScolMaquetteEc";
+  object = ^value;
+}
+LibEc : WOString {
+  value = mecLibelle;
+}
+IsSemestre : ERXInstanceOfConditional {
+  className = "EOScolMaquetteSemestre";
+  object = ^value;
+}
+SemestreLibSpecialisation : WOString {
+  value = semFspnLibelle;
+}
+LibSemestre : WOString {
+  value = msemOrdre;
+}
+
+IsDiplome : ERXInstanceOfConditional {
+  className = "EOScolFormationDiplome";
+  object = ^value;
+}
+LibDiplome : WOString {
+  value = diplomeLibelle;
+}
+
+IsDomaine : ERXInstanceOfConditional {
+  className = "EOScolFormationDomaine";
+  object = ^value;
+}
+LibDomaine : WOString {
+  value = domaineLibelle;
+}
+
+IsSpecialisation : ERXInstanceOfConditional {
+  className = "EOScolFormationSpecialisation";
+  object = ^value;
+}
+LibSpecialisation : WOString {
+  value = fspnLibelle;
+}
+IsParcours : ERXInstanceOfConditional {
+  className = "EOScolMaquetteParcours";
+  object = ^value;
+}
+ParcoursLibSpecialisation : WOString {
+  value = ParcFspnLibelle;
+}
+LibParcours : WOString {
+  value = mparLibelle;
+}

@@ -1,0 +1,53 @@
+<table style = "background:#F1F5FA;border:1px solid black;" width = "100%">
+  <tr>
+    <td class = "boxTitre" style = "width:80px;text-align:right;">Libelle :</td>
+    <td valign = "top" style = "text-align:left;">
+      <webobject name = "EcNotNull">
+        <webobject name = "ECLibelle" />
+        (<webobject name = "ECcode" />) 
+      </webobject>
+      <!-- 
+      <webobject name = "Else">
+        <div style = "text-align:right;font-weight:bold;">Choisissez un enseignement ----&gt;</div>
+      </webobject>
+       -->
+    </td>
+    <td rowspan = "2" width = "20">
+      <webobject name = "SearchEC">
+        <webobject name = "IsTreeItemEcLocked"><webobject name = "ImgVerrou" /></webobject>
+      </webobject>
+    </td>
+  </tr>
+  <tr>
+    <td class = "boxTitre" style = "text-align:right;">Dipl&ocirc;me(s): </td>
+    <td style = "text-align:left;">
+      <webobject name = "IsMultiDiplomes">
+        <ul style = "max-height:4em;overflow:auto;border:1px solid black;margin:0;">
+          <webobject name = "LstDipl">
+            <li><webobject name = "LibDipl" /></li>
+          </webobject>
+        </ul>
+      </webobject>
+      <webobject name = "IsNotMultiDiplome"> <webobject name = "LibUniqueDiplome" /> </webobject>
+    </td>
+  </tr>
+  <tr>
+    <td class = "boxTitre" style = "text-align:right;">Equipe: </td>
+    <td style = "text-align:left;">
+      <webobject name = "IsMembreEquipe">
+        <table style = "width:100%">
+          <tr>
+            <th>Individu</th>
+            <th>R&ocirc;le</th>
+          </tr>
+          <webobject name = "LstEquipe">
+            <tr>
+              <td><webobject name = "LibEquipe" /></td>
+              <td><webobject name = "Role" /></td>
+            </tr>
+          </webobject>
+        </table>
+      </webobject>
+    </td>
+  </tr>
+</table>

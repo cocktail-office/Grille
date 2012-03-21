@@ -1,0 +1,75 @@
+CanEdit : WOConditional {
+  condition = ^canEdit;
+}
+
+IsDeleted : WOConditional {
+  condition = isDeleted;
+}
+
+IsNotDeleted : WOConditional {
+  condition = isDeleted;
+  negate = true;
+}
+
+AulRestore : AjaxUpdateLink {
+  updateContainerID = ^idToRefreshDelete;
+  action = restore;
+}
+
+AulEdit : AjaxUpdateLink {  
+  updateContainerID = ^idToRefreshEdit;
+  action = edit;
+  onSuccess = ^onSuccessEdit;
+}
+
+AulDelete : AjaxUpdateLink {
+  updateContainerID = ^idToRefreshDelete;
+  action = delete;
+}
+IsEditEnabled : WOConditional {
+  condition = ^isEditEnabled;
+}
+
+UseStdHyperlink : ERXWOConditional {
+	condition = useStdHyperlink;
+}
+
+UseAjaxUpdateLink : ERXElse {
+   
+}
+
+HEdit : WOHyperlink {
+	action = edit;
+	target = ^hyperlinkTarget;
+	
+}
+
+
+CanDelete : WOConditional {
+  condition = canDelete;
+}
+
+
+ImgRestore : WOImage {
+  filename = "images/16x16/001_39_16x16.png";
+  framework = "FwkCktlThemes";
+  border = 0;
+  style = "vertical-align:middle";
+  alt = "Restorer";
+}
+ImgEdit : WOImage {
+  filename = "images/16x16/001_45_16x16.png";
+  framework = "FwkCktlThemes";
+  border = 0;
+  style = "vertical-align:middle";
+  alt = "Modifier";
+}
+
+ImgDel : WOImage {
+  filename = "images/16x16/001_49_16x16.png";
+  framework = "FwkCktlThemes";
+  border = 0;
+  style = "vertical-align:middle";
+  alt = "Supprimer";
+}
+

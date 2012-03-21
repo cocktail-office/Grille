@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+    <wo class="ModInfosEns" wocomponentcontent="false">    <binding name="enseignant"/>
+        <validation message="'enseignant' is a required binding.">
+            <unbound name="enseignant"/>
+        </validation>
+    <binding name="onSelectEnseignant"/>
+    <binding defaults="Boolean" name="showDetails"/>
+    <binding name="totalVoeuxZoneId"/>
+    </wo>
+</wodefinitions>

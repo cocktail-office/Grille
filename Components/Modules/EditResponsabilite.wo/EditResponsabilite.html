@@ -1,0 +1,43 @@
+<div class = "searchzone" style = "height:100%;">
+  &nbsp;<br />
+  <fieldset style = "margin-top:0;margin-bottom:0;">
+    <legend>Responsabilit&eacute;</legend>
+    <webobject name = "Frm">
+      <table>
+        <tr>
+          <td class = "required" style = "text-align:right;">Formation : </td>
+          <td> <webobject name = "IsCreation"><webobject name = "DiplomePicker" /></webobject>
+          <webobject name = "IsModification"><webobject name = "Specialisation" /></webobject></td>
+        </tr>
+        <tr>
+          <td class = "required" style = "text-align:right;">Individu : </td>
+          <td>
+            <webobject name = "AucIndividu">
+              <webobject name = "Individu" />&nbsp;&nbsp;&nbsp;<webobject name = "IsCreation"><webobject name = "AbSearchIndiv" /></webobject>
+            </webobject>
+          </td>
+        </tr>
+        <tr>
+          <td class = "required" style = "text-align:right;vertical-align:top;">Responsabilité : </td>
+          <td><webobject name = "PubResp"/><br /><i>Les profils "Grilleur" et "Responsable" peuvent se connecter à l'application Grille</i></td>
+        </tr>
+        <tr>
+          <td style = "text-align:center;">
+            <webobject name = "CasbValider" />&nbsp;&nbsp;<webobject name = "CasbCancel" />
+          </td>
+        </tr>
+      </table>
+    </webobject>
+  </fieldset>
+  <webobject name = "AucSearch">
+    <webobject name = "AmdSearch">
+      <webobject name = "IsInSearch">
+        <webobject name = "MyForm1"><webobject name = "IndivSrch" /> </webobject>
+        <webobject name = "AucSelect">
+          <webobject name = "IsIndiv"> <webobject name = "BSelectFromSearch" /> </webobject>
+        </webobject>
+      </webobject>
+    </webobject>
+  </webobject>
+</div>
+<webobject name = "ErreurContainer"> <webobject name = "MessageUtil" /> </webobject>

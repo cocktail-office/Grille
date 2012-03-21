@@ -1,0 +1,87 @@
+<div class = "searchzone" style = "height:100%;">
+  &nbsp;<br />
+  <fieldset style = "margin-top:0;margin-bottom:0;">
+    <legend>Activit&eacute;</legend>
+    <webobject name = "Frm">
+      <table>
+        <tr>
+          <td class = "required" style = "text-align:right;">Libelle : </td>
+          <td><webobject name = "LibActivite" /></td>
+        </tr>
+        <tr>
+          <td class = "required" style = "text-align:right;">Type : </td>
+          <td><webobject name = "PubTypes" /></td>
+        </tr>
+        <tr>
+          <td class = "required" style = "text-align:right;">Nombre heures : </td>
+          <td><webobject name = "HeuresActivite" /></td>
+        </tr>
+      </table>
+      <webobject name = "AofTypeLien" />
+      <div class = "block" style = "width:95%;margin:10px auto;">
+        <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+          <span style = "margin-left:20px">Cette activit&eacute; est li&eacute;e &agrave;</span>
+        </div>
+        <div class = "subBox corpsBlock">
+          <table style = "border-spacing:0;margin:0 auto;width:95%;">
+            <tr>
+              <td style = "text-align:left;border:1px solid black;border-right:none;width:12em;">
+                <webobject name = "AofLien">
+                  <webobject name = "IsGrilleurSpec">
+                    <webobject name = "RbtLienDom" />
+                    <label for = "liendom">un Domaine</label>
+                    <br />
+                    <webobject name = "RbtLienDipl" />
+                    <label for = "liendipl">un Dipl&ocirc;me</label>
+                    <br />
+                    <webobject name = "RbtLienSpec" />
+                    <label for = "lienspec">une Sp&eacute;cialisation</label>
+                    <br />
+                  </webobject>
+                  <webobject name = "CanChooseParcours">
+                    <webobject name = "RbtLienPar" />
+                    <label for = "lienpar">un Parcours</label>
+                    <br />
+                    <webobject name = "RbtLienSem" />
+                    <label for = "liensem">un Semestre</label>
+                    <br />
+                  </webobject>
+                  <webobject name = "CanChooseUE">
+                    <webobject name = "RbtLienUe" />
+                    <label for = "lienue">une U.E.</label>
+                    <br />
+                  </webobject>
+                  <webobject name = "CanChooseEc">
+                    <webobject name = "RbtLienEc" />
+                    <label for = "lienec">un E.C.</label>
+                  </webobject>
+                </webobject>
+              </td>
+              <td style = "text-align:center;border:1px solid black;">
+                <webobject name = "AucSelectionLink">
+                  <webobject name = "IsDomSelect"> <webobject name = "PubDomaine" /> </webobject>
+                  <webobject name = "Else">
+                    <webobject name = "IsDiplSelect">
+                    	<webobject name = "DPSearchDipl" />
+                    </webobject>
+                    <webobject name = "Else">
+                      <webobject name = "IsSameLink"><webobject name = "LieeA" /></webobject>
+                      <webobject name = "AbSearchTree" />
+                    </webobject>
+                  </webobject>
+                </webobject>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <br />
+      <webobject name = "AulRefreshLink" />
+      <webobject name = "CasbValider" />&nbsp;&nbsp;<webobject name = "CasbCancel" />
+    </webobject>
+  </fieldset>
+</div>
+<div style = "display:none;">
+  <webobject name = "AucSelectionLinkFenetre"> <webobject name = "SearchMaquette" /> </webobject>
+</div>
+<webobject name = "ErreurContainer"> <webobject name = "MessageUtil" /> </webobject>

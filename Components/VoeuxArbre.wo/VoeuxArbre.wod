@@ -1,0 +1,16 @@
+Cadre : Wrapper {
+	titre = "Consultations des voeux";
+}
+
+SearchZoneMaquette : SearchZoneMaquette {
+  ec = session.defaultEditingContext;
+  modeSearch = "T";
+  selectedObj = selectedObj;
+  selectedYear = selectedYear;
+  treeDelegate =  treeDelegate; 
+  diplomePickerDelegate = diplomePickerDelegate;
+  onSelectObj = onSelectObj;
+  searchByLibEnabled = false;
+  height = "";
+}
+

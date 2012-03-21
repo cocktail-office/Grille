@@ -1,0 +1,44 @@
+Wrapper : Wrapper {
+	titre = "Charges enseignement";
+}
+
+FormChargeEns : ERXOptionalForm {
+	id = formchargeensId;
+	name = formchargeensId;
+}
+
+Message : MessageUtil {
+	idErreur = erreurId;
+	idMessage = messageId;
+}
+
+AucMessage : AjaxUpdateContainer {
+	id = erreurId;
+}
+
+PubCNU : WOPopUpButton {
+	id = pubdomaineId;
+	list = listeDomaines;
+	item = itemDomaine;
+	displayString = itemDomaine;
+	noSelectionString = "-- Tous --";
+	selection = selectedDomaine;
+	style = "width:200px;";
+}
+
+
+DiplPicker : DiplomePicker {
+	delegate = session.currentDiplomePickerDelegate;
+	selectedYear = session.selectedYear;
+	selectedDomaine = selectedDomaine;
+	selectedSpec = selectedSpecialisation;
+	selectedDiplome = selectedDiplome;
+	isGradeSelect = true;
+}
+
+BExtraction : CktlSubmitButton {
+	action = extract;
+	type = "print";
+	text = "Générer le fichier excel";
+}
+

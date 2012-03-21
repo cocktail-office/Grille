@@ -1,0 +1,7 @@
+Comment : WOText {
+  value = value;
+  readonly = true;
+  cols=^cols;
+  rows=nbCommentRows;
+  style = style;
+}

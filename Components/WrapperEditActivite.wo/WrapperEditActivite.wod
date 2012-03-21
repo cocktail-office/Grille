@@ -1,0 +1,9 @@
+CadrePopUp : WrapperPopUp {
+  titre = "Activité";
+}
+
+EditActivite : EditActivite {
+  ec = getEcEdit;
+  editedActivite = editedActivite;  
+  typeLien = editedActivite.typeLien;
+}

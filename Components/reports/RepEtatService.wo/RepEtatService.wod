@@ -1,0 +1,58 @@
+FormListe : ERXOptionalForm { 
+	id = formlisteid;
+	name = formlisteid;
+	multipleSubmit = true;
+}
+
+LibListe : WOTextField {
+	value = inputLibListe;
+}
+
+RadioEcDeficit : WORadioButton { 
+	checked = ecDeficit;
+	name = radioetatecid;
+	id = "r_ed";
+}
+
+RadioEcExcedent : WORadioButton {
+	checked = ecExcedent;
+	name = radioetatecid;
+	id = "r_ee";
+}
+
+RadioEcTous : WORadioButton {
+	checked = ecTous;
+	name = radioetatecid;
+	id = "r_et";
+}
+
+AsbFiltreListes : AjaxSubmitButton {
+	button = false;
+	action = filtreListes;
+	updateContainerID = aucgrillelistesid;
+}
+
+AulFiltreListes : AjaxUpdateLink {
+	action = filtreListes;
+	updateContainerID = aucgrillelistesid;
+}
+
+AucGrilleListes : AjaxUpdateContainer {
+	id = aucgrillelistesid;
+	elementName = "span";
+}
+
+PubGrilleListes : WOPopUpButton {
+	id = pubgrillelistesid;
+	list = listOfGrilleListes;
+	item = itemGrilleListe;
+	displayString = itemGrilleListe.glLibelle;
+	noSelectionString = "-- sélectionner une liste ici --";
+	selection = selectedListe;
+}
+
+AsbValider : CktlSubmitButton {
+	action = reportEtatService;
+	type = "print";
+	text = "Générer un PDF";
+}

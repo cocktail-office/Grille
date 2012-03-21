@@ -1,0 +1,97 @@
+Wrapper : Wrapper {
+	titre = "Liste des enseignants";
+}
+
+EcbmTypes : ERXCheckboxMatrix {
+  item = typeItem;
+  list = lstTypes;
+  selections = selectedTypes;
+  maxColumns = 3;
+}
+
+LibCol : WOString { 
+  value = colItem.cellName;
+}
+
+EcbmColonnes : ERXCheckboxMatrix {
+  item = colItem;
+  list = lstColonnes;
+  selections = selectedCols;
+  maxColumns = 2;
+  sortKey = "colOrder";
+}
+
+LibTypes : WOString {
+  value = typeItem.llTypeDecharge;
+}
+
+AucLstColonnes : AjaxUpdateContainer {
+  id = auclstcolonnesid;
+}
+
+CabAllCols : CktlAjaxButton {
+  updateContainerID = auclstcolonnesid;
+  action = selAllCols;
+  text = "Tout";
+}
+
+CabNoCols : CktlAjaxButton {
+  updateContainerID = auclstcolonnesid;
+  action = selNoCols;
+  text = "Rien";
+}
+
+CabAllTypes : CktlAjaxButton {
+  updateContainerID = auctypesid;
+  action = selAllTypes;
+  text = "Tout";
+}
+
+CabNoTypes : CktlAjaxButton {
+  updateContainerID = auctypesid;
+  action = selNoTypes;
+  text = "Rien";
+}
+
+AucTypes : AjaxUpdateContainer {
+  id = auctypesid;
+}
+
+PubService : WOPopUpButton {
+  list = lstSevices;
+  item = serviceOccur;
+  selection = selectedService;
+  displayString = serviceOccur.llStructure;
+  noSelectionString = "Tous";
+}
+
+CabPrintEtat : CktlSubmitButton {
+	action = print;
+	type = "print";
+	text = "Générer l'état";
+}
+
+Form : WOForm {
+  multipleSubmit = true;
+}
+
+AOFCols : AjaxObserveField {
+  action = checkCols; 
+  fullSubmit = true;
+  updateContainerID = auclstcolonnesid;
+}
+
+ErreurContainer : AjaxUpdateContainer {
+	id = messagecontainerid;
+	style = "z-index:9999;";
+}
+
+MessageUtil : MessageUtil { 
+  idErreur = messagecontainerid;
+  idMessage = messageutilid;
+}
+
+SpanLib : WOGenericContainer {
+  elementName = "span";
+  style = styleLibelleColonne;
+}

@@ -1,0 +1,148 @@
+Wrapper : Wrapper {
+  titre = "GRILLE Gestion types activitées";
+}
+
+TypeTb : TypeAcitivteTbV {
+  dg = displayGroup;
+  //updateContainerID = detailResContainerId;		
+  cssStyle = "margin:0 auto;"; 
+  //height = "270px";
+  width = "500px";
+  canEdit = canEditObj;
+  afficherBarreDeStatut=true;
+  editMethodName = "editObj";
+  editMethodObject = editMethodeObject;
+  idToRefreshEdit = auceditobjid;
+  idToRefreshDelete = deleteTrigId;  
+  isEditEnabled = true;
+  //onSuccessEdit = "function (show) {openWindowt('<b>Modification d\'un groupe</b>','Modification','editactivite',700,400,null,null,'O',false,false);}";
+  onSuccessDelete = "function (majDel) {refreshObj();}";
+  commitOnValid = true;
+}
+
+
+AucTrigDelete : AjaxUpdateContainer {
+  id = deleteTrigId;
+ 
+}
+
+AutDelObj : AjaxUpdateTrigger {
+	updateContainerIDs = lstEditZones;
+}
+
+CawEditObj : CktlAjaxWindow {
+  	closable = false;
+	resizable = true;
+	id = caweditobjid;
+	width = "600";
+	height = "150";
+}
+
+IsEdited : WOConditional {
+  condition = isEdited;
+}
+
+LibCourt : WOTextField {
+  value = editedType.libCourt;
+  size = 30;
+  maxlength = 50;
+}
+
+Libelle : WOTextField {
+  value = editedType.libLong;
+  size = 50;
+  maxlength = 255;
+}
+
+SearchObj : WOTextField {
+  value = searchLibObj;
+  onKeyPress="if (event.keyCode == 13) {triggerSearch();return false;}";
+}
+CasbSearch : CktlAjaxSubmitButton {
+	action = searchObj;		
+	title = "Chercher";
+	text = "Cherche";
+	type = "find";	
+	updateContainerID = auclisteid;
+	id = asbsearchid;
+}
+
+AsbTriggerSearch : AjaxSubmitButton {
+  action = searchObj;
+  updateContainerID = auclisteid;
+  functionName = "triggerSearch";
+  
+}
+
+AucListe : AjaxUpdateContainer {
+  id = auclisteid;
+}
+
+frmSearch : WOForm {
+ 
+}
+
+frm : WOForm {
+  class = "subBox";
+}
+CasbValider : CktlAjaxSubmitButton {
+	action = valid;		
+	title = "Valider";
+	text = "Valider";
+	type = "validate";	
+	updateContainerID = deleteTrigId;
+}
+
+CasbCancel : CktlAjaxSubmitButton {
+	action = cancel;		
+	title = "Annuler";
+	text = "Annuler";
+	type = "reset";	
+	updateContainerID = auceditobjid;
+}
+AsbValide : AjaxSubmitButton {
+  updateContainerID = deleteTrigId;
+  action = valid;
+  value = "Valider";
+}
+
+CanEditObj : WOConditional {
+  condition = canEditObj;
+}
+
+AbAdd : CktlAjaxButton {
+	action = addObj;		
+	title = "Ajout";
+	text = "Ajouter un type activité";
+	type = "new";	
+	updateContainerID = auceditobjid;	
+}
+
+AucEditObj : AjaxUpdateContainer {
+  id = auceditobjid;
+}
+
+AulCancel : AjaxUpdateLink {
+  updateContainerID = auceditobjid;
+  action = cancel;
+  button = true;
+  value = "Fermer";
+}
+
+ErreurContainer : AjaxUpdateContainer {
+	id = aucerreurid;
+	style = "z-index:9999;";
+}
+MessageUtil : MessageUtil {
+  idMessage = idmessageutil;
+  idErreur = aucerreurid;
+}
+AulRefreshLst : AjaxUpdateLink {
+  updateContainerID = deleteTrigId;
+  functionName = "refreshObj";
+  action = searchObj;
+}
+
+AucEditForm : AjaxUpdateContainer {
+  id = auceditformid;
+}

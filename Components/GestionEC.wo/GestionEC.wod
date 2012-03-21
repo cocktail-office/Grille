@@ -1,0 +1,210 @@
+Wrapper : Wrapper {
+	titre = "Gestion EC";
+}
+
+
+LstAps : WORepetition { 
+  list = lstAps;
+  item = apOccur;
+}
+
+LibAp : WOString {
+  value = apOccur.mapLibelle;
+}
+
+TypeAp : WOString {
+  value = apOccur.toFwkScolarite_ScolMaquetteHoraireCode.mhcoAbreviation;
+}
+
+GrpPrevusAp : WOString {
+  value = apOccur.mapGroupePrevu;
+  numberformat = "##";
+}
+
+GrpReelAp : WOString {
+  value = apOccur.mapGroupeReel;
+  numberformat = "##";
+}
+
+EditGrpPrevusAp : WOTextField {
+  value = apOccur.mapGroupePrevu;
+  size = 2;
+  numberformat = "0";
+}
+
+EditGrpReelAp : WOTextField {
+  value = apOccur.mapGroupeReel;
+  size = 2;
+  numberformat = "0";
+}
+
+HeuresAp : WOString {
+  value = apOccur.mapValeur;
+  numberformat = "##";
+}
+
+
+CanEditGrp : WOConditional {
+  condition = canEditGrp;
+}
+
+
+IsEdited : WOConditional {
+  condition = isEdited;
+}
+
+
+CasbValid : CktlAjaxSubmitButton {
+	action = commitSave;		
+	title = "Valider";
+	text = "Valider";
+	type = "validate";	
+	updateContainerID = "aucgrps";
+}
+
+
+CasbReset : CktlAjaxSubmitButton {
+	action = cancelSave;		
+	title = "Annuler";
+	text = "Annuler";
+	type = "reset";	
+	updateContainerID = "aucgrps";
+}
+
+
+IsNotEdited : WOConditional {
+  condition = isEdited;
+  negate = true;
+}
+
+AbEditGrp : CktlAjaxButton {
+	action = editGrp;		
+	title = "Modifier";
+	text = "Modifier les groupes";
+	type = "edit";	
+	updateContainerID = "aucgrps";
+}
+
+
+AucGrps : AjaxUpdateContainer {
+  id = "aucgrps";
+}
+
+CoutPrevu : WOString {
+  value = coutApOccurPrevu;
+  numberformat = "##";
+}
+
+CoutReel : WOString {
+  value = coutApOccurReel;
+  numberformat = "##";
+}
+Frm : WOForm {
+  multipleSubmit = true;
+}
+AucActivites : AjaxUpdateContainer {
+  id = "aucactivites";
+}
+
+
+EditActivite : EditActivite {
+  ec = getEcEdit;
+  editedActivite = editedActivite;  
+  typeLien = editedActivite.typeLien;
+  functionRefresh = "refreshLstActivites()";
+  idWindow = caweditobjid;
+}
+
+AucEditActivite : AjaxUpdateContainer {
+  id = "editactivite";
+  style = "height:100%;";
+}
+CawEditActv : CktlAjaxWindow {
+  	closable = false;
+	resizable = true;
+	id = caweditobjid;
+	width = "700";
+	height = "400";
+	zIndex = 8888;
+}
+
+
+IsActiviteEdited : WOConditional {
+  condition = isActiviteEdited;
+}
+ 
+TriggerRefreshActivites : AjaxUpdateLink { 
+  updateContainerID = "aucactivites";
+  button = true;
+  value = "test"; 
+  id = "refreshActivites";  
+}
+
+AucEc : AjaxUpdateContainer {
+  id = "aucec";
+}
+
+AulRefreshLink : AjaxUpdateLink {
+  updateContainerID = "aucactivites";
+  id = "refreshactivite";
+  //button = true;
+  action = refreshActivites;
+  functionName = "refreshLstActivites";    
+}
+
+
+
+Tr : WOGenericContainer { 
+  elementName = "tr";
+  class = classLigne;
+}
+
+ActiviteTBV : ActiviteTbV {
+  dg = displayGroup;
+  width = "99%";
+  canEdit = canEditActivite;
+  objectOccur = activiteOccur;
+  afficherBarreDeStatut=false;
+  editMethodName = "editActivite";
+  editMethodObject = editMethodeObject;
+  idToRefreshEdit = "editactivite";
+  idToRefreshDelete = "aucactivites";   
+  onSuccessDelete = "function (majDel) {refreshLstActivites();}";
+  commitOnValid = true;
+  isEditEnabled = true;
+}
+AbAddActiv : CktlAjaxButton {
+	action = AddActivite;		
+	title = "Ajout";
+	text = "Créer une activité pour l'E.C.";
+	type = "new";	
+	updateContainerID = "editactivite";
+}
+
+CanAddActivite : WOConditional {
+  condition = canAddActivite;
+}
+
+EcNotNull : ERXNonNullConditional {
+  condition = selectedEc;
+}
+
+EC : CompoEC {
+  selectedEc = selectedEc;  
+  updateContainerID = "aucec";
+}
+
+IsSelectedEC : ERXNonNullConditional {
+	condition = selectedEc;
+}
+
+ModVerrouEC : ModVerrouEC {
+  gUser = session.gUser;
+  selectedEc = selectedEc;
+  updateContainerID = aucverrouid;
+}
+
+AucVerrou : AjaxUpdateContainer {
+  id = aucverrouid;
+}
+

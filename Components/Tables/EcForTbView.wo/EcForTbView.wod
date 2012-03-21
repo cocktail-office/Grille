@@ -1,0 +1,21 @@
+Lib : WOString {
+  value = libEc;
+}
+
+IsLockedEc : WOConditional {
+	condition = isVerrouEC;
+}
+
+ImgVerrou : WOImage {
+  alt = "verrou";
+  framework = "FwkCktlThemes";
+  filename = "images/16x16/001_42_16x16.png";
+  align = "absmiddle";
+  title = "E.C. vérouillé";
+}
+GoToGestEc : WOHyperlink {
+  action = goToGestEc;
+  style = "font-weight:normal;";
+  alt = "voeux E.C.";
+  title = "voeux sur l'E.C.";
+}

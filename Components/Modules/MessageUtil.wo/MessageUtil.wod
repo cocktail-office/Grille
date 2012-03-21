@@ -1,0 +1,59 @@
+IsErrorMessages : WOConditional {
+  condition = isErrorMessages;
+}
+
+IsInfoMessages : WOConditional {
+  condition = isInfoMessages;
+}
+
+RepErreurs : WORepetition {
+  list = lstErrorMessages;
+  item = errorOccur; 
+}
+
+RepInfos : WORepetition {
+  list = lstInfoMessages;
+  item = infoOccur;
+}
+
+ErrorMsg : WOString {
+  value = errorOccur.message;
+}
+
+InfoMsg : WOString {
+  value = infoOccur.message;
+}
+
+Table : WOGenericContainer {
+  elementName = "table";
+  align = "center";
+  id = idMessage;
+  style = displayMessage;
+}
+
+IsPersistant : WOConditional {
+  condition = errorOccur.isPersistant;
+}
+
+AulCheck : AjaxUpdateLink {
+  action = checkErrorPersistant;
+  updateContainerID = idErreur;
+}
+
+IsPersistantInfo : WOConditional {
+  condition = infoOccur.isPersistant;
+}
+
+AulCheckInfo : AjaxUpdateLink {
+  action = checkInfoPersistant;
+  updateContainerID = idErreur;
+}
+
+Close : WOImage {
+  filename = "css/default/close.gif";
+ 
+  border = 0;
+  title = "Fermer";
+  alt = "Fermer";
+  align = "absmiddle";
+}

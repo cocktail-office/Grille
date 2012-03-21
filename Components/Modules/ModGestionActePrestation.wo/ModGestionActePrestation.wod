@@ -1,0 +1,42 @@
+FormGestActePrest : ERXOptionalForm {
+	multipleSubmit = true;
+	id = formGestActPrestId;
+}
+
+AucMessage : AjaxUpdateContainer {
+	id = erreurId;
+}
+
+Message : MessageUtil {
+	idErreur = erreurId;
+	idMessage = messageId;
+}
+
+LibCourt : WOTextField {
+	value  = actePrestation.libCourt;
+	size = 15;
+}
+
+LibLong : WOTextField {
+	value = actePrestation.libLong;
+	size = 60;
+}
+
+CasbValide : CktlAjaxSubmitButton {
+	action = saveChanges;
+	title = "Enregistrer";
+	text = "Valider les modifications";
+	type = "validate";
+	updateContainerID = ^updateContainerID;	
+}
+
+CasbAnnule : CktlAjaxSubmitButton {
+	action = fermer;
+	title = "Fermer";
+	text = "Fermer";
+	type = "cancel";
+	updateContainerID = ^updateContainerID;	
+}
+
+
+

@@ -1,0 +1,274 @@
+Wrapper : Wrapper {
+	titre = "Voeux par enseignant";
+}
+
+ModEnseigant : ModInfosEns {
+  enseignant = session.selectedEns;
+  onSelectEnseignant = selectEns;
+  totalVoeuxZoneId = aucbilanvoeuxid;
+  showDetails = false;
+}
+
+AucVoeux : AjaxUpdateContainer {
+  id = aucvoeux;
+}
+
+
+VoeuxTBV : VoeuxTbV {
+  dg = dgVoeux;
+  width = "99%";
+  canEdit = canEditVoeux;
+  afficherBarreDeStatut=false;
+  editMethodName = "editVoeux";
+  editMethodObject = editMethodeObject;
+  idToRefreshEdit = "editvoeux";
+  idToRefreshDelete = aucvoeux;  
+  onSuccessDelete = "function (majDel) {refreshLstVoeux();}";
+  isEditEnabled = true;
+  commitOnValid = true;
+  colonnesKeys = colonnesVoeuxKeys;
+  objectOccur = voeuxOccur;
+  canRealise = canRealiseVoeux;
+  editRealiseMethodName = "editRealiseVoeux";
+  editRealiseMethodObject = editMethodeObject;
+}
+
+AulRefreshVoeuxLink : AjaxUpdateLink {
+  id = "refreshvoeux";
+  button = true;
+  action = refreshVoeux;
+  functionName = "refreshLstVoeux";    
+}
+
+CanAddVoeux : WOConditional {
+  condition = canAddVoeux;
+}
+
+AbAddVoeux : CktlAjaxButton {
+	action = addVoeux;		
+	title = "Ajout";
+	text = "Ajouter un voeux sur AP";
+	type = "new";	
+	updateContainerID = "editvoeux";
+}
+
+CanAddRealise : WOConditional {
+  condition = canAddRealise;
+}
+
+AbAddRealise : CktlAjaxButton {
+	action = addRealise;		
+	title = "Ajout réalisé";
+	text = "Ajouter un réalisé sur AP";
+	type = "process";	
+	updateContainerID = "editvoeux";
+}
+
+AbAddRealiseActiv : CktlAjaxButton {
+	action = addRealiseActiv;		
+	title = "Ajout réalisé";
+	text = "Ajouter un réalisé sur activité";
+	type = "process";	
+	updateContainerID = "editvoeux";
+}
+
+AucEditVoeux : AjaxUpdateContainer {
+  id = "editvoeux";
+  style = "height:100%;";
+}
+IsVoeuxEdited : WOConditional {
+  condition = isVoeuxEdited;
+}
+CawEditVoeux : CktlAjaxWindow {
+  	closable = false;
+	resizable = true;
+	id = caweditvoeuxid;
+	width = 700;
+	height = 270;
+	zIndex = 8888;
+}
+
+EditVoeux : EditVoeux { 
+  ec = getEcEdit;
+  editedVoeux = editedVoeux;      
+  isActivSelection = isActivSelection;
+  isApSelection = isApSelection;
+  idWindow = caweditvoeuxid;
+  canChangeEnseignant = false;
+  //onSuccessMethod = onSuccessMethode;
+  functionRefresh = refreshVoeuxFonctionName;
+  mode = modeEditVoeux;
+}
+
+AucVoeuxActiv : AjaxUpdateContainer {
+  id = aucvoeuxactiv;
+}
+
+VoeuxActivTBV : VoeuxTbV {
+  dg = dgVoeuxActiv;
+  width = "99%";
+  canEdit = canEditVoeuxActiv;
+  afficherBarreDeStatut=false;
+  editMethodName = "editVoeuxActiv";
+  editMethodObject = editMethodeObject;
+  idToRefreshEdit = "editvoeux";
+  idToRefreshDelete = aucvoeuxactiv;  
+  onSuccessDelete = "function (majDel) {refreshvoeuxactiv();}";
+  isEditEnabled = true;
+  commitOnValid = true;
+  colonnesKeys = colonnesVoeuxActivKeys;
+  objectOccur = voeuxActivOccur;
+  canRealise = canRealiseVoeuxActiv;
+  editRealiseMethodName = "editRealiseActiv";
+  editRealiseMethodObject = editMethodeObject;
+}
+
+AbAddVoeuxActiv : CktlAjaxButton {
+	action = addVoeuxActiv;		
+	title = "Ajout";
+	text = "Ajouter un voeux sur activité";
+	type = "new";	
+	updateContainerID = "editvoeux";
+}
+
+AulRefreshVoeuxActivLink : AjaxUpdateLink {
+  id = "refreshvoeuxactiv";
+  button = true;
+  action = refreshVoeuxActiv;
+  functionName = "refreshvoeuxactiv";    
+}
+
+TotalVoeuxAP : WOString {
+  value = totalVoeuxAp;
+}
+TotalVoeuxActiv : WOString {
+  value = totalVoeuxActiv;
+}
+
+HasVoeuxActiv : WOConditional {
+  condition = hasVoeuxActiv;
+}
+
+HasVoeuxAP : WOConditional {
+  condition = hasVoeuxAp;
+}
+
+AucTotalVoeuxAp : AjaxUpdateContainer {
+  id = auctotalvoeuxap;
+  elementName = "span";
+}
+
+AucTotalVoeuxActiv : AjaxUpdateContainer {
+  id = auctotalvoeuxactiv;
+  elementName = "span";
+}
+
+ShowVoeux : WOGenericContainer {
+  elementName = "div";
+  style = styleVoeuxZone;
+}
+
+AucVoeuxZone : AjaxUpdateContainer {
+  id = aucvoeuxzoneid;
+}
+CanValidService : WOConditional {
+  condition = canValidService;
+}
+
+IsAllVoeuxValides : WOConditional {
+  condition = isAllVoeuxValides;
+}
+
+Else : ERXElse {
+	
+}
+
+CabValiderService : CktlSubmitButton {
+	action = validerService;		
+	title = "Valider";
+	text = "Valider le service";
+	type = "validate";	
+	//updateContainerID = aucvalidservid;	
+}
+CabDeValiderService : CktlSubmitButton {
+	action = devaliderService;		
+	title = "Déalider";
+	text = "Enlever la validation";
+	type = "reset";	
+	//updateContainerID = aucvalidservid;	
+}
+ErreurValidServContainer : AjaxUpdateContainer {
+	id = erreurvalidservid;
+	style = "z-index:9999;";
+}
+
+MessageUtilValidServ : MessageUtil {
+  idErreur = erreurvalidservid;
+  idMessage = messagevalidservid;
+}  
+
+IsServiceNotValided : WOConditional {
+  condition = serviceValided;
+  negate = true;
+}
+IsServiceValided : WOConditional {
+  condition = serviceValided;
+}
+DateValidationServ : WOString {
+  value = serviceForEns.dValid;
+  dateformat = "%d/%m/%Y";
+}
+
+IsSelectedEns : ERXNonNullConditional {
+	condition = selectedEns;
+}
+
+AucValidServ : AjaxUpdateContainer {
+  id = aucvalidservid;
+}
+
+NomValideur : WOString {
+  value = serviceForEns.toFwkpers_IndividuValid.nomPrenomAffichage;
+}
+
+ImgVerrou : WOImage {
+  alt = "verrou";
+  framework = "FwkCktlThemes";
+  filename = "images/16x16/001_42_16x16.png";
+  align = "absmiddle";
+}
+
+CabPrintProposition : CktlButton {
+	action = printProposition;
+	type = "print";
+	text = "Imprimer la proposition de service";
+}
+
+CabPrintArrete : CktlButton {
+	action = printArrete;
+	type = "print";
+	text = "Imprimer le service";
+}
+
+CanSendMail : WOConditional {
+  condition = canSendMail;
+}
+
+EmailEns : WOString {
+  value = session.selectedEns.emailPro;
+}
+
+CbxEmail : WOCheckBox {
+  selection = mailToEns;
+  value = "O";
+}
+
+frm : WOForm {
+}
+
+IsEnsWithServiceValided : WOConditional {
+  condition = session.isEnsWithServiceValided;
+}
+AucValidServiceZone : AjaxUpdateContainer {
+  id = AucValidServiceZoneid;
+}

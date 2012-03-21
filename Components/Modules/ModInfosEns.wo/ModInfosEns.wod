@@ -1,0 +1,169 @@
+AbSearchEns : CktlAjaxButton {
+	action = setSearchOn;		
+	title = "Chercher un enseignant";
+	text = "Chercher";
+	type = "find";	
+	updateContainerID = aucSearch;
+}
+
+AucSearch : AjaxUpdateContainer {
+  id = aucSearch;
+  class="subBox";
+}
+
+AmdSearch : AjaxModalDialog { 
+	closable = false;
+	resizable = true;
+	id = searchZoneId;
+	width = "640";
+	height = "450";
+	title = "Recherche enseignant";
+	centerVertically = true;
+}
+
+IsInSearch : WOConditional {
+  condition = searchMode;
+}
+
+MSearchEnseignant : ModSearchEnseignant {
+	enseignant = searchedEnseigant;
+	updateContainerID = aucinfosensid;
+	onSelectEnseignant = selectAction;
+	onCancelSearchEnseignant = cancelSearch;
+}
+
+MyForm1 : ERXOptionalForm{	
+	multipleSubmit = true;
+	onsubmit = "return false;";	
+}
+
+
+NomEns : WOString {
+  value = selectedEnseignant.individu.nomCompletAffichage;
+}
+
+
+AucInfosEns : AjaxUpdateContainer {
+  id = aucinfosensid;
+}
+
+AffectatinsTbV : AffectationsEnsTbView {
+  dg = dgAffectations;
+ //width = "99%";
+  canEdit = false;
+  afficherBarreDeStatut=false;  
+  isEditEnabled = false;  
+}
+
+Annee : WOString {
+  value = session.selectedYear.fannKey;
+}
+
+DechargesTbV : DechargesEnsTbView { 
+  dg = dgDecharges;
+  //width = "99%";
+  canEdit = false;
+  afficherBarreDeStatut=false;  
+  isEditEnabled = false;  
+}
+
+
+Quotite : WOString {
+  value = quotiteEns;
+  numberformat = "0.##";
+}
+
+CorpsTbV : CorpsTbV { 
+  dg = dgCorps;
+ // width = "99%";
+  canEdit = false;
+  afficherBarreDeStatut=false;  
+  isEditEnabled = false;  
+}
+
+Service : WOString {
+  value = serviceEns;
+  numberformat = "0.##";
+}
+
+Decharge : WOString {
+  value = dechargeEns;
+  numberformat = "0.##";
+}
+
+Report : WOString {
+  value = reportEns;
+  numberformat = "0.##";
+}
+
+Prestation : WOString {
+  value = prestationsEns;
+  numberformat = "0.##";
+}
+
+ServiceDue : WOString {
+  value = serviceDue;
+  numberformat = "0.##";
+}
+
+TotalVoeux : WOString {
+  value = totalVoeuxEns;
+  numberformat = "0.##";
+}
+
+BalanceEns : WOString {
+  value = deficitExcedentEns;  
+}
+TotalFait : WOString {
+  value = totalFaitEns;
+  numberformat = "0.##";
+}
+
+BalanceFaitEns : WOString {
+  value = deficitExcedentFaitEns;  
+}
+
+PositionTbV : PositionTbV { 
+  dg = dgPosition;
+  //width = "99%";
+  canEdit = false;
+  afficherBarreDeStatut=false;  
+  isEditEnabled = false;  
+  colonnesKeys = colonnesPositions;
+}
+
+CanChangeEns : WOConditional {
+  condition = canChangeEns;
+}
+
+IsNotShowDetails : WOConditional {
+  condition = showDetails;
+  negate = true;
+}
+
+IsShowDetails : WOConditional {
+  condition = showDetails;
+}
+
+LastPosition : WOString {
+  value = lastPosition;
+}
+
+AucBilanVoeux : AjaxUpdateContainer {
+  id = aucbilanvoeuxid;
+  style = "margin-top:-2px";
+}
+
+IsEnsSelected : ERXNonNullConditional {
+  condition = selectedEnseignant;
+}
+
+ErreurContainerService : AjaxUpdateContainer {
+	id = erreurserviceid;
+	style = "z-index:9999;";
+}
+
+MessageUtil : MessageUtil {
+  idErreur = erreurserviceid;
+  //idMessage = "idmessagevoeux";
+} 

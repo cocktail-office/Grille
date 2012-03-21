@@ -1,0 +1,167 @@
+Wrapper : Wrapper {
+	titre = "Gestion Voeux activités";
+}
+AucActiv : AjaxUpdateContainer {
+  id = aucactivid;
+}
+
+LibActivite : WOString {
+	value = selectedActiv.libelleActivite;
+}
+
+TypeActiv : WOString {
+  value = selectedActiv.toTypeActivite.libLong;
+}
+
+HeuresActivite : WOString {
+  value = selectedActiv.nbHeuresActivite;
+}
+
+TotalHeuresVoeux : WOString {
+  value = totalHeuresVoeux;
+}
+
+TotalHeuresRealise : WOString {
+  value = totalHeuresRealise;
+}
+
+LieA : ActiviteLieeA { 
+	value = selectedActiv.lien;
+}
+
+IsLockedEc : WOConditional {
+	condition = isVerrouEC;
+}
+
+ImgVerrou : WOImage {
+  alt = "verrou";
+  framework = "FwkCktlThemes";
+  filename = "images/16x16/001_42_16x16.png";
+  align = "absmiddle";
+  title = "lié à un E.C. vérouillé";
+}
+
+SearchActiv : SearchMaquette {
+  ec = session.defaultEditingContext;
+  selectedObj = selectedActiv;
+  selectedYear = session.selectedYear;  
+  treeDelegate = activTreeDelegate;
+  windowTitle = "Recherche Activité";
+  idToRefresh = aucactivid;
+  popup = false;
+  onSelectObj = closeSearchWinActiv;
+  diplomePickerDelegate = diplomePickerDelegate;
+}
+
+AucVoeuxActiv : AjaxUpdateContainer {
+  id = "aucvoeuxactiv";
+}
+
+
+VoeuxActivTBV : VoeuxTbV { 
+  dg = dgVoeuxActiv;
+  width = "99%";
+  canEdit = canEditVoeux;
+  afficherBarreDeStatut=false;
+  editMethodName = "editVoeuxActiv";
+  editMethodObject = editMethodeObject;
+  idToRefreshEdit = "editvoeux";
+  idToRefreshDelete = "aucvoeuxactiv";  
+  onSuccessDelete = "function (majDel) {refreshvoeuxactiv();}";
+  isEditEnabled = true;
+  commitOnValid = true;
+  colonnesKeys = colonnesVoeuxActivKeys;
+  objectOccur = voeuxOccur;
+  canRealise = canRealiseVoeuxActiv;
+  editRealiseMethodName = "editRealiseActiv";
+  editRealiseMethodObject = editMethodeObject;
+}
+
+AbAddVoeuxActiv : CktlAjaxButton {
+	action = AddVoeuxActiv;		
+	title = "Ajout";
+	text = "Ajouter un voeux sur activité";
+	type = "new";	
+	updateContainerID = "editvoeux";
+}
+
+AbAddRealiseActiv : CktlAjaxButton {
+	action = addRealiseActiv;		
+	title = "Ajout réalisé";
+	text = "Ajouter un réalisé sur activité";
+	type = "process";	
+	updateContainerID = "editvoeux";
+}
+
+AulRefreshVoeuxActivLink : AjaxUpdateLink {
+  id = "refreshvoeuxactiv";
+  button = true;
+  action = refreshVoeuxActiv;
+  functionName = "refreshvoeuxactiv";    
+}
+
+CanAddVoeux : WOConditional {
+  condition = canAddVoeux;
+}
+
+CanAddRealiseActiv : WOConditional {
+  condition = canAddRealiseActiv;
+}
+
+AucEditVoeux : AjaxUpdateContainer {
+  id = "editvoeux";
+  style = "height:100%;";
+}
+
+CawEditVoeux : CktlAjaxWindow {
+  	closable = false;
+	resizable = true;
+	id = caweditvoeuxid;
+	width = 700;
+	height = 270;
+	zIndex = 8888;
+}
+
+IsVoeuxEdited : WOConditional {
+  condition = isVoeuxEdited;
+}
+
+EditVoeux : EditVoeux {
+  ec = getEcEdit;
+  editedVoeux = editedVoeux;    
+  lstActivDispos = lstActivs;
+  isActivSelection = true;
+  isApSelection = false;
+  idWindow = caweditvoeuxid;
+  //onSuccessMethod = refreshVoeuxActiv;
+  functionRefresh = "refreshvoeuxactiv()";
+  canChangeEnseignant = canChangeEnseignant;
+  mode = modeEditVoeux;
+}
+
+AucTotalHrVoeux : AjaxUpdateContainer {
+  id = auctotalhrvoeuxid;
+  elementName = "tr";
+}
+
+BalanceActiv : WOString {
+  value = deficitExcedentActiv;  
+}
+BalanceRealise : WOString {
+  value = bilanRealise;  
+}
+IsActivSelected : ERXNonNullConditional {
+  condition = selectedActiv;
+}
+
+IsEnsWithServiceValided : WOConditional {
+  condition = session.isEnsWithServiceValided;
+}
+
+IsActiviteLieEcVerrouillé : WOConditional {
+	condition = isVerrouEC;
+}
+
+Else : ERXElse {
+	
+}

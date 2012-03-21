@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EquivalentTD" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="SansSerif" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="SansSerif" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="SansSerif" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="SansSerif" fontSize="12"/>
+	<queryString>
+		<![CDATA[SELECT mhco_code,mhco_libelle,mhco_abreviation,mhco_priorite,mhco_numerateur,mhco_denominateur,mhco_seuil,mhco_validite
+from scolarite.scol_maquette_horaire_code
+where mhco_numerateur>0 and mhco_denominateur>0]]>
+	</queryString>
+	<field name="MHCO_CODE" class="java.lang.String"/>
+	<field name="MHCO_LIBELLE" class="java.lang.String"/>
+	<field name="MHCO_ABREVIATION" class="java.lang.String"/>
+	<field name="MHCO_PRIORITE" class="java.math.BigDecimal"/>
+	<field name="MHCO_NUMERATEUR" class="java.math.BigDecimal"/>
+	<field name="MHCO_DENOMINATEUR" class="java.math.BigDecimal"/>
+	<field name="MHCO_SEUIL" class="java.math.BigDecimal"/>
+	<field name="MHCO_VALIDITE" class="java.lang.String"/>
+	<variable name="COEFF" class="java.lang.String" resetType="Column">
+		<variableExpression><![CDATA[new String($F{MHCO_NUMERATEUR}.intValue()+"/"+$F{MHCO_DENOMINATEUR}.intValue())]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="0" width="555" height="22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paramètres des coefficients des heures équivalent TD]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="69" height="15"/>
+				<textElement/>
+				<text><![CDATA[Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="69" y="19" width="201" height="15"/>
+				<textElement/>
+				<text><![CDATA[Libellé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="378" y="19" width="67" height="15"/>
+				<textElement/>
+				<text><![CDATA[Seuil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="445" y="19" width="69" height="15"/>
+				<textElement/>
+				<text><![CDATA[Validité]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="270" y="21" width="105" height="15"/>
+				<textElement/>
+				<text><![CDATA[Valeur]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MHCO_CODE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="69" y="0" width="201" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MHCO_LIBELLE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement style="Detail" x="270" y="0" width="105" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{COEFF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="375" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{MHCO_SEUIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="445" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MHCO_VALIDITE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="d/M/yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

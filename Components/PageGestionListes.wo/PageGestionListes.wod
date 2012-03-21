@@ -1,0 +1,98 @@
+Wrapper : Wrapper {
+	titre = "Grille - gestion des listes";
+}
+
+FormChangeListe : ERXOptionalForm {
+	id = formchangelisteid;
+	name = formchangelisteid;
+	multipleSubmit = true;
+}
+
+BModifierListe : CktlButton { 
+	action = modifyAList;
+	//updateContainerID = aucpubgrillelistesid;
+	type = "edit";
+	text = "Modifier une liste existante";
+}
+
+BCreerListe : CktlButton {
+	action = initAList;
+	//updateContainerID = auccreationlisteid;
+	type = "new";
+	text = "Créer une nouvelle liste";
+}
+
+BCreerListeMemeParcours : CktlButton {
+	action = initAListSameParcours;
+	//updateContainerID = auccreationlisteid;
+	type = "new";
+	text = "Créer une nouvelle liste avec la même formation";
+}
+
+AulCreerListe : AjaxUpdateLink {
+	action = initAList;
+	updateContainerID = auccreationlisteid;
+	class = "blink link_add";
+}
+
+AulCreerListeMemeParcours : AjaxUpdateLink {
+	action = initAListSameParcours;
+	updateContainerID = auccreationlisteid;
+	class = "blink link_add_from";
+}
+
+AucPubGrilleListes : AjaxUpdateContainer {
+	id = aucpubgrillelistesid;
+	elementName = "div";
+	style = "margin-top:5px;";
+}
+
+IsShowLists : ERXWOConditional { 
+	condition = showExistingLists;
+}
+
+IsShowMod : ERXWOConditional {
+	condition = showGestionListe;
+}
+
+
+AsbSelectListe : CktlSubmitButton {
+	action = initModifyListe;
+	value = "commencer";
+	type = "validate";
+}
+
+
+AofGrilleListes : AjaxObserveField {
+	elementName = "span";
+	//updateContainerID = auccreationlisteid;
+	action = grilleListeSelectionChanged;
+}
+
+PubGrilleListes : WOPopUpButton {
+	id = pubgrillelistesid;
+	list = listOfGrilleListes;
+	item = itemGrilleListe;
+	displayString = libListeOccur;
+	noSelectionString = "-- sélectionner ici une liste à modifier --";
+	selection = selectedListe;
+}
+
+AucCreationListe : AjaxUpdateContainer {
+	id = auccreationlisteid;
+}
+
+MCreationListe : ModCreationListe {
+	editedListe = currentListe;
+	titre = titreEditListe;
+	updateContainerID = auccopielst;
+	canEditCode = canEditCode;
+}
+CanCreateListeSameFromation : WOConditional {
+  condition = canCreateListeSameFromation;
+}
+
+AucCopieLst : AjaxUpdateContainer {
+  id = auccopielst;
+  elementName = "span";
+}

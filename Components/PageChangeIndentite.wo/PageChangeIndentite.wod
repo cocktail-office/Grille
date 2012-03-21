@@ -1,0 +1,28 @@
+Wrapper : Wrapper {
+	titre = "Changer identité";
+}
+
+Form : WOForm {
+	multipleSubmit = true;
+}
+Login : WOTextField {
+  value = login;
+}
+
+CasbValider : CktlSubmitButton { 
+	action = valide;		
+	title = "Valider";
+	text = "Valider";
+	type = "validate";	
+	 
+}
+
+ErreurContainer : AjaxUpdateContainer { 
+	id = erreurid;
+	style = "z-index:9999;";
+}
+
+MessageUtil : MessageUtil { 
+  idErreur = erreurid;
+  idMessage = "idmessagegestionrespons";
+}

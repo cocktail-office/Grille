@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="activites_etape" language="groovy" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MPAR_KEY" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT ACT.MPAR_KEY,TA.LIB_COURT,sum(ACT.NB_HEURES_ACTIVITE) nb_heures_activite,sum(nvl(V.NB_HEURE_REALISE,V.NB_HEURES_VOEUX)) nb_heure_realise
+FROM GRILLE_ENS.ACTIVITE ACT,GRILLE_ENS.VOEUX V,GRILLE_ENS.TYPE_ACTIVITE ta
+WHERE ACT.MPAR_KEY =  $P{MPAR_KEY}
+AND  V.ACTIVITE_KEY = ACT.ACTIVITE_KEY
+AND   V.MAP_KEY IS NULL
+AND   ACT.MEC_KEY IS NULL
+AND   TA.TYPE_ACTIVITE_KEY = ACT.TYPE_ACTIVITE_KEY
+GROUP BY ACT.MPAR_KEY,TA.LIB_COURT]]>
+	</queryString>
+	<field name="MPAR_KEY" class="java.math.BigDecimal"/>
+	<field name="LIB_COURT" class="java.lang.String"/>
+	<field name="NB_HEURES_ACTIVITE" class="java.math.BigDecimal"/>
+	<field name="NB_HEURE_REALISE" class="java.math.BigDecimal"/>
+	<variable name="DEFICIT" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{NB_HEURES_ACTIVITE}.subtract( $F{NB_HEURE_REALISE} )]]></variableExpression>
+	</variable>
+	<variable name="EXEDENT" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{NB_HEURE_REALISE}.subtract( $F{NB_HEURES_ACTIVITE} )]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="340" y="0" width="43" height="16" backcolor="#FFF2E9"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Déficit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="288" y="0" width="52" height="16" backcolor="#FFF2E9"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Hr assurées]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="235" height="16" backcolor="#FFF2E9"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Lib Activité	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="382" y="0" width="43" height="16" backcolor="#FFF2E9"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Exédent]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="235" y="0" width="52" height="16" backcolor="#FFF2E9"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Nb Heures]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="383" y="0" width="43" height="16">
+					<printWhenExpression><![CDATA[$V{EXEDENT}.intValue() > 0]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{EXEDENT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="43" height="16">
+					<printWhenExpression><![CDATA[$V{DEFICIT}.intValue() > 0]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{DEFICIT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="0" width="52" height="16"/>
+				<box topPadding="2" leftPadding="2" rightPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.75" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.75" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{NB_HEURES_ACTIVITE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="235" height="16"/>
+				<box topPadding="2" leftPadding="2" rightPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.75" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.75" lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{LIB_COURT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="0" width="53" height="16"/>
+				<box topPadding="2" leftPadding="2" rightPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.75" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.75" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{NB_HEURE_REALISE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

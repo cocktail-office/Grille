@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="JASP_SUB_VoeuxActions" language="groovy" pageWidth="538" pageHeight="800" whenNoDataType="NoDataSection" columnWidth="498" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ANNEE" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[2010]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NO_INDIVIDU" class="java.lang.Integer"/>
+	<parameter name="VOEUX_VALID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT ta.lib_long type, act.commentaire libelle,
+  NVL(v.nb_heure_realise, v.nb_heures_voeux) nb_heures
+FROM GRILLE_ENS.voeux v,
+  GRILLE_ENS.activite act,GRILLE_ENS.type_activite ta
+WHERE v.activite_key   = act.activite_key
+AND ta.type_activite_key = act.type_activite_key
+AND nvl(v.valide,'N') = DECODE($P{VOEUX_VALID},'T',nvl(v.valide,'N'),$P{VOEUX_VALID})
+AND v.fann_key    = $P{ANNEE}
+AND v.no_individu = $P{NO_INDIVIDU}
+ORDER BY 1,2]]>
+	</queryString>
+	<field name="TYPE" class="java.lang.String"/>
+	<field name="LIBELLE" class="java.lang.String"/>
+	<field name="NB_HEURES" class="java.math.BigDecimal"/>
+	<variable name="Total" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{NB_HEURES}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<printWhenExpression><![CDATA[true]]></printWhenExpression>
+			<rectangle>
+				<reportElement x="0" y="0" width="498" height="26" backcolor="#DFDFDF"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="213" height="26"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Type activité]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="214" y="0" width="205" height="26"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Mission]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="76" height="26"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Heures
+Equivalent TD]]></text>
+			</staticText>
+			<line>
+				<reportElement x="213" y="0" width="1" height="26"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="420" y="0" width="1" height="26"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="-1" width="498" height="15" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern="###0.00">
+				<reportElement x="420" y="0" width="70" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{NB_HEURES}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="213" y="0" width="1" height="15" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="420" y="0" width="1" height="15" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="4" y="0" width="199" height="15"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TYPE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="218" y="0" width="201" height="15"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{LIBELLE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="-1" width="498" height="15" backcolor="#DFDFDF"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="261" y="0" width="100" height="15"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField evaluationTime="Auto" pattern="###0.00">
+				<reportElement x="420" y="0" width="70" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{Total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="420" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

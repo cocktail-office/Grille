@@ -1,0 +1,65 @@
+<$comment
+EO Template for use by "eogenerator" based upon MiscMerge engine.
+You may customize this file to modify the templates generated
+by this tool.  See the MiscMerge documentation for a description
+of the parsing language.  The engine gets passed this file and an
+EOEntity to process, so the methods used must be ones that an
+EOEntity can respond to.
+
+BE SURE NOT TO INCLUDE DATES IN THIS FILE.  Since the "eogenerator"
+tool tries to compare the newly generated file with the old file,
+adding dates to this file will guarantee the old file gets
+overridden by the new file, forcing a recompilation of your EO.$>
+
+// <$clientClassNameWithoutPackage$>.java
+// 
+<$foreach package clientClassPackage do$>package <$package$>;
+<$endforeach do$>
+
+import com.webobjects.foundation.NSValidation;
+import com.webobjects.foundation.*;
+import com.webobjects.eocontrol.*;
+import java.math.BigDecimal;
+import java.util.*;
+
+public class <$clientClassNameWithoutPackage$> extends <$GEN_PREFIX$><$clientClassNameWithoutPackage$> {
+
+    public <$clientClassNameWithoutPackage$>() {
+        super();
+    }
+
+
+    public void validateForInsert() throws NSValidation.ValidationException {
+        this.validateObjectMetier();
+        validateBeforeTransactionSave();
+        super.validateForInsert();
+    }
+
+    public void validateForUpdate() throws NSValidation.ValidationException {
+        this.validateObjectMetier();
+        validateBeforeTransactionSave();
+        super.validateForUpdate();
+    }
+
+    public void validateForDelete() throws NSValidation.ValidationException {
+        super.validateForDelete();
+    }
+
+    public void validateForSave() throws NSValidation.ValidationException {
+        validateObjectMetier();
+        validateBeforeTransactionSave();
+        super.validateForSave();
+        
+    }
+
+    public void validateObjectMetier() throws NSValidation.ValidationException {
+      
+
+    }
+
+    private final void validateBeforeTransactionSave() throws NSValidation.ValidationException {
+           
+    }
+
+
+}

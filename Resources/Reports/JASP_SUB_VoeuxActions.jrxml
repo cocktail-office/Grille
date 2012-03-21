@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="JASP_SUB_VoeuxActions" language="groovy" pageWidth="538" pageHeight="800" whenNoDataType="NoDataSection" columnWidth="498" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ANNEE" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NO_INDIVIDU" class="java.lang.Integer"/>
+	<parameter name="VOEUX_VALID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT mhc.mhco_abreviation,
+  NVL(v.nb_heure_realise, v.nb_heures_voeux) nb_heures,
+  ap.map_libelle,
+  ap.map_key ,
+  grille_ens.f_cal_equtd_for_ap(NVL(v.nb_heure_realise, v.nb_heures_voeux),v.map_key) hr_td
+FROM GRILLE_ENS.voeux v,
+  SCOLARITE.scol_maquette_ap ap,
+  SCOLARITE.scol_maquette_horaire_code mhc
+WHERE v.map_key   = ap.map_key
+AND mhc.mhco_code = ap.mhco_code
+AND nvl(v.valide,'N') = DECODE($P{VOEUX_VALID},'T',nvl(v.valide,'N'),$P{VOEUX_VALID})
+AND v.fann_key    = $P{ANNEE}
+AND v.no_individu =  $P{NO_INDIVIDU}]]>
+	</queryString>
+	<field name="MHCO_ABREVIATION" class="java.lang.String"/>
+	<field name="NB_HEURES" class="java.math.BigDecimal"/>
+	<field name="MAP_LIBELLE" class="java.lang.String"/>
+	<field name="MAP_KEY" class="java.math.BigDecimal"/>
+	<field name="HR_TD" class="java.math.BigDecimal"/>
+	<variable name="TOTAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{HR_TD}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="496" height="26" backcolor="#DFDFDF"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="63" height="26"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Type
+(CM, TD, TP)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="63" y="0" width="41" height="26"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Heures]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="0" width="256" height="26"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Libelle UE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="76" height="26"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Heures
+Equivalent TD]]></text>
+			</staticText>
+			<line>
+				<reportElement x="62" y="0" width="1" height="26"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="104" y="0" width="1" height="26"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="420" y="0" width="1" height="26"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="496" height="15" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="63" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MHCO_ABREVIATION}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="105" y="0" width="306" height="15"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MAP_LIBELLE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="420" y="0" width="70" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{HR_TD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="63" y="0" width="35" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{NB_HEURES}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="62" y="0" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="104" y="0" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="420" y="0" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="496" height="15" backcolor="#DFDFDF"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<textField evaluationTime="Auto" pattern="###0.00">
+				<reportElement x="420" y="0" width="70" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TOTAL}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="420" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="311" y="0" width="100" height="15"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

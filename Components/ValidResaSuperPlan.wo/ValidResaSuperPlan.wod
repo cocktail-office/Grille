@@ -1,0 +1,331 @@
+Wrapper : Wrapper {
+	titre = "Gestion utilisateurs";
+}
+
+Form : WOForm {
+  multipleSubmit = true;
+}
+
+ResaTbV : ResaTbV {
+  dg = displayGroup;
+  width = "98%";
+  canEdit = false;
+  //objectOccur = resaOccur;
+  afficherBarreDeStatut=true;
+  isEditEnabled = false;  
+  updateContainerID = auclstintervenantsid;
+}
+APTbV : APTableView {
+  dg = displayGroup;
+  width = "98%";
+  canEdit = false;
+  objectOccur = apOccur;
+  afficherBarreDeStatut=true;
+  isEditEnabled = false;  
+  updateContainerID = auclstintervenantsid;
+  selectionEnabled =true;
+  height = "200px";
+}
+
+AucLstResa : AjaxUpdateContainer {
+  id = auclstresaid;
+}
+
+CabSearch : CktlAjaxSubmitButton {
+	action = searchResa;		
+	title = "Chercher";
+	text = "Chercher les réservations";
+	type = "find";	
+	updateContainerID = auclstresaid;
+}
+
+ShowSearchResult : WOConditional {
+	condition = haveSearched;
+}
+
+AucSearch : AjaxUpdateContainer {
+  id = aucSearch;
+  class="subBox";
+  style = "display:none;";
+}
+
+AmdSearch : AjaxModalDialog { 
+	closable = true;
+	resizable = true;
+	id = searchZoneId;
+	width = "640";
+	height = "450";
+	title = "Recherche individu";
+	centerVertically = true;
+}
+
+IsInSearch : WOConditional {
+  condition = true;
+}
+
+MyForm1 : WOForm {
+	id = "id";
+	name = "form1";
+	multipleSubmit = true;
+	//action = doNothing;
+	onsubmit = "return false;";
+	
+}
+
+IndivSrch : PersonneSrch {
+  selectedPersonne = selIndiv;
+  utilisateurPersId = session.gUser.persId;
+  isReadOnly = true;  
+  showDetail = false;
+  showDetailInModalBox = true;
+  persTypeInterneExterne = "interne";
+  showStructures = false;
+  persType = "individu";
+  titre = "Recherche individu";
+  updateContainerIDOnSelectionnerPersonneInTableview=aucselectlinkid;
+  editingContext = session.defaultEditingContext;  
+  qualifierForIndividus = enseignantsQualifier;  
+}
+
+AucSelect : AjaxUpdateContainer {
+  id = aucselectlinkid;
+  style = "margin-left:auto; margin-right:auto; text-align:center;";
+}
+
+IsIndiv : ERXNonNullConditional {
+	condition = selIndiv;
+}
+
+BSelectFromSearch : CktlAjaxButton {  
+	action = setSearchOff;	
+	type = "validate";
+	text = textButtonChoisirPersonne;
+	updateContainerID = aucindividuid;
+}
+
+
+AucIndividu : AjaxUpdateContainer {
+  id = aucindividuid;
+}
+
+Individu : WOString {
+  value = searchedIndiv.nomPrenomAffichage;
+}
+
+AbSearchIndiv : CktlAjaxButton {
+	action = setSearchOn;		
+	title = "Chercher un individu";
+	//text = "Chercher";
+	type = "find";	
+	updateContainerID = aucSearch;
+}
+AbClearIndiv : CktlAjaxButton {
+	action = clearSearchedInd;		
+	title = "Effacer l'individu";	
+	type = "cancel";	
+	updateContainerID = aucindividuid;
+}
+
+AucSelectionLinkFenetre : AjaxUpdateContainer {
+  id = aucselectionlinkFenetreid;
+}
+
+
+SearchMaquette : SearchMaquette {  
+  ec = session.defaultEditingContext;
+  selectedObj = selSemestre;
+  selectedYear = session.selectedYear;  
+  treeDelegate = treeSemDelegate;
+  windowTitle = "Choix d'un semestre";
+  popup = false;
+ // parentSelectedObj = editedActivite; 
+  cawsearchzoneid = cawsearchzoneid;
+  idToRefresh = aucsemestreid;
+  onSelectObj = closeSearchWin;
+  showLink = false;
+  diplomePickerDelegate = diplomePickerDelegate;
+}
+
+AucSemestre : AjaxUpdateContainer {
+  id = aucsemestreid;
+  elementName = "span";
+}
+AbSearchTree : CktlAjaxButton {
+	action = openSearchMaquette;		
+	title = "Chercher un semestre";
+	type = "find";	
+
+}
+AbClearSemestre : CktlAjaxButton {
+	action = clearSearchedSemestre;		
+	title = "Effacer le semestre";	
+	type = "cancel";	
+	updateContainerID = aucsemestreid;
+}
+
+LibSemestre : WOString {
+  value = libSemestre;
+}
+
+AucLstIntervenants : AjaxUpdateContainer {
+  id = auclstintervenantsid;
+  style = "display:inline;";
+}
+
+ResaOccupTbV : ResaOccupTbV {
+  dg = dgResaOccup;
+  width = "98%";
+  canEdit = false;
+  objectOccur = resaOccupOccur;
+  afficherBarreDeStatut=true;
+  isEditEnabled = false;  
+  updateContainerID = auclstperiodesid;
+
+}
+PopTypeAp : WOPopUpButton {
+  list = lstMhcode;
+  item = mhocodeOccur;
+  displayString = mhocodeOccur.mhcoAbreviation;
+  selection= searchedTypeAp;
+  noSelectionString = "Tous";
+}
+
+Else : ERXElse {
+	
+}
+
+AucLstPeriodes : AjaxUpdateContainer {
+  id = auclstperiodesid;
+  style = "display:inline;";
+}
+
+ShowPeriodeResult : WOConditional {
+	condition = canShowPeriodes;
+}
+
+PeriodesTbV : PeriodesTbV {
+  dg = dgPeriodes;
+  width = "98%";
+  canEdit = false;
+  objectOccur = periodeOccur;
+  afficherBarreDeStatut=true;
+  isEditEnabled = false;  
+  updateContainerID=aucValidPeriodesId;
+
+}
+
+SelectedAp : WOString {
+  value = selectedApResa.scolMaquetteAp.mapLibelle;
+}
+
+IndicateurBusy : WOImage { 
+	border = 0;
+	filename = "images/ajax-loader_bleu.gif";
+	framework = "FwkCktlThemes";
+	style = "display:none;vertical-align:middle;";
+	id = "searchbusyid";	
+}
+Busy : AjaxBusyIndicator {
+	divID = "searchbusyid";
+}
+CanShowOccupants : WOConditional {
+  condition = canShowOccupants;
+}
+
+CanShowPeriodes : WOConditional {
+  condition = canShowPeriodes;
+}
+
+Occupant : WOString {
+  value = selectedOccupant.individu.nomPrenomAffichage;
+  
+}
+
+CbxHrValides : WOCheckBox {
+  value = true;
+  selection = hrValides;
+}
+
+Debut : CktlAjaxDatePicker {
+  dateValue = debutSearch;  
+}
+Fin : CktlAjaxDatePicker {
+  dateValue = finSearch;  
+}
+SearchNotNull : WOConditional {
+  condition = searchNotNull;
+}
+
+CanValidePeriode : WOConditional {
+  condition = canValidePeriode;
+}
+AbValidPeriodes : CktlAjaxButton {
+	action = openValidPeriodes;		
+	title = "Valider les périodes invalides";	
+	type = "validate";
+	text = "Valider les périodes invalides";	
+	updateContainerID = auceditvalidid;
+}
+
+CanDeValidePeriode : WOConditional {
+  condition = canDeValidePeriode;
+}
+AbDeValidPeriodes : CktlAjaxButton {
+	action = openDeValidPeriodes;		
+	title = "Dé-valider les périodes valides";	
+	type = "reset";
+	text = "Dé-valider les périodes valides";	
+	updateContainerID = auceditvalidid;
+}
+AucValidPeriode : AjaxUpdateContainer {
+  id = aucValidPeriodesId;
+}
+
+RbtValide : WORadioButton {
+  name = "RbtValide";
+  value = "1";   
+  selection = searchValidHr; 
+}
+RbtNoValide : WORadioButton {
+  name = "RbtValide";
+  value = "0";    
+  selection = searchValidHr; 
+}
+RbtValideTout : WORadioButton {
+  name = "RbtValide";
+  value = "T";    
+  selection = searchValidHr; 
+}
+
+IsValidMode : WOConditional {
+  condition = isValidMode;
+}
+
+EditValidResa : EditValidResa {
+  lstPeriodes = selectedPeriode;
+  mode = modeValidPeriode;
+  onValidDevalidAction = onValidDevalidAction;
+}
+
+CawEditValid : CktlAjaxWindow {
+  	closable = true;
+	resizable = true;
+	id = caweditvalidid;
+	width = 800;
+	height = 270;
+	zIndex = 8888;
+}
+
+AucEditValid : AjaxUpdateContainer {
+  id = auceditvalidid;
+}
+
+ErreurContainer : AjaxUpdateContainer {
+	id = "erreureditvalid";
+	style = "z-index:9999;";
+}
+
+MessageUtil : MessageUtil {
+  idErreur = "erreureditvalid";
+  idMessage = "idmessagevalid";
+} 

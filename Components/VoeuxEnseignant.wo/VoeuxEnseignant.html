@@ -1,0 +1,113 @@
+<webobject name = "Wrapper">
+  <div class = "block" style = "width:90%;margin:10px auto;">
+    <div class = "boxTitre titreBlock" style = "padding-top:0;padding-bottom:0">
+      <span style = "margin-left:20px">Voeux par enseignant</span>
+    </div>
+    <div class = "subBox corpsBlock">
+      <div style = "padding:5px 0;"> <webobject name = "ModEnseigant" /> </div>
+      <webobject name = "AucVoeuxZone">
+        <webobject name = "ShowVoeux">
+          <fieldset style = "margin-top:20px;padding:0 0 5px 0;clear:both;-moz-border-radius:10px;">
+            <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Voeux sur actions p&eacute;dagogiques</legend>
+            <webobject name = "AucVoeux">
+              <webobject name = "VoeuxTBV" />
+              <webobject name = "AucTotalVoeuxAp">
+                <webobject name = "HasVoeuxAP">total voeux sur actions p&eacute;dagogiques : 
+                  <b><webobject name = "TotalVoeuxAP" /></b>
+                </webobject>
+              </webobject>
+              <webobject name = "CanAddVoeux">
+                <div style = "text-align:right;"> <webobject name = "AbAddVoeux" />&nbsp;&nbsp;&nbsp;&nbsp; </div>
+              </webobject>
+              <webobject name = "CanAddRealise">
+                <div style = "text-align:right;"> <webobject name = "AbAddRealise" />&nbsp;&nbsp;&nbsp;&nbsp; </div>
+              </webobject>
+              <div style = "display:none;">
+                <webobject name = "AucEditVoeux">
+                  <webobject name = "CawEditVoeux">
+                    <webobject name = "IsVoeuxEdited"> <webobject name = "EditVoeux" /> </webobject>
+                  </webobject>
+                </webobject>
+              </div>
+            </webobject>
+          </fieldset>
+          <webobject name = "AulRefreshVoeuxLink" />
+          <fieldset style = "margin-top:20px;margin-bottom:3px;padding:0 0 5px 0;clear:both;-moz-border-radius:10px;">
+            <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Voeux sur activit&eacute;s</legend>
+            <webobject name = "AucVoeuxActiv">
+              <webobject name = "VoeuxActivTBV" />
+              <webobject name = "AucTotalVoeuxActiv">
+                <webobject name = "HasVoeuxActiv">total voeux sur activit&eacute;s : 
+                  <b><webobject name = "TotalVoeuxActiv" /></b>
+                </webobject>
+              </webobject>
+              <webobject name = "CanAddVoeux">
+                <div style = "text-align:right;"> <webobject name = "AbAddVoeuxActiv" />&nbsp;&nbsp;&nbsp;&nbsp; </div>
+              </webobject>
+              <webobject name = "CanAddRealise">
+                <div style = "text-align:right;"> <webobject name = "AbAddRealiseActiv" />&nbsp;&nbsp;&nbsp;&nbsp; </div>
+              </webobject>
+              <div style = "display:none;">
+                <webobject name = "AucEditVoeux">
+                  <webobject name = "CawEditVoeux">
+                    <webobject name = "IsVoeuxEdited"> <webobject name = "EditVoeux" /> </webobject>
+                  </webobject>
+                </webobject>
+              </div>
+            </webobject>
+          </fieldset>
+          <webobject name = "AulRefreshVoeuxActivLink" />
+          <div class = "valide" style = "height:12px;width:10px;border:0.5px solid black;display:inline;float:left;">&nbsp;</div><span style = "font-style:italic;font-size:10px;float:left;">&nbsp;:&nbsp;Voeux validés</span>
+          <webobject name = "IsEnsWithServiceValided">
+            <div class = "notetip" style = "font-weight:bold;margin:5px auto;background-position:10px 5px;width:450px;">Votre service est valid&eacute;, l'ajout ou la modification de voeux est impossible.</div>
+          </webobject>
+          <webobject name = "AucValidServiceZone">
+	          <webobject name = "IsSelectedEns">
+	            <fieldset style = "margin-top:20px;padding:0 0 5px 0;clear:both;max-width:600px;-moz-border-radius:10px;">
+	              <legend style = "background-color:#FFFCF8;border:none;margin-left:5em;">Validation du service 
+	                <webobject name = "IsServiceValided">&nbsp;<webobject name = "ImgVerrou" /></webobject>
+	              </legend>
+	              <webobject name = "frm">
+	                <webobject name = "AucValidServ">
+	                  <webobject name = "IsServiceNotValided">
+	                    <b>Le service n'est pas valid&eacute;.</b>
+	                    &nbsp;&nbsp;-&nbsp;&nbsp; 
+	                    <webobject name = "CabPrintProposition" />
+	                    <br />
+	                    <webobject name = "CanValidService">
+	                      <webobject name = "IsAllVoeuxValides">
+	                        <p style = "font-weight:bold;">Une fois valid&eacute;, le service ne pourra plus &ecirc;tre modifi&eacute; sans d&eacute;-validation&nbsp;&nbsp;</p>
+	                        <webobject name = "CabValiderService" />
+	                        <br />
+	                      </webobject>
+	                      <webobject name = "Else"> Tous les voeux doivent &ecirc;tre valid&eacute;s pour pouvoir valider le service </webobject>
+	                    </webobject>
+	                  </webobject>
+	                  <webobject name = "IsServiceValided">
+	                    <span style = "font-weight:bold">Service valid&eacute;</span>
+	                    le&nbsp;:&nbsp; 
+	                    <webobject name = "DateValidationServ" />&nbsp;par&nbsp;<span style = "font-weight:bold"><webobject name = "NomValideur" /></span>&nbsp;&nbsp;-&nbsp;&nbsp;<webobject name = "CabPrintArrete" />
+	                    <p style = "font-weight:bold;">Toute modification du service est imposssible</p>
+	                    <webobject name = "CanValidService">
+	                      <webobject name = "CabDeValiderService" />
+	                      <br />
+	                    </webobject>
+	                  </webobject>
+	                  <webobject name = "IsAllVoeuxValides">
+	                    <webobject name = "CanSendMail">
+	                      <label>
+	                        <webobject name = "CbxEmail" />Pr&eacute;venir l'enseignant par mail (<webobject name = "EmailEns" />)</label>
+	                    </webobject>
+	                  </webobject>
+	                  <webobject name = "ErreurValidServContainer"> <webobject name = "MessageUtilValidServ" /> </webobject>
+	                </webobject>
+	              </webobject>
+	            </fieldset>
+	          </webobject>
+	          </webobject>
+          
+        </webobject>
+      </webobject>
+    </div>
+  </div>
+</webobject>
