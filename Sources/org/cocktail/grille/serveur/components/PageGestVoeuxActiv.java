@@ -20,6 +20,7 @@ import com.webobjects.foundation.NSTimestamp;
 
 import er.ajax.AjaxModalDialog;
 import er.ajax.AjaxUpdateContainer;
+import er.extensions.eof.ERXEC;
 
 public class PageGestVoeuxActiv extends BaseModule {
 	/**
@@ -88,7 +89,7 @@ public class PageGestVoeuxActiv extends BaseModule {
 
 	public WOActionResults addVoeuxActiv() {
 		Session sess = ((Session) session());
-		EOEditingContext ecVoeux = new EOEditingContext(session()
+		EOEditingContext ecVoeux = ERXEC.newEditingContext(session()
 				.defaultEditingContext());
 		setEditedVoeux(EOVoeux.createVoeux(ecVoeux, currentYear()
 				.localInstanceIn(ecVoeux)));
@@ -129,7 +130,7 @@ public class PageGestVoeuxActiv extends BaseModule {
 	
 	public WOActionResults addRealiseActiv() {
 		Session sess = ((Session) session());
-		EOEditingContext ecVoeux = new EOEditingContext(session()
+		EOEditingContext ecVoeux = ERXEC.newEditingContext(session()
 				.defaultEditingContext());
 		setEditedVoeux(EOVoeux.createVoeux(ecVoeux, currentYear()
 				.localInstanceIn(ecVoeux)));

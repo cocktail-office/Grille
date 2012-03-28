@@ -13,6 +13,8 @@ import com.webobjects.eocontrol.EOSortOrdering;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 
+import er.extensions.eof.ERXEC;
+
 public class PageGestTypeActivite extends BaseGestionRef {
     /**
 	 * 
@@ -71,7 +73,7 @@ public class PageGestTypeActivite extends BaseGestionRef {
 	}
 	
 	public WOActionResults addObj() {
-		setEditedObj(EOTypeActivite.createTypeActivite(new EOEditingContext(
+		setEditedObj(EOTypeActivite.createTypeActivite(ERXEC.newEditingContext(
 				session().defaultEditingContext()), "", ""));
 		setEdited(Boolean.TRUE);
 		CktlAjaxWindow.open(context(), caweditobjid(),
@@ -106,7 +108,7 @@ public class PageGestTypeActivite extends BaseGestionRef {
 			searchObj();
 			UtilMessages.creatMessageUtil(session(), UtilMessages.INFO_MESSAGE,
 					"Type créé ");
-			setEditedObj(EOTypeActivite.createTypeActivite(new EOEditingContext(
+			setEditedObj(EOTypeActivite.createTypeActivite(ERXEC.newEditingContext(
 					session().defaultEditingContext()), "", ""));
 		} else {			
 			setEdited(Boolean.FALSE);

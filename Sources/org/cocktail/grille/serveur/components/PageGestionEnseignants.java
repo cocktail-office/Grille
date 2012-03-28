@@ -2,6 +2,7 @@ package org.cocktail.grille.serveur.components;
 
 import org.cocktail.fwkcktlajaxwebext.serveur.component.CktlAjaxWindow;
 import org.cocktail.fwkcktlpersonne.common.metier.EOIndividu;
+import org.cocktail.fwkcktlpersonne.common.metier.IPersonne;
 import org.cocktail.grille.serveur.Session;
 import org.cocktail.grillefwk.serveur.Enseignant;
 import org.cocktail.grillefwk.serveur.finder.FinderEnseignant;
@@ -20,6 +21,7 @@ import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSTimestamp;
 
 import er.ajax.AjaxUpdateContainer;
+import er.extensions.appserver.ERXDisplayGroup;
 import er.extensions.eof.ERXEC;
 import er.extensions.eof.ERXQ;
 
@@ -41,7 +43,7 @@ public class PageGestionEnseignants extends BaseGestionRef {
 
 	public PageGestionEnseignants(WOContext context) {
 		super(context);
-		dgSearch = new WODisplayGroup();
+		dgSearch = new ERXDisplayGroup();
 	}
 
 	public WODisplayGroup dgSearch() {

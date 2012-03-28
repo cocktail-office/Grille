@@ -23,6 +23,7 @@ import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 import com.webobjects.foundation.NSTimestamp;
 
+import er.extensions.eof.ERXEC;
 import er.extensions.eof.ERXQ;
 
 public class EditValidResa extends CktlAjaxWOComponent {
@@ -210,7 +211,7 @@ public class EditValidResa extends CktlAjaxWOComponent {
 	}
 
 	public WOActionResults validPeriodes() {
-		EOEditingContext ec = new EOEditingContext(session()
+		EOEditingContext ec = ERXEC.newEditingContext(session()
 				.defaultEditingContext());
 		// traitement voeux
 		for (Object obVoeu : dgVoeux().allObjects()) {
@@ -275,7 +276,7 @@ public class EditValidResa extends CktlAjaxWOComponent {
 	}
 
 	public WOActionResults devalidPeriodes() {
-		EOEditingContext ec = new EOEditingContext(session()
+		EOEditingContext ec = ERXEC.newEditingContext(session()
 				.defaultEditingContext());
 		// traitement voeux
 		for (Object obVoeu : dgVoeux().allObjects()) {

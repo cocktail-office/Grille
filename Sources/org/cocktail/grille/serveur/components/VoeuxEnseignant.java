@@ -29,6 +29,7 @@ import com.webobjects.foundation.NSData;
 import com.webobjects.foundation.NSTimestamp;
 
 import er.ajax.AjaxUpdateContainer;
+import er.extensions.eof.ERXEC;
 
 public class VoeuxEnseignant extends BaseModule {
 	/**
@@ -208,7 +209,7 @@ public class VoeuxEnseignant extends BaseModule {
 	}
 
 	public WOActionResults addVoeux() {
-		EOEditingContext ecVoeux = new EOEditingContext(getEcEdit());
+		EOEditingContext ecVoeux = ERXEC.newEditingContext(getEcEdit());
 		setEditedVoeux(EOVoeux.createVoeux(ecVoeux, getSelectedYear()
 				.localInstanceIn(ecVoeux)));
 
@@ -227,7 +228,7 @@ public class VoeuxEnseignant extends BaseModule {
 	}
 
 	public WOActionResults addRealise() {
-		EOEditingContext ecVoeux = new EOEditingContext(getEcEdit());
+		EOEditingContext ecVoeux = ERXEC.newEditingContext(getEcEdit());
 		setEditedVoeux(EOVoeux.createVoeux(ecVoeux, getSelectedYear()
 				.localInstanceIn(ecVoeux)));
 
@@ -378,7 +379,7 @@ public class VoeuxEnseignant extends BaseModule {
 	}
 
 	public WOActionResults addVoeuxActiv() {
-		EOEditingContext ecVoeux = new EOEditingContext(getEcEdit());
+		EOEditingContext ecVoeux = ERXEC.newEditingContext(getEcEdit());
 		setEditedVoeux(EOVoeux.createVoeux(ecVoeux, getSelectedYear()
 				.localInstanceIn(ecVoeux)));
 
@@ -397,7 +398,7 @@ public class VoeuxEnseignant extends BaseModule {
 	}
 
 	public WOActionResults addRealiseActiv() {
-		EOEditingContext ecVoeux = new EOEditingContext(getEcEdit());
+		EOEditingContext ecVoeux = ERXEC.newEditingContext(getEcEdit());
 		setEditedVoeux(EOVoeux.createVoeux(ecVoeux, getSelectedYear()
 				.localInstanceIn(ecVoeux)));
 
@@ -600,7 +601,7 @@ public class VoeuxEnseignant extends BaseModule {
 	}
 
 	public WOActionResults validerService() {
-		EOEditingContext ec = new EOEditingContext(session()
+		EOEditingContext ec = ERXEC.newEditingContext(session()
 				.defaultEditingContext());
 		EOServiceEnseignant serv = serviceForEns();
 		if (serv == null) {

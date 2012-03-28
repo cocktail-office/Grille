@@ -342,7 +342,7 @@ AutChangeAp : AjaxUpdateTrigger {
   updateContainerIDs = changeApIds;
 }
 AutChangeActiv : AjaxUpdateTrigger {
- updateContainerIDs = changeActivIds
+ updateContainerIDs = changeActivIds;
 }
 CanChangeHrVoeux : WOConditional {
   condition = canChangeHrVoeux;

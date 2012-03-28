@@ -1,6 +1,7 @@
 package org.cocktail.grille.serveur.components;
 
 import org.cocktail.fwkcktlpersonne.common.metier.EOIndividu;
+import org.cocktail.fwkcktlpersonne.common.metier.IPersonne;
 import org.cocktail.grille.serveur.Session;
 import org.cocktail.grillefwk.serveur.finder.FinderEnseignant;
 
@@ -8,6 +9,8 @@ import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WODisplayGroup;
 import com.webobjects.eocontrol.EOQualifier;
+
+import er.extensions.appserver.ERXDisplayGroup;
 
 public class ModSearchEnseignant extends GrilleComponent {
 	
@@ -25,7 +28,7 @@ public class ModSearchEnseignant extends GrilleComponent {
 	
 	public ModSearchEnseignant(WOContext context) {
         super(context);
-        dgEnseignant = new WODisplayGroup();
+        dgEnseignant = new ERXDisplayGroup<IPersonne>();
     }
 
 	private String searchTypeIntExt = "interne";

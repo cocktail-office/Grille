@@ -24,6 +24,7 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSTimestamp;
 
 import er.ajax.AjaxModalDialog;
+import er.extensions.eof.ERXEC;
 
 public class GestionEC extends BaseModule {
 
@@ -203,7 +204,7 @@ public class GestionEC extends BaseModule {
 	}
 
 	public WOActionResults AddActivite() {
-		EOEditingContext newActivEc = new EOEditingContext(getEcEdit());
+		EOEditingContext newActivEc = ERXEC.newEditingContext(getEcEdit());
 		setEditedActivite(EOActivite.createActivite(newActivEc, null, null,
 				null));
 		editedActivite

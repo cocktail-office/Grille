@@ -23,6 +23,7 @@ import com.webobjects.foundation.NSMutableArray;
 import er.ajax.AjaxModalDialog;
 import er.ajax.AjaxUpdateContainer;
 import er.ajax.CktlAjaxUtils;
+import er.extensions.eof.ERXEC;
 import er.extensions.eof.ERXQ;
 
 public class PageGestUtilisateurs extends CktlAjaxWOComponent {
@@ -190,7 +191,7 @@ public class PageGestUtilisateurs extends CktlAjaxWOComponent {
 
 	public WOActionResults AddResp() {
 		setModeEdition("A");
-		EOEditingContext newRespEc = new EOEditingContext(session().defaultEditingContext());
+		EOEditingContext newRespEc = ERXEC.newEditingContext(session().defaultEditingContext());
 		editedResp=EOScolFormationResponsabilite.create(newRespEc);
 		editedResp.setToFwkScolarite_ScolFormationAnneeRelationship(((Session)session()).selectedYear());
 		editedResp.setToFwkScolarite_ScolFormationSpecialisationRelationship(selectedSpec);

@@ -31,6 +31,7 @@ import com.webobjects.foundation.NSTimestamp;
 import com.webobjects.foundation.NSMutableArray;
 
 import er.ajax.AjaxUpdateContainer;
+import er.extensions.eof.ERXEC;
 
 public class VoeuxElp extends BaseModule {
 	/**
@@ -225,7 +226,7 @@ public class VoeuxElp extends BaseModule {
 
 	private void creatVoeux() {
 		Session sess = ((Session) session());
-		EOEditingContext ecVoeux = new EOEditingContext(
+		EOEditingContext ecVoeux = ERXEC.newEditingContext(
 				sess.defaultEditingContext());
 		setEditedVoeux(EOVoeux.createVoeux(ecVoeux, currentYear()
 				.localInstanceIn(ecVoeux)));

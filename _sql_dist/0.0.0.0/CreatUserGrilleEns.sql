@@ -2,7 +2,7 @@
 -- Create the user 
 create user GRILLE_ENS
   identified by "GRILLE_ENS"
-  default tablespace USERS
+  default tablespace SCOL
   temporary tablespace TEMP
   profile DEFAULT;
 -- Grant/Revoke role privileges 
@@ -18,6 +18,12 @@ grant unlimited tablespace to GRILLE_ENS;
 
 --Droits--------------------------------
 --GRHUM---------------------------------
+-- Il faut donner à GRHUM les droits WITH GRANT OPTION pour que la vue GRHUM.v_personnel_actuel_ens soit accessible
+-- par d'autres utilisateurs
+GRANT REFERENCES,SELECT ON  MANGUE.ELEMENT_CARRIERE TO "GRHUM" WITH GRANT OPTION;
+GRANT REFERENCES,SELECT ON  MANGUE.CONTRAT TO "GRHUM" WITH GRANT OPTION;
+
+
 GRANT REFERENCES,SELECT ON  "GRHUM"."STRUCTURE_ULR" TO "GRILLE_ENS";
 GRANT EXECUTE ON  "GRHUM"."INS_GROUPE" TO "GRILLE_ENS";
 GRANT REFERENCES,SELECT,INSERT ON  "GRHUM"."TYPE_GROUPE" TO "GRILLE_ENS";
@@ -66,6 +72,14 @@ GRANT SELECT,REFERENCES ON  "MANGUE"."ELEMENT_CARRIERE" TO "GRILLE_ENS";
 grant select,references on mangue.changement_position to grille_ens;
 
 --HCOMP2-------------------------------------------------------
+-- Il faut donner à HCOMP2 les droits WITH GRANT OPTION pour que la vue HCOMP2.V_HCOMP_EC_CHARGES_AP soit accessible
+-- par d'autres utilisateurs
+GRANT SELECT ON "SCOLARITE"."SCOL_FORMATION_DISCIPLINE" TO "HCOMP2" WITH GRANT OPTION;
+GRANT SELECT ON "SCOLARITE"."SCOL_MAQUETTE_HORAIRE_MODE" TO "HCOMP2" WITH GRANT OPTION;
+GRANT SELECT ON "SCOLARITE"."SCOL_MAQUETTE_HORAIRE_CODE" TO "HCOMP2" WITH GRANT OPTION;
+GRANT SELECT ON "SCOLARITE"."SCOL_MAQUETTE_AP" TO "HCOMP2" WITH GRANT OPTION;
+GRANT SELECT ON "SCOLARITE"."SCOL_MAQUETTE_REPARTITION_AP" TO "HCOMP2" WITH GRANT OPTION;
+GRANT SELECT ON "SCOLARITE"."SCOL_MAQUETTE_EC" TO "HCOMP2" WITH GRANT OPTION;
 GRANT SELECT ON  "HCOMP2"."V_HCOMP_EC_CHARGES_AP" TO "GRILLE_ENS";
 
 

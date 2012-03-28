@@ -13,6 +13,7 @@ import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSTimestamp;
 
 import er.ajax.AjaxUpdateContainer;
+import er.extensions.eof.ERXEC;
 
 public class ModVerrouEC extends CktlAjaxWOComponent {
 
@@ -64,7 +65,7 @@ public class ModVerrouEC extends CktlAjaxWOComponent {
 	}
 
 	public WOActionResults lockEc() {
-		EOEditingContext ec = new EOEditingContext(session()
+		EOEditingContext ec = ERXEC.newEditingContext(session()
 				.defaultEditingContext());
 		EOEcVerrous lock = verrouForEc();
 		if (lock == null) {
@@ -103,7 +104,7 @@ public class ModVerrouEC extends CktlAjaxWOComponent {
 	}
 
 	public WOActionResults unLockEc() {
-		EOEditingContext ec = new EOEditingContext(session()
+		EOEditingContext ec = ERXEC.newEditingContext(session()
 				.defaultEditingContext());
 		EOEcVerrous lock = verrouForEc();
 		if (lock != null) {

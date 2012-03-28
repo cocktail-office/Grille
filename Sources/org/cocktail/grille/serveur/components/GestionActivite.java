@@ -19,6 +19,7 @@ import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 
 import er.ajax.CktlAjaxUtils;
+import er.extensions.eof.ERXEC;
 
 public class GestionActivite extends BaseModule {
 	/**
@@ -160,7 +161,7 @@ public class GestionActivite extends BaseModule {
 	}
 
 	public WOActionResults AddActivite() {
-		EOEditingContext newActivEc = new EOEditingContext(session().defaultEditingContext());
+		EOEditingContext newActivEc = ERXEC.newEditingContext(session().defaultEditingContext());
 		editedActivite=EOActivite.createActivite(newActivEc,null, null, null);
 		editedActivite.setToFwkScolarite_ScolFormationAnneeRelationship(((Session)session()).selectedYear().localInstanceIn(editedActivite.editingContext()));
 		editedActivite.setToFwkScolarite_ScolMaquetteEcRelationship(null);
